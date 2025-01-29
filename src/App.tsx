@@ -2,8 +2,6 @@ import { Header } from './components/header.tsx';
 
 import { Hero } from './components/sections/hero.tsx';
 import { Features } from './components/sections/features.tsx';
-import { Section } from './components/section.tsx';
-import { Separator } from './components/ui/separator.tsx';
 import { About } from './components/sections/about.tsx';
 import { Downloads } from './components/sections/downloads.tsx';
 import { Hero2 } from './components/sections/hero2.tsx';
