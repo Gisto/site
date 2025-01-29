@@ -161,7 +161,7 @@ export const Downloads = ({ className }: { className?: string }) => {
   DOWNLOADS.MacOs.links = assets.MacOs;
 
   return (
-    <Section>
+    <Section className="mt-16 sm:mt-0">
       <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
         <span id="downloads-section" className="font-extrabold text-primary">
           Downloads

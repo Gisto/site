@@ -31,27 +31,39 @@ export const Header = () => {
       </div>
       <div className="ml-auto flex gap-2">
         <a>
-          <Button variant="ghost" onClick={() => scrollToSection('about-section')}>
+          <Button
+            variant="ghost"
+            size={isMobile ? 'sm' : 'default'}
+            onClick={() => scrollToSection('about-section')}
+          >
             About
           </Button>
         </a>
 
         {/*<a>*/}
-        {/*  <Button variant="ghost">Docs</Button>*/}
+        {/*  <Button size={isMobile ? 'sm' : 'default'} variant="ghost">Docs</Button>*/}
         {/*</a>*/}
 
         <a>
-          <Button onClick={() => scrollToSection('features-section')} variant="ghost">
+          <Button
+            size={isMobile ? 'sm' : 'default'}
+            onClick={() => scrollToSection('features-section')}
+            variant="ghost"
+          >
             Features
           </Button>
         </a>
 
         {/*<a>*/}
-        {/*  <Button variant="ghost">F.A.Q.</Button>*/}
+        {/*  <Button size={isMobile ? 'sm' : 'default'} variant="ghost">F.A.Q.</Button>*/}
         {/*</a>*/}
 
         <a>
-          <Button onClick={() => scrollToSection('downloads-section')} variant="ghost">
+          <Button
+            size={isMobile ? 'sm' : 'default'}
+            onClick={() => scrollToSection('downloads-section')}
+            variant="ghost"
+          >
             Downloads
           </Button>
         </a>
