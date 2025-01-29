@@ -1,13 +1,18 @@
 import { Section } from '../section.tsx';
-import { cn } from '../../lib/utils.ts';
-import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils.ts';
+import { ReactNode, useEffect, useState } from 'react';
 import { Button } from '../ui/button.tsx';
 
-const DOWNLOADS = {
+type DownloadLink = {
+  label: string;
+  link: string;
+};
+
+const DOWNLOADS: Record<string, { Icon: (props: { strokeWidth?: number; className?: string }) => ReactNode; links: DownloadLink[] }> = {
   Windows: {
-    Icon: () => (
+    Icon: ({ strokeWidth, className }) => (
       <svg
-        className="size-16 text-primary"
+        className={`size-16 text-primary ${className}`}
         aria-hidden="true"
         width="24"
         height="24"
@@ -16,9 +21,10 @@ const DOWNLOADS = {
       >
         <path
           fill="currentColor"
-          fill-rule="evenodd"
+          strokeWidth={strokeWidth}
+          fillRule="evenodd"
           d="M3.005 12 3 6.408l6.8-.923v6.517H3.005ZM11 5.32 19.997 4v8H11V5.32ZM20.067 13l-.069 8-9.065-1.275L11 13h9.067ZM9.8 19.58l-6.795-.931V13H9.8v6.58Z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         />
       </svg>
     ),
@@ -52,7 +58,6 @@ const DOWNLOADS = {
     links: [],
   },
   Releases: {
-    title: '',
     Icon: () => (
       <svg
         className="size-16 text-primary"
@@ -78,14 +83,26 @@ const DOWNLOADS = {
   },
 };
 
-const getLatestPreRelease = (releases) => {
+type Asset = {
+  browser_download_url: string;
+  // Add other properties of the asset if needed
+};
+
+type Release = {
+  prerelease: boolean;
+  tag_name: string;
+  published_at: string;
+  assets: Asset[];
+};
+
+const getLatestPreRelease = (releases: Release[]) => {
   const release = releases.filter((release) => release.prerelease)[0];
   return {
     version: release.tag_name,
     publishedAt: new Date(release.published_at).toDateString(),
 
     assets: release.assets.reduce(
-      (acc, next) => {
+      (acc: Record<string, DownloadLink[]>, next) => {
         if (next.browser_download_url.endsWith('.exe')) {
           acc['Windows'].push({ label: 'exe', link: next.browser_download_url });
         }
@@ -125,13 +142,12 @@ const getLatestPreRelease = (releases) => {
 };
 
 export const Downloads = ({ className }: { className?: string }) => {
-  const [releases, setReleases] = useState<Record<string, unknown> | null>(null);
+  const [releases, setReleases] = useState<Release[] | null>(null);
+
   useEffect(() => {
     (async () => {
       const result = await fetch('https://api.github.com/repos/Gisto/Gisto/releases');
-
-      const all = await result.json();
-
+      const all = await result.json() as Release[];
       setReleases(all);
     })();
   }, []);
