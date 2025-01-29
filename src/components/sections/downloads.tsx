@@ -8,24 +8,23 @@ type DownloadLink = {
   link: string;
 };
 
-const DOWNLOADS: Record<string, { Icon: (props: { strokeWidth?: number; className?: string }) => ReactNode; links: DownloadLink[] }> = {
+const DOWNLOADS: Record<
+  string,
+  {
+    Icon: (props: { strokeWidth?: number; className?: string }) => ReactNode;
+    links: DownloadLink[];
+  }
+> = {
   Windows: {
-    Icon: ({ strokeWidth, className }) => (
+    Icon: () => (
       <svg
-        className={`size-16 text-primary ${className}`}
-        aria-hidden="true"
+        className="size-16  text-primary"
+        viewBox="-0.5 0 257 257"
+        fill="currentColor"
         width="24"
         height="24"
-        fill="none"
-        viewBox="0 0 24 24"
       >
-        <path
-          fill="currentColor"
-          strokeWidth={strokeWidth}
-          fillRule="evenodd"
-          d="M3.005 12 3 6.408l6.8-.923v6.517H3.005ZM11 5.32 19.997 4v8H11V5.32ZM20.067 13l-.069 8-9.065-1.275L11 13h9.067ZM9.8 19.58l-6.795-.931V13H9.8v6.58Z"
-          clipRule="evenodd"
-        />
+        <path d="M0 36.357L104.62 22.11l.045 100.914-104.57.595L0 36.358zm104.57 98.293l.08 101.002L.081 221.275l-.006-87.302 104.494.677zm12.682-114.405L255.968 0v121.74l-138.716 1.1V20.246zM256 135.6l-.033 121.191-138.716-19.578-.194-101.84L256 135.6z" />
       </svg>
     ),
     links: [],
@@ -35,7 +34,6 @@ const DOWNLOADS: Record<string, { Icon: (props: { strokeWidth?: number; classNam
       <svg
         className="size-16  text-primary"
         aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
         fill="currentColor"
@@ -147,7 +145,7 @@ export const Downloads = ({ className }: { className?: string }) => {
   useEffect(() => {
     (async () => {
       const result = await fetch('https://api.github.com/repos/Gisto/Gisto/releases');
-      const all = await result.json() as Release[];
+      const all = (await result.json()) as Release[];
       setReleases(all);
     })();
   }, []);
@@ -165,7 +163,10 @@ export const Downloads = ({ className }: { className?: string }) => {
   return (
     <Section>
       <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-        <span id="downloads-section" className="font-extrabold text-primary">Downloads</span> and packages
+        <span id="downloads-section" className="font-extrabold text-primary">
+          Downloads
+        </span>{' '}
+        and packages
       </h1>
       <p className="mb-8 text-center">
         Latest pre-release: <strong>{version}</strong>{' '}
@@ -204,7 +205,8 @@ export const Downloads = ({ className }: { className?: string }) => {
       </div>
 
       <div className="grid sm:flex sm:items-center gap-2 my-8">
-        <strong>Previous version: v1.13.4</strong> ({new Date('Oct 10, 2020').toDateString()}) is <span className="text-danger">deprecated</span> and will not receive updates.
+        <strong>Previous version: v1.13.4</strong> ({new Date('Oct 10, 2020').toDateString()}) is{' '}
+        <span className="text-danger">deprecated</span> and will not receive updates.
         <Button
           variant="outline"
           size="sm"
