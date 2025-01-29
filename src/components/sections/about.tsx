@@ -4,7 +4,7 @@ export const About = () => {
   return (
     <Section>
       <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-        <span className="font-extrabold text-primary">About</span> Gisto
+        <span className="font-extrabold text-primary" id="about-section">About</span> Gisto
       </h1>
       <div>
         <p className="mb-8">

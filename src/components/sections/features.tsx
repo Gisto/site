@@ -107,7 +107,7 @@ export const Features = ({ className }: { className?: string }) => {
   return (
     <Section>
       <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-        <span className="font-extrabold text-primary">Feature</span> highlights
+        <span id="features-section" className="font-extrabold text-primary">Feature</span> highlights
       </h1>
       <div className={cn('grid sm:grid-cols-2 lg:grid-cols-3 gap-16', className)}>
         {FEATURES.map((feature) => {

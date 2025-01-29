@@ -10,7 +10,7 @@ import { Footer } from './components/sections/footer.tsx';
 
 function App() {
   return (
-    <div className="bg-light-pattern dark:bg-dark-pattern ">
+    <div id="top" className="bg-light-pattern dark:bg-dark-pattern ">
       <Header />
 
       <div className="block sm:hidden overflow-hidden">

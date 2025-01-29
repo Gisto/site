@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { cn } from '../lib/utils';
+import { cn, scrollToSection } from '../lib/utils';
 
 import { Button } from './ui/button.tsx';
 import { ThemeSwitcher } from './theme/theme-switcher.tsx';
+import { useIsMobile } from '@/hooks/use-mobile.tsx';
 
 export const Header = () => {
+  const isMobile = useIsMobile();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -23,29 +25,35 @@ export const Header = () => {
       )}
     >
       <div>
-        <a className="flex items-center gap-2 text-primary">
-          <h1 className="font-semibold text-2xl p-0 m-0">{'{ Gisto }'}</h1>
+        <a className="flex items-center gap-2 text-primary" onClick={() => scrollToSection('top')}>
+          <h1 className="font-semibold text-2xl p-0 m-0">{isMobile ? '{ G }' : '{ Gisto }'}</h1>
         </a>
       </div>
       <div className="ml-auto flex gap-2">
         <a>
-          <Button variant="ghost">About</Button>
+          <Button variant="ghost" onClick={() => scrollToSection('about-section')}>
+            About
+          </Button>
         </a>
 
-        <a>
-          <Button variant="ghost">Docs</Button>
-        </a>
+        {/*<a>*/}
+        {/*  <Button variant="ghost">Docs</Button>*/}
+        {/*</a>*/}
 
         <a>
-          <Button variant="ghost">Features</Button>
+          <Button onClick={() => scrollToSection('features-section')} variant="ghost">
+            Features
+          </Button>
         </a>
 
-        <a>
-          <Button variant="ghost">F.A.Q.</Button>
-        </a>
+        {/*<a>*/}
+        {/*  <Button variant="ghost">F.A.Q.</Button>*/}
+        {/*</a>*/}
 
         <a>
-          <Button variant="ghost">Downloads</Button>
+          <Button onClick={() => scrollToSection('downloads-section')} variant="ghost">
+            Downloads
+          </Button>
         </a>
 
         <ThemeSwitcher />

@@ -165,7 +165,7 @@ export const Downloads = ({ className }: { className?: string }) => {
   return (
     <Section>
       <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-        <span className="font-extrabold text-primary">Downloads</span> and packages
+        <span id="downloads-section" className="font-extrabold text-primary">Downloads</span> and packages
       </h1>
       <p className="mb-8 text-center">
         Latest pre-release: <strong>{version}</strong>{' '}
@@ -203,9 +203,8 @@ export const Downloads = ({ className }: { className?: string }) => {
         })}
       </div>
 
-      <div className="flex items-center gap-2 my-8">
-        <strong>Previous version: v1.13.4</strong> ({new Date('Oct 10, 2020').toDateString()}) is
-        <span className="text-danger">deprecated</span> and will not receive updates.
+      <div className="grid sm:flex sm:items-center gap-2 my-8">
+        <strong>Previous version: v1.13.4</strong> ({new Date('Oct 10, 2020').toDateString()}) is <span className="text-danger">deprecated</span> and will not receive updates.
         <Button
           variant="outline"
           size="sm"
@@ -215,16 +214,16 @@ export const Downloads = ({ className }: { className?: string }) => {
         </Button>
       </div>
 
-      <div className="flex items-center gap-2 my-8">
-        <strong>Latest stable release:</strong>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => window.open('https://github.com/Gisto/gisto/releases/latest')}
-        >
-          Releases
-        </Button>
-      </div>
+      {/*<div className="flex items-center gap-2 my-8">*/}
+      {/*  <strong>Latest stable release:</strong>*/}
+      {/*  <Button*/}
+      {/*    variant="outline"*/}
+      {/*    size="sm"*/}
+      {/*    onClick={() => window.open('https://github.com/Gisto/gisto/releases/latest')}*/}
+      {/*  >*/}
+      {/*    Releases*/}
+      {/*  </Button>*/}
+      {/*</div>*/}
     </Section>
   );
 };
