@@ -93,8 +93,8 @@ type Release = {
   assets: Asset[];
 };
 
-const getLatestPreRelease = (releases: Release[]) => {
-  const release = releases.filter((release) => release.prerelease)[0];
+const getLatestRelease = (releases: Release[]) => {
+  const release = releases.filter((release) => release.prerelease === false)[0];
   return {
     version: release.tag_name,
     publishedAt: new Date(release.published_at).toDateString(),
@@ -154,7 +154,7 @@ export const Downloads = ({ className }: { className?: string }) => {
     return null;
   }
 
-  const { version, publishedAt, assets } = getLatestPreRelease(releases);
+  const { version, publishedAt, assets } = getLatestRelease(releases);
 
   DOWNLOADS.Linux.links = assets.Linux;
   DOWNLOADS.Windows.links = assets.Windows;
@@ -169,7 +169,7 @@ export const Downloads = ({ className }: { className?: string }) => {
         and packages
       </h1>
       <p className="mb-8 text-center">
-        Latest pre-release: <strong>{version}</strong>{' '}
+        Latest release: <strong>{version}</strong>{' '}
         <em>
           <small>({publishedAt})</small>
         </em>
