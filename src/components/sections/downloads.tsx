@@ -175,7 +175,7 @@ export const Downloads = ({ className }: { className?: string }) => {
         </em>
       </p>
 
-      <div className={cn('grid grid-cols-2 sm:grid-cols-4 gap-8', className)}>
+      <div className={cn('grid grid-cols-1 sm:grid-cols-4 gap-8', className)}>
         {Object.keys(DOWNLOADS).map((os) => {
           const Icon = DOWNLOADS[os].Icon;
           return (
@@ -198,6 +198,14 @@ export const Downloads = ({ className }: { className?: string }) => {
                     </Button>
                   ))}
                 </p>
+                {os === 'MacOs' && (
+                  <p className="text-xs">
+                    <div className="my-2">or via Homebrew</div>
+                    <code className="bg-accent p-1 rounded shadow-inner whitespace-nowrap">
+                      brew install --cask gisto
+                    </code>
+                  </p>
+                )}
               </div>
             </div>
           );
