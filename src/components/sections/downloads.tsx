@@ -93,8 +93,7 @@ type Release = {
   assets: Asset[];
 };
 
-const getLatestRelease = (releases: Release[]) => {
-  const release = releases.filter((release) => release.prerelease === false)[0];
+const getLatestRelease = (release: Release) => {
   return {
     version: release.tag_name,
     publishedAt: new Date(release.published_at).toDateString(),
@@ -140,21 +139,21 @@ const getLatestRelease = (releases: Release[]) => {
 };
 
 export const Downloads = ({ className }: { className?: string }) => {
-  const [releases, setReleases] = useState<Release[] | null>(null);
+  const [release, setRelease] = useState<Release | null>(null);
 
   useEffect(() => {
     (async () => {
-      const result = await fetch('https://api.github.com/repos/Gisto/Gisto/releases');
-      const all = (await result.json()) as Release[];
-      setReleases(all);
+      const result = await fetch('https://api.github.com/repos/Gisto/Gisto/releases/latest');
+      const latest = (await result.json()) as Release;
+      setRelease(latest);
     })();
   }, []);
 
-  if (!releases) {
+  if (!release) {
     return null;
   }
 
-  const { version, publishedAt, assets } = getLatestRelease(releases);
+  const { version, publishedAt, assets } = getLatestRelease(release);
 
   DOWNLOADS.Linux.links = assets.Linux;
   DOWNLOADS.Windows.links = assets.Windows;
