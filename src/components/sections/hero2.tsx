@@ -22,8 +22,12 @@ export const Hero2 = () => {
               >
                 Downloads
               </Button>
-              <Button size="lg" variant="outline">
-                Learn more
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => window.open('https://app.gisto.org')}
+              >
+                Web app
               </Button>
               <Github />
             </div>

@@ -22,7 +22,11 @@ export const Hero = () => {
         <Button size="lg" onClick={() => window.open('https://github.com/Gisto/Gisto/releases')}>
           Downloads
         </Button>
-        <Button size="lg" variant="outline">
+        <Button
+          size="lg"
+          variant="outline"
+          onClick={() => window.open('https://github.com/Gisto/Gisto')}
+        >
           Learn more
         </Button>
       </div>
