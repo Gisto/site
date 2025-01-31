@@ -1,6 +1,7 @@
 import { useTheme } from '../theme/theme-provider.tsx';
 import { Button } from '../ui/button.tsx';
 import { Github } from './github.tsx';
+import { scrollToSection } from '@/lib/utils.ts';
 
 export const Hero2 = () => {
   const { resolvedTheme } = useTheme();
@@ -16,10 +17,7 @@ export const Hero2 = () => {
               Gisto brings clarity to your snippet collection, making organization second nature
             </p>
             <div className="flex justify-center lg:justify-start mt-8 gap-4">
-              <Button
-                size="lg"
-                onClick={() => window.open('https://github.com/Gisto/Gisto/releases')}
-              >
+              <Button size="lg" onClick={() => scrollToSection('downloads-section')}>
                 Downloads
               </Button>
               <Button
