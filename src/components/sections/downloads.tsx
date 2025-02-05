@@ -2,6 +2,7 @@ import { Section } from '../section.tsx';
 import { cn } from '@/lib/utils.ts';
 import { ReactNode, useEffect, useState } from 'react';
 import { Button } from '../ui/button.tsx';
+import { Separator } from '@/components/ui/separator.tsx';
 
 type DownloadLink = {
   label: string;
@@ -172,6 +173,14 @@ export const Downloads = ({ className }: { className?: string }) => {
         <em>
           <small>({publishedAt})</small>
         </em>
+        <Button
+          variant="outline"
+          size="sm"
+          className="ml-2"
+          onClick={() => window.open('https://github.com/Gisto/Gisto/blob/main/CHANGELOG.md')}
+        >
+          See changelog
+        </Button>
       </p>
 
       <div className={cn('grid grid-cols-1 sm:grid-cols-4 gap-8', className)}>
