@@ -2,7 +2,6 @@ import { Section } from '../section.tsx';
 import { cn } from '@/lib/utils.ts';
 import { ReactNode, useEffect, useState } from 'react';
 import { Button } from '../ui/button.tsx';
-import { Separator } from '@/components/ui/separator.tsx';
 
 type DownloadLink = {
   label: string;
