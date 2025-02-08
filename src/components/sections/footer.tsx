@@ -44,29 +44,21 @@ export const Footer = () => {
         </a>
         <Separator orientation="vertical" />
         <Button
-          size="sm"
-          className="!m-0 !px-3 !pr-0"
+          size="icon"
+          title="X/Twitter"
           variant="link"
           onClick={() => window.open('https://x.com/gistoapp')}
         >
-          <img
-            className="size-4"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/x.svg"
-            alt="X/Twitter"
-          />
+          <img className="size-4" src="https://cdn.simpleicons.org/x/3f83a8" alt="X/Twitter" />
         </Button>
         <Separator orientation="vertical" />
         <Button
-          size="sm"
-          className="!m-0 !px-3 !pr-0"
+          size="icon"
           variant="link"
           onClick={() => window.open('https://github.com/Gisto/Gisto')}
+          title="GitHub"
         >
-          <img
-            className="size-4"
-            src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/github.svg"
-            alt="GitHub"
-          />
+          <img className="size-4" src="https://cdn.simpleicons.org/github/3f83a8" alt="GitHub" />
         </Button>
       </div>
     </Section>
