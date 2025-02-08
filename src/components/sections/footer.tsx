@@ -1,6 +1,7 @@
 import { Separator } from '../ui/separator.tsx';
 import { Section } from '../section.tsx';
 import { scrollToSection } from '@/lib/utils.ts';
+import { Button } from '@/components/ui/button.tsx';
 
 export const Footer = () => {
   return (
@@ -41,6 +42,32 @@ export const Footer = () => {
         >
           Downloads
         </a>
+        <Separator orientation="vertical" />
+        <Button
+          size="sm"
+          className="!m-0 !px-3 !pr-0"
+          variant="link"
+          onClick={() => window.open('https://x.com/gistoapp')}
+        >
+          <img
+            className="size-4"
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/x.svg"
+            alt="X/Twitter"
+          />
+        </Button>
+        <Separator orientation="vertical" />
+        <Button
+          size="sm"
+          className="!m-0 !px-3 !pr-0"
+          variant="link"
+          onClick={() => window.open('https://github.com/Gisto/Gisto')}
+        >
+          <img
+            className="size-4"
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/github.svg"
+            alt="GitHub"
+          />
+        </Button>
       </div>
     </Section>
   );

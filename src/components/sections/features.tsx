@@ -13,6 +13,7 @@ import {
 import { Section } from '../section.tsx';
 import { cn } from '../../lib/utils.ts';
 import { useTheme } from '../theme/theme-provider.tsx';
+import { Button } from '@/components/ui/button.tsx';
 
 const FEATURES = [
   {
@@ -63,6 +64,11 @@ const FEATURES = [
         to access it.
       </span>
     ),
+    link: (
+      <Button variant="outline" onClick={() => window.open('https://app.gisto.org')}>
+        app.gisto.org
+      </Button>
+    ),
     image: {
       light: '/features/web-app-light.png',
       dark: '/features/web-app-dark.png',
@@ -107,7 +113,10 @@ export const Features = ({ className }: { className?: string }) => {
   return (
     <Section>
       <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-        <span id="features-section" className="font-extrabold text-primary">Feature</span> highlights
+        <span id="features-section" className="font-extrabold text-primary">
+          Feature
+        </span>{' '}
+        highlights
       </h1>
       <div className={cn('grid sm:grid-cols-2 lg:grid-cols-3 gap-16', className)}>
         {FEATURES.map((feature) => {
@@ -137,7 +146,13 @@ export const Features = ({ className }: { className?: string }) => {
                           ? `url(${feature.image.light})`
                           : `url(${feature.image.dark})`,
                     }}
-                  ></div>
+                  >
+                    {feature?.link && (
+                      <div className="flex items-center h-full content-center justify-center">
+                        {feature?.link}
+                      </div>
+                    )}
+                  </div>
                 ) : (
                   <div className="absolute inset-0 p-8 backface-hidden rounded shadow-md transform rotate-y-180 border backdrop-blur-[4px] backdrop-saturate-[100%] bg-opacity-10 bg-[#ffffff]">
                     <div className="flex items-center justify-center">
