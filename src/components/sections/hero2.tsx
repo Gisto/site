@@ -27,6 +27,32 @@ export const Hero2 = () => {
               >
                 Web app
               </Button>
+
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => window.open('https://github.com/Gisto/Gisto')}
+                title="GitHub"
+              >
+                <img
+                  className="size-4"
+                  src="https://cdn.simpleicons.org/github/3f83a8"
+                  alt="GitHub"
+                />
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => window.open('https://x.com/gistoapp')}
+                title="X/Twitter"
+              >
+                <img
+                  className="size-4"
+                  src="https://cdn.simpleicons.org/x/3f83a8"
+                  alt="X/Twitter"
+                />
+              </Button>
+
               <Github />
             </div>
           </div>
