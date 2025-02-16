@@ -1,34 +1,27 @@
 import { Header } from './components/header.tsx';
 
-import { Hero } from './components/sections/hero.tsx';
-import { Features } from './components/sections/features.tsx';
-import { About } from './components/sections/about.tsx';
-import { Downloads } from './components/sections/downloads.tsx';
-import { Hero2 } from './components/sections/hero2.tsx';
-import { Github } from './components/sections/github.tsx';
+import { RouterProvider, Outlet } from 'dirty-react-router';
+
 import { Footer } from './components/sections/footer.tsx';
+import { Home } from './pages/home.tsx';
+import { DocumentationPage } from '@/pages/documentation.tsx';
+import { DocumentationArticlePage } from '@/pages/documentation-article.tsx';
+
+const routes = [
+  { path: '/', component: Home },
+  { path: '/documentation', component: DocumentationPage },
+  { path: '/documentation/:slug', component: DocumentationArticlePage },
+];
 
 function App() {
   return (
-    <div id="top" className="bg-light-pattern dark:bg-dark-pattern ">
-      <Header />
-
-      <div className="block sm:hidden overflow-hidden">
-        <Hero />
-        <div className="flex justify-center items-center mb-8">
-          <Github />
-        </div>
+    <RouterProvider routes={routes}>
+      <div id="top" className="bg-light-pattern dark:bg-dark-pattern ">
+        <Header />
+        <Outlet />
+        <Footer />
       </div>
-
-      <div className="hidden sm:block overflow-hidden">
-        <Hero2 />
-      </div>
-
-      <About />
-      <Features />
-      <Downloads />
-      <Footer />
-    </div>
+    </RouterProvider>
   );
 }
 
