@@ -49,7 +49,7 @@ export const DocumentationArticlePage = () => {
       <Suspense fallback={<Loading className="h-[300px]" />}>
         {frontmatter?.category && (
           <Badge variant="primary-outline" key={frontmatter?.category}>
-            {upperCaseFirst(frontmatter.category)}
+            {upperCaseFirst(frontmatter.category.slice(3, 100))}
           </Badge>
         )}
 

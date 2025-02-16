@@ -55,31 +55,33 @@ export const DocumentationPage = () => {
     <Section>
       <h2 className="font-bold text-2xl mb-4">Documentation</h2>
 
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {Object.keys(sortPagesIntoCategories).map((category) => {
-          return (
-            <Card key={category}>
-              <CardHeader>
-                <CardTitle>
-                  <h2 className="mb-0">{upperCaseFirst(category)}</h2>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {sortPagesIntoCategories[category].map((page) => {
-                  const path = page.path.replace('./docs', '/documentation').replace('.mdx', '');
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+        {Object.keys(sortPagesIntoCategories)
+          .sort()
+          .map((category) => {
+            return (
+              <Card key={category}>
+                <CardHeader>
+                  <CardTitle>
+                    <h2 className="mb-0">{category.slice(3, 100)}</h2>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {sortPagesIntoCategories[category].map((page) => {
+                    const path = page.path.replace('./docs', '/documentation').replace('.mdx', '');
 
-                  return (
-                    <p key={page.frontmatter.title}>
-                      <Link className="hover:underline underline-offset-2" to={path}>
-                        {page.frontmatter.title}
-                      </Link>
-                    </p>
-                  );
-                })}
-              </CardContent>
-            </Card>
-          );
-        })}
+                    return (
+                      <p key={page.frontmatter.title} className="mb-2">
+                        <Link className="hover:underline underline-offset-2" to={path}>
+                          {page.frontmatter.title}
+                        </Link>
+                      </p>
+                    );
+                  })}
+                </CardContent>
+              </Card>
+            );
+          })}
       </div>
     </Section>
   );
