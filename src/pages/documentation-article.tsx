@@ -9,6 +9,7 @@ import { MDXLayout } from '../components/mdx-layout.tsx';
 
 import { Link, useRouter } from 'dirty-react-router';
 import { Section } from '@/components/section.tsx';
+import { Loading } from '@/components/loading.tsx';
 
 interface Frontmatter {
   category: string;
@@ -27,7 +28,7 @@ export const DocumentationArticlePage = () => {
 
   const { slug } = params;
 
-  const ContentModule = React.lazy(() =>
+  const Content = React.lazy(() =>
     import(`./docs/${slug}.mdx`).then((module) => {
       if (module.frontmatter) {
         setFrontmatter(module.frontmatter);
@@ -45,17 +46,19 @@ export const DocumentationArticlePage = () => {
         <CircleArrowLeft className="size-4" /> Back to Documentation
       </Link>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading className="h-[300px]" />}>
         {frontmatter?.category && (
-          <Badge variant="outline" className="mr-2" key={frontmatter?.category}>
+          <Badge variant="primary-outline" key={frontmatter?.category}>
             {upperCaseFirst(frontmatter.category)}
           </Badge>
         )}
-        {frontmatter?.title && <h1 className="text-4xl">{frontmatter.title} </h1>}
+
+        {frontmatter?.title && <h1 className="text-4xl my-4 text-primary">{frontmatter.title} </h1>}
+
         <MDXLayout>
           <div>
             {frontmatter?.author && (
-              <div className="flex gap-2 items-center text-xs">
+              <div className="flex gap-2 items-center text-xs mb-2">
                 <CircleUser className="size-3" /> {frontmatter.author}
               </div>
             )}
@@ -69,7 +72,7 @@ export const DocumentationArticlePage = () => {
           </div>
 
           <div className="mt-8">
-            <ContentModule />
+            <Content />
           </div>
         </MDXLayout>
       </Suspense>
