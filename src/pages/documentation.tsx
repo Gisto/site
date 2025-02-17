@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardTitle, CardHeader } from '../components/ui/card';
 
 import { Link } from 'dirty-react-router';
-import { upperCaseFirst } from '@/lib/utils.ts';
 import { Section } from '@/components/section.tsx';
 
 interface DocPage {
