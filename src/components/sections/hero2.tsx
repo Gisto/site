@@ -20,12 +20,21 @@ export const Hero2 = () => {
               <Button size="lg" onClick={() => scrollToSection('downloads-section')}>
                 Downloads
               </Button>
+
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => window.open('https://app.gisto.org')}
               >
                 Web app
+              </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => window.open('https://gisto.org/documentation')}
+              >
+                Learn more
               </Button>
 
               <Button
