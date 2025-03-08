@@ -2,9 +2,12 @@ import { useTheme } from '../theme/theme-provider.tsx';
 import { Button } from '../ui/button.tsx';
 import { Github } from './github.tsx';
 import { scrollToSection } from '@/lib/utils.ts';
+import { useRouter } from 'dirty-react-router';
 
 export const Hero = () => {
   const { resolvedTheme } = useTheme();
+  const { navigate } = useRouter();
+
   return (
     <div className="w-full mt-16 pb-16">
       <div className="flex h-[600px]">
@@ -30,7 +33,7 @@ export const Hero = () => {
                 Web app
               </Button>
 
-              <Button size="lg" variant="outline" onClick={() => window.open('/documentation')}>
+              <Button size="lg" variant="outline" onClick={() => navigate('/documentation')}>
                 Learn more
               </Button>
             </div>

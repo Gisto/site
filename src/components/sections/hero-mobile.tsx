@@ -2,9 +2,12 @@ import { Section } from '../section.tsx';
 import { useTheme } from '../theme/theme-provider.tsx';
 import { Button } from '../ui/button.tsx';
 import { scrollToSection } from '@/lib/utils.ts';
+import { useRouter } from 'dirty-react-router';
 
 export const HeroMobile = () => {
   const { resolvedTheme } = useTheme();
+  const { navigate } = useRouter();
+
   return (
     <Section className="relative overflow-hidden mt-20 sm:mt-32">
       <div className="text-center">
@@ -23,11 +26,7 @@ export const HeroMobile = () => {
         <Button size="lg" onClick={() => scrollToSection('downloads-section')}>
           Downloads
         </Button>
-        <Button
-          size="lg"
-          variant="outline"
-          onClick={() => window.open('https://gisto.org/documentation')}
-        >
+        <Button size="lg" variant="outline" onClick={() => navigate('/documentation')}>
           Learn more
         </Button>
       </div>

@@ -24,12 +24,11 @@ export const Footer = () => {
               scrollToSection('about-section');
             }, 300);
           }}
-          className="underline underline-offset-2 hover:underline-offset-4 transition-all"
+          className="underline cursor-pointer underline-offset-2 hover:underline-offset-4 transition-all"
         >
           About
         </a>
-        {/*<Separator orientation="vertical" />*/}
-        {/*<a className="underline underline-offset-2 hover:underline-offset-4 transition-all">Docs</a>*/}
+
         <Separator orientation="vertical" />
         <a
           onClick={() => {
@@ -38,15 +37,10 @@ export const Footer = () => {
               scrollToSection('features-section');
             }, 300);
           }}
-          className="underline underline-offset-2 hover:underline-offset-4 transition-all"
+          className="underline cursor-pointer underline-offset-2 hover:underline-offset-4 transition-all"
         >
           Features
         </a>
-
-        {/*<Separator orientation="vertical" />*/}
-        {/*<a className="underline underline-offset-2 hover:underline-offset-4 transition-all">*/}
-        {/*  F.A.Q.*/}
-        {/*</a>*/}
 
         <Separator orientation="vertical" />
         <a
@@ -56,14 +50,14 @@ export const Footer = () => {
               scrollToSection('downloads-section');
             }, 300);
           }}
-          className="underline underline-offset-2 hover:underline-offset-4 transition-all"
+          className="underline cursor-pointer underline-offset-2 hover:underline-offset-4 transition-all"
         >
           Downloads
         </a>
         <Separator orientation="vertical" />
         <a
           onClick={() => navigate('/documentation')}
-          className="underline underline-offset-2 hover:underline-offset-4 transition-all"
+          className="underline cursor-pointer underline-offset-2 hover:underline-offset-4 transition-all"
         >
           Docs
         </a>
