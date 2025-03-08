@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react';
 import { cn, scrollToSection } from '../lib/utils';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+import { Menu } from 'lucide-react';
 
 import { Button } from './ui/button.tsx';
 import { ThemeSwitcher } from './theme/theme-switcher.tsx';
@@ -37,12 +46,80 @@ export const Header = () => {
           <h1 className="font-semibold text-2xl p-0 m-0">{isMobile ? '{ G }' : '{ Gisto }'}</h1>
         </a>
       </div>
-      <div className="ml-auto flex gap-2">
+
+      <div className="sm:hidden flex gap-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Menu />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>Navigation</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Button
+                variant="ghost"
+                size={isMobile ? 'sm' : 'default'}
+                onClick={() => {
+                  navigate('/');
+                  setTimeout(() => scrollToSection('about-section'), 300);
+                }}
+              >
+                About
+              </Button>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <a>
+                <Button
+                  size={isMobile ? 'sm' : 'default'}
+                  onClick={() => {
+                    navigate('/');
+                    setTimeout(() => scrollToSection('features-section'), 300);
+                  }}
+                  variant="ghost"
+                >
+                  Features
+                </Button>
+              </a>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <a>
+                <Button
+                  size={isMobile ? 'sm' : 'default'}
+                  onClick={() => {
+                    navigate('/');
+                    setTimeout(() => scrollToSection('downloads-section'), 300);
+                  }}
+                  variant="ghost"
+                >
+                  Downloads
+                </Button>
+              </a>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Button
+                size={isMobile ? 'sm' : 'default'}
+                onClick={() => {
+                  navigate('/documentation');
+                }}
+                variant="ghost"
+              >
+                Docs
+              </Button>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <ThemeSwitcher />
+      </div>
+
+      <div className="ml-auto flex gap-2 hidden sm:block">
         <a>
           <Button
             variant="ghost"
             size={isMobile ? 'sm' : 'default'}
-            onClick={() => scrollToSection('about-section')}
+            onClick={() => {
+              navigate('/');
+              setTimeout(() => scrollToSection('about-section'), 300);
+            }}
           >
             About
           </Button>
@@ -51,24 +128,38 @@ export const Header = () => {
         <a>
           <Button
             size={isMobile ? 'sm' : 'default'}
-            onClick={() => scrollToSection('features-section')}
+            onClick={() => {
+              navigate('/');
+              setTimeout(() => scrollToSection('features-section'), 300);
+            }}
             variant="ghost"
           >
             Features
           </Button>
         </a>
 
-        {/*<a>*/}
-        {/*  <Button size={isMobile ? 'sm' : 'default'} variant="ghost">F.A.Q.</Button>*/}
-        {/*</a>*/}
+        <a>
+          <Button
+            size={isMobile ? 'sm' : 'default'}
+            onClick={() => {
+              navigate('/');
+              setTimeout(() => scrollToSection('downloads-section'), 300);
+            }}
+            variant="ghost"
+          >
+            Downloads
+          </Button>
+        </a>
 
         <a>
           <Button
             size={isMobile ? 'sm' : 'default'}
-            onClick={() => scrollToSection('downloads-section')}
+            onClick={() => {
+              navigate('/documentation');
+            }}
             variant="ghost"
           >
-            Downloads
+            Docs
           </Button>
         </a>
 

@@ -3,7 +3,10 @@ import { Section } from '../section.tsx';
 import { scrollToSection } from '@/lib/utils.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Heart } from 'lucide-react';
+import { useRouter } from 'dirty-react-router';
+
 export const Footer = () => {
+  const { navigate } = useRouter();
   return (
     <Section className="!mb-0 !pb-4 mt-8 sm:mt-0">
       <div className="space-y-1">
@@ -15,7 +18,12 @@ export const Footer = () => {
       <Separator className="my-2.5" />
       <div className="flex h-5 items-center space-x-4 text-sm">
         <a
-          onClick={() => scrollToSection('about-section')}
+          onClick={() => {
+            navigate('/');
+            setTimeout(() => {
+              scrollToSection('about-section');
+            }, 300);
+          }}
           className="underline underline-offset-2 hover:underline-offset-4 transition-all"
         >
           About
@@ -24,7 +32,12 @@ export const Footer = () => {
         {/*<a className="underline underline-offset-2 hover:underline-offset-4 transition-all">Docs</a>*/}
         <Separator orientation="vertical" />
         <a
-          onClick={() => scrollToSection('features-section')}
+          onClick={() => {
+            navigate('/');
+            setTimeout(() => {
+              scrollToSection('features-section');
+            }, 300);
+          }}
           className="underline underline-offset-2 hover:underline-offset-4 transition-all"
         >
           Features
@@ -37,10 +50,22 @@ export const Footer = () => {
 
         <Separator orientation="vertical" />
         <a
-          onClick={() => scrollToSection('downloads-section')}
+          onClick={() => {
+            navigate('/');
+            setTimeout(() => {
+              scrollToSection('downloads-section');
+            }, 300);
+          }}
           className="underline underline-offset-2 hover:underline-offset-4 transition-all"
         >
           Downloads
+        </a>
+        <Separator orientation="vertical" />
+        <a
+          onClick={() => navigate('/documentation')}
+          className="underline underline-offset-2 hover:underline-offset-4 transition-all"
+        >
+          Docs
         </a>
         <Separator orientation="vertical" />
         <Button
