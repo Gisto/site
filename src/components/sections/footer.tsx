@@ -2,7 +2,7 @@ import { Separator } from '../ui/separator.tsx';
 import { Section } from '../section.tsx';
 import { scrollToSection } from '@/lib/utils.ts';
 import { Button } from '@/components/ui/button.tsx';
-
+import { Heart } from 'lucide-react';
 export const Footer = () => {
   return (
     <Section className="!mb-0 !pb-4 mt-8 sm:mt-0">
@@ -60,6 +60,16 @@ export const Footer = () => {
         >
           <img className="size-4" src="https://cdn.simpleicons.org/github/3f83a8" alt="GitHub" />
         </Button>
+        <Separator orientation="vertical" />
+        <a
+          target="_blank"
+          className="underline hover:underline-offset-4"
+          href="https://github.com/sponsors/Gisto"
+        >
+          <div className="flex items-center gap-2">
+            <Heart className="text-danger size-4" /> Sponsor Gisto
+          </div>
+        </a>
       </div>
     </Section>
   );
