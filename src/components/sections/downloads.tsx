@@ -89,6 +89,7 @@ type Asset = {
 };
 
 type Release = {
+  message?: string;
   prerelease: boolean;
   tag_name: string;
   published_at: string;
@@ -164,8 +165,22 @@ export const Downloads = ({ className }: { className?: string }) => {
     })();
   }, []);
 
-  if (!release) {
-    return null;
+  if (release === null || release?.message?.startsWith('API rate limit exceeded')) {
+    return (
+      <Section className="mt-16 sm:mt-0">
+        <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
+          Releases cannot be loaded at the moment.
+        </h1>
+        <p>The reason is: Github API rate limit exceeded.</p>
+        <p>Please check again later, Github API rate limit resets every 1 hour.</p>
+        <p>
+          For now, you can check github{' '}
+          <a target="_blank" href="https://github.com/Gisto/gisto/releases">
+            release page
+          </a>
+        </p>
+      </Section>
+    );
   }
 
   const { version, publishedAt, assets } = getLatestRelease(release);
