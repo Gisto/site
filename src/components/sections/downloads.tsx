@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils.ts';
 import { ReactNode, useEffect, useState } from 'react';
 import { Button } from '../ui/button.tsx';
 
+const FIVE_MINUTES = 5 * 60 * 1000;
+
 type DownloadLink = {
   label: string;
   link: string;
@@ -143,8 +145,21 @@ export const Downloads = ({ className }: { className?: string }) => {
 
   useEffect(() => {
     (async () => {
+      const cachedData = localStorage.getItem('latestRelease');
+      const now = Date.now();
+
+      if (cachedData) {
+        const { data, timestamp } = JSON.parse(cachedData);
+        if (now - timestamp < FIVE_MINUTES) {
+          setRelease(data);
+          return;
+        }
+      }
+
       const result = await fetch('https://api.github.com/repos/Gisto/Gisto/releases/latest');
       const latest = (await result.json()) as Release;
+
+      localStorage.setItem('latestRelease', JSON.stringify({ data: latest, timestamp: now }));
       setRelease(latest);
     })();
   }, []);
