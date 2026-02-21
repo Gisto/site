@@ -5,12 +5,73 @@ category: 3. Knowledge base
 published: 2025-02-16
 ---
 
-## Privacy/authentication
+## Overview
 
-Gisto authenticates to GitHub by using GitHub Access token
+Gisto supports multiple authentication methods to accommodate different workflow preferences. You can choose to authenticate with GitHub, GitLab, or use local-only storage without any external provider.
 
-You may manually create an access token from the account [settings](https://github.com/settings/tokens) at GitHub and login using the generated token.
+## Authentication Methods
 
-Gisto only saves the Access token in your local storage and nothing else.
+### GitHub
 
-This token will be saved permanently until you log out, or it will expire.
+Gisto authenticates to GitHub by using GitHub Access tokens.
+
+**How to authenticate:**
+
+1. Navigate to the login or authentication settings in Gisto
+2. Select "GitHub" as your provider
+3. Manually create an access token from your GitHub [account settings](https://github.com/settings/tokens) and paste it in the provided field
+
+**Token Storage:**
+
+Gisto only saves the Access token in your local storage and nothing else. This token will be saved permanently until you log out, or it expires.
+
+### GitLab
+
+Gisto now supports GitLab snippets with full parity to GitHub functionality.
+
+**How to authenticate:**
+
+1. Navigate to the login or authentication settings in Gisto
+2. Select "GitLab" as your provider
+3. Create a personal access token from your GitLab [account settings](https://gitlab.com/-/user_settings/personal_access_tokens) and paste it in the provided field
+
+**Token Storage:**
+
+Like GitHub tokens, GitLab access tokens are stored securely in your local storage and not shared with any external service.
+
+### Local Storage (No Authentication Required)
+
+You can use Gisto without connecting to any external provider by using local snippet storage.
+
+**Benefits:**
+
+- No authentication needed
+- Complete privacy - snippets never leave your device
+- Perfect for sensitive or temporary code
+- Works offline without internet connection
+- No account setup required
+
+**How to use:**
+
+1. Launch Gisto
+2. Choose "Local Storage" or skip authentication
+3. Start creating and managing snippets immediately
+4. Your snippets are stored locally on your device
+
+## Privacy & Security
+
+Gisto prioritizes your privacy:
+
+- Access tokens are stored only in your local storage
+- No tokens are sent to Gisto servers
+- Local snippets are never synced to external services
+- You have complete control over your data
+- You can revoke access tokens anytime from your provider's settings
+
+## Disconnecting an Account
+
+To disconnect from a provider, click "Logout."
+
+The access token will be removed from your local storage
+
+To fully revoke access, also revoke the token from your provider's settings page.

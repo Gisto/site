@@ -4,14 +4,22 @@ export const About = () => {
   return (
     <Section>
       <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-        <span className="font-extrabold text-primary" id="about-section">About</span> Gisto
+        <span className="font-extrabold text-primary" id="about-section">
+          About
+        </span>{' '}
+        Gisto
       </h1>
       <div>
         <p className="mb-8">
           Gisto is a Cross-platform snippets management application that allows you and/or your team
-          share code snippets fast and easily. Based on GitHub Gists Infrastructure which means you
-          can use all your existing snippets by connecting your GitHub account!
+          share code snippets fast and easily.
         </p>
+        <p className="mb-8">
+          We support <strong>GitHub snippets</strong>, <strong>GitLab snippets</strong> and{' '}
+          <strong> local snippet storage</strong> for offline access and privacy, which means you
+          can use all your existing snippets by connecting your provider accounts.
+        </p>
+
         <p className="mb-8">
           The project has started in order to fulfill a lack of a syntax highlighted and cloud
           synchronized code snippet solution in about 2010, since then it had several iterations.

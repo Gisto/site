@@ -9,6 +9,9 @@ import {
   Eye,
   Leaf,
   Lightbulb,
+  GitBranch,
+  HardDrive,
+  BarChart3,
 } from 'lucide-react';
 import { Section } from '../section.tsx';
 import { cn } from '../../lib/utils.ts';
@@ -19,16 +22,16 @@ const FEATURES = [
   {
     name: 'Advanced search',
     Icon: Search,
-    text: 'Gists can be found quickly using our search and can be filtered by gist description, file names, tags and more',
+    text: 'Snippets can be found quickly using our search and can be filtered by snippet description, file names, tags and more',
     image: {
       light: '/features/advanced-search-light.png',
       dark: '/features/advanced-search-dark.png',
     },
   },
   {
-    name: 'Gist tagging',
+    name: 'Snippet tagging',
     Icon: Tags,
-    text: 'Gisto allows you to tag Gists with custom tags to help you find your Gists easily.',
+    text: 'Gisto allows you to tag snippets with custom tags to help you find your snippets easily.',
     image: {
       light: '/features/tags-light.png',
       dark: '/features/tags-dark.png',
@@ -37,7 +40,7 @@ const FEATURES = [
   {
     name: 'Quick actions',
     Icon: Zap,
-    text: 'Gisto lets you quickly download, copy, and view Gists on GitHub, generate embed links or preview them, and more',
+    text: 'Gisto lets you quickly download, copy, and view snippets on web, generate embed links or preview them, and more',
     image: {
       light: '/features/quick-actions-light.png',
       dark: '/features/quick-actions-dark.png',
@@ -86,7 +89,7 @@ const FEATURES = [
   {
     name: 'Rich editor',
     Icon: FilePenLine,
-    text: 'We use Monaco editor with syntax highlighting, auto-completion, Emmet, and more for seamless Gist editing',
+    text: 'We use Monaco editor with syntax highlighting, auto-completion, Emmet, and more for seamless snippet editing',
     image: {
       light: '/features/code-light.png',
       dark: '/features/code-dark.png',
@@ -105,6 +108,21 @@ const FEATURES = [
     name: 'Stay organized',
     Icon: Leaf,
     text: 'Gisto brings clarity to your code collection, making organization second nature',
+  },
+  {
+    name: 'GitLab support',
+    Icon: GitBranch,
+    text: 'Beyond GitHub, Gisto now supports GitLab snippets, expanding your code snippet sources and workflows',
+  },
+  {
+    name: 'Local snippets',
+    Icon: HardDrive,
+    text: 'Store and manage snippets locally without requiring an external provider connection',
+  },
+  {
+    name: 'Analytics & insights',
+    Icon: BarChart3,
+    text: 'View your most used tags and languages with interactive charts on your dashboard',
   },
 ];
 
@@ -158,8 +176,8 @@ export const Features = ({ className }: { className?: string }) => {
                     <div className="flex items-center justify-center">
                       <Lightbulb className="size-28 stroke-yellow-500 mb-8" />
                     </div>
-                    Stay organized with Gisto by using tags, precise searches, correct file
-                    extensions and any other means.
+                    {feature.text ||
+                      'Stay organized with Gisto by using tags, precise searches, correct file extensions and any other means.'}
                   </div>
                 )}
               </div>
