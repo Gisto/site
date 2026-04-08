@@ -1,28 +1,61 @@
 ---
-title: Installing unsigned apps
+title: Installing Unsigned Applications
 author: Sasha Khamkov
-category: 3. Knowledge base
+category: 3. Knowledge Base
 published: 2025-02-16
 ---
 
-## This App is Not Code-Signed
+## About Code Signing
 
-Since this is an open-source project and we currently do not have the resources to purchase code-signing certificates, the application **is not signed**. As a result:
+This application is part of an open-source project and is currently distributed using a **self-signed certificate**. At this time, we do not use commercial code-signing or notarization services.
 
-- **On Windows**: You may see a warning like _"Windows protected your PC"_ or _"Unrecognized app."_
-- **On macOS**: You may see a message saying _"This app is from an unidentified developer."_
+As a result, your operating system may display security warnings when launching the application.
 
-These warnings are normal for unsigned applications and do not mean the app is harmful. However, always ensure you download the app from the **official release page of this repository** to avoid tampered files.
+> ⚠️ **Important:** These warnings are expected for unsigned or self-signed applications and do not necessarily indicate that the software is unsafe.
 
-## How to Install the Unsigned App
+To ensure your safety, always download the application from the **official release page of this repository**.
 
-### **Windows**:
+---
 
-1. When the warning appears, click **More info**.
-2. Select **Run anyway** to proceed with the installation.
+## What to Expect
 
-### **macOS**:
+### **Windows**
+You may see warnings such as:
+- *"Windows protected your PC"*
+- *"Unrecognized app"*
 
-1. After downloading, if you see the warning, go to **System Preferences > Security & Privacy > General**.
-2. Click **Open Anyway** next to the blocked app message.
-3. Confirm by clicking **Open** when prompted.
+### **macOS**
+You may encounter a message such as:
+- *"This app is from an unidentified developer"*
+
+---
+
+## Installation Instructions
+
+### **Windows**
+
+1. When the warning dialog appears, click **More info**.
+2. Click **Run anyway** to proceed.
+
+---
+
+### **macOS**
+
+macOS may block the application on first launch. To open it:
+
+**Option 1: Context Menu**
+1. Right-click (or Control-click) the application.
+2. Select **Open**, then confirm.
+
+**Option 2: System Settings**
+1. Open **System Settings → Privacy & Security**.
+2. Scroll down and click **Open Anyway**.
+
+---
+
+### Optional: Remove Quarantine Flag
+
+If macOS continues to block the application, you can remove the quarantine attribute manually:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Gisto.app

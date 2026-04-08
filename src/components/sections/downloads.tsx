@@ -2,6 +2,8 @@ import { Section } from '../section.tsx';
 import { cn } from '@/lib/utils.ts';
 import { ReactNode, useEffect, useState } from 'react';
 import { Button } from '../ui/button.tsx';
+import { Info } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover.tsx';
 
 const FIVE_MINUTES = 5 * 60 * 1000;
 
@@ -227,7 +229,33 @@ export const Downloads = ({ className }: { className?: string }) => {
                 <Icon strokeWidth={1.5} className="flex-shrink-0 size-16  stroke-primary" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-primary">{os}</h3>
+                <h3 className="text-xl font-semibold text-primary flex items-center justify-center gap-2">
+                  {os}
+                  {os === 'Windows' && (
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button variant="ghost" size="icon" className="size-6 p-0">
+                          <Info className="size-4" />
+                          <span className="sr-only">Windows installation info</span>
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-80 text-xs text-left">
+                        <p className="mb-2 text-sm">
+                          <strong>Heads up:</strong> This app uses a self-signed certificate, so you
+                          might see a warning during installation (for example, "Unknown
+                          publisher").
+                        </p>
+                        <p className="mb-2 text-sm">
+                          If that happens, click <strong>More info</strong> to see additional
+                          details.
+                        </p>
+                        <p className="text-sm">
+                          Then click <strong>Run anyway</strong> to continue.
+                        </p>
+                      </PopoverContent>
+                    </Popover>
+                  )}
+                </h3>
                 <p className="mt-4 text-muted-foreground">
                   {DOWNLOADS[os].links.map((link) => (
                     <Button variant="ghost" size="sm" onClick={() => window.open(link.link)}>
@@ -237,10 +265,49 @@ export const Downloads = ({ className }: { className?: string }) => {
                 </p>
                 {os === 'MacOs' && (
                   <p className="text-xs">
-                    <div className="my-2">or via Homebrew</div>
-                    <code className="bg-accent p-1 rounded shadow-inner whitespace-nowrap">
-                      brew install --cask gisto
-                    </code>
+                    <div className="my-2 flex justify-center items-center">
+                      or via Homebrew
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button variant="ghost" size="sm">
+                            <Info className="size-4" />
+                            <span className="sr-only">MacOS installation info</span>
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-80 text-xs text-left">
+                          <p className="mb-2 text-sm">Install via Homebrew using:</p>
+
+                          <code className="bg-accent p-1 rounded shadow-inner whitespace-nowrap">
+                            brew install --cask Gisto/tap/gisto
+                          </code>
+
+                          <p className="mt-3 mb-2 text-sm">
+                            <strong>Heads up:</strong> This app uses a self-signed certificate and
+                            isn’t notarized, so macOS may show a warning on first launch.
+                          </p>
+
+                          <p className="mb-2 text-sm">If the app is blocked, you can open it by:</p>
+
+                          <ul className="list-disc pl-4 mb-2 text-sm">
+                            <li>
+                              Right-clicking the app and selecting <strong>Open</strong>, or
+                            </li>
+                            <li>
+                              Going to <strong>System Settings → Privacy & Security</strong> and
+                              clicking <strong>Open Anyway</strong>
+                            </li>
+                          </ul>
+
+                          <p className="mb-2 text-sm">
+                            You can also remove the quarantine flag manually:
+                          </p>
+
+                          <code className="block bg-accent p-2 rounded shadow-inner mb-2 break-all">
+                            xattr -dr com.apple.quarantine /Applications/Gisto.app
+                          </code>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
                   </p>
                 )}
               </div>
