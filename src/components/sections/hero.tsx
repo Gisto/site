@@ -1,12 +1,38 @@
 import { useTheme } from '../theme/theme-provider.tsx';
 import { Button } from '../ui/button.tsx';
 import { Github } from './github.tsx';
-import { scrollToSection } from '@/lib/utils.ts';
+import { scrollToSection, cn } from '@/lib/utils.ts';
 import { useRouter } from 'dirty-react-router';
+import { useEffect, useState } from 'react';
 
 export const Hero = () => {
   const { resolvedTheme } = useTheme();
   const { navigate } = useRouter();
+  const [imageIndex, setImageIndex] = useState(1);
+
+  useEffect(() => {
+    // Preload images
+    const images = [
+      '/app1-light.png',
+      '/app1-dark.png',
+      '/app2-light.png',
+      '/app2-dark.png',
+      '/app3-light.png',
+      '/app3-dark.png',
+      '/app4-light.png',
+      '/app4-dark.png',
+    ];
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    const interval = setInterval(() => {
+      setImageIndex((prev) => (prev === 4 ? 1 : prev + 1));
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="w-full mt-16 pb-16">
@@ -68,15 +94,52 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="hidden lg:block lg:w-1/2">
+        <div className="hidden lg:block lg:w-1/2 relative group">
           <div
-            className="h-full bg-cover transition-all hover:[transform:perspective(800px)_rotateY(-8deg)] w-full animate-tilt  rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]"
-            style={{
-              backgroundImage:
-                resolvedTheme === 'light' ? 'url(/app-light.png)' : 'url(/app-dark.png)',
-            }}
+            className={cn(
+              'h-full w-full transition-all duration-500 group-hover:[transform:perspective(800px)_rotateY(-8deg)] animate-tilt'
+            )}
           >
-            {/*<div className="h-full bg-black opacity-25"></div>*/}
+            <div
+              className={cn(
+                'absolute inset-0 bg-cover transition-opacity duration-1000 w-full rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
+                imageIndex === 1 ? 'opacity-100' : 'opacity-0'
+              )}
+              style={{
+                backgroundImage:
+                  resolvedTheme === 'light' ? 'url(/app1-light.png)' : 'url(/app1-dark.png)',
+              }}
+            />
+            <div
+              className={cn(
+                'absolute inset-0 bg-cover transition-opacity duration-1000 w-full rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
+                imageIndex === 2 ? 'opacity-100' : 'opacity-0'
+              )}
+              style={{
+                backgroundImage:
+                  resolvedTheme === 'light' ? 'url(/app2-light.png)' : 'url(/app2-dark.png)',
+              }}
+            />
+            <div
+              className={cn(
+                'absolute inset-0 bg-cover transition-opacity duration-1000 w-full rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
+                imageIndex === 3 ? 'opacity-100' : 'opacity-0'
+              )}
+              style={{
+                backgroundImage:
+                  resolvedTheme === 'light' ? 'url(/app3-light.png)' : 'url(/app3-dark.png)',
+              }}
+            />
+            <div
+              className={cn(
+                'absolute inset-0 bg-cover transition-opacity duration-1000 w-full rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
+                imageIndex === 4 ? 'opacity-100' : 'opacity-0'
+              )}
+              style={{
+                backgroundImage:
+                  resolvedTheme === 'light' ? 'url(/app4-light.png)' : 'url(/app4-dark.png)',
+              }}
+            />
           </div>
         </div>
       </div>
