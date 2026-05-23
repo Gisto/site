@@ -16,7 +16,10 @@ const routes = [
 function App() {
   return (
     <RouterProvider routes={routes}>
-      <div id="top" className="bg-light-pattern dark:bg-dark-pattern ">
+      <div
+        id="top"
+        className="bg-light-pattern dark:bg-dark-pattern overflow-x-hidden min-h-screen"
+      >
         <Header />
         <Outlet />
         <Footer />

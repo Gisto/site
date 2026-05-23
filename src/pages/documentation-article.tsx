@@ -1,12 +1,7 @@
 import React, { Suspense } from 'react';
-
-import { Badge } from '../components/ui/badge.tsx';
-import { Calendar, CircleArrowLeft, CircleUser } from 'lucide-react';
-
+import { Calendar, CircleArrowLeft, CircleUser, BookOpen } from 'lucide-react';
 import { formatDate, upperCaseFirst } from '../lib/utils.ts';
-
 import { MDXLayout } from '../components/mdx-layout.tsx';
-
 import { Link, useRouter } from 'dirty-react-router';
 import { Section } from '@/components/section.tsx';
 import { Loading } from '@/components/loading.tsx';
@@ -17,6 +12,21 @@ interface Frontmatter {
   title?: string;
   author?: string;
 }
+
+const CATEGORY_COLORS: Record<string, string> = {
+  intro: 'bg-primary/10 border-primary/20 text-primary',
+  faq: 'bg-amber-500/10 border-amber-500/20 text-amber-500',
+  features: 'bg-purple-500/10 border-purple-500/20 text-purple-500',
+  'knowledge base': 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500',
+};
+
+const getCategoryColor = (category: string) => {
+  const lower = category.toLowerCase();
+  for (const [key, color] of Object.entries(CATEGORY_COLORS)) {
+    if (lower.includes(key)) return color;
+  }
+  return 'bg-primary/10 border-primary/20 text-primary';
+};
 
 export const DocumentationArticlePage = () => {
   const { params } = useRouter();
@@ -33,48 +43,90 @@ export const DocumentationArticlePage = () => {
       if (module.frontmatter) {
         setFrontmatter(module.frontmatter);
       }
-
       return {
         default: module.default,
       };
     })
   );
 
+  const categoryName = frontmatter?.category
+    ? upperCaseFirst(frontmatter.category.replace(/^[0-9.]+\s*/, ''))
+    : '';
+
   return (
-    <Section>
-      <Link className="flex gap-2 items-center mb-8" to={'/documentation'}>
-        <CircleArrowLeft className="size-4" /> Back to Documentation
-      </Link>
+    <Section className="py-12 relative min-h-[700px]">
+      <div className="glow-bg top-[-50px] left-[50%] -translate-x-1/2 opacity-30" />
+      <div className="glow-bg bottom-0 right-10 opacity-20" />
+
+      <div className="mb-8 relative z-10 flex items-center justify-between">
+        <Link
+          className="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-primary transition-colors py-2 rounded-xl group"
+          to={'/documentation'}
+        >
+          <CircleArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-1" />{' '}
+          Back to Docs
+        </Link>
+
+        {frontmatter?.category && (
+          <span
+            className={`text-[11px] font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-lg border ${getCategoryColor(frontmatter.category)}`}
+          >
+            {categoryName}
+          </span>
+        )}
+      </div>
 
       <Suspense fallback={<Loading className="h-[300px]" />}>
-        {frontmatter?.category && (
-          <Badge variant="primary-outline" key={frontmatter?.category}>
-            {upperCaseFirst(frontmatter.category.slice(3, 100))}
-          </Badge>
-        )}
+        <div className="max-w-4xl mx-auto relative z-10">
+          {frontmatter?.title && (
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.15] mb-6 text-foreground">
+              {frontmatter.title}
+            </h1>
+          )}
 
-        {frontmatter?.title && <h1 className="text-4xl my-4 text-primary">{frontmatter.title} </h1>}
-
-        <MDXLayout>
-          <div>
+          <div className="flex flex-wrap gap-4 items-center pb-8 mb-10 border-b border-border text-xs text-muted-foreground">
             {frontmatter?.author && (
-              <div className="flex gap-2 items-center text-xs mb-2">
-                <CircleUser className="size-3" /> {frontmatter.author}
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 rounded-full bg-muted border border-border">
+                  <CircleUser className="size-3.5" />
+                </div>
+                <span className="font-medium">{frontmatter.author}</span>
               </div>
             )}
 
             {frontmatter?.published && (
-              <div className="flex gap-2 items-center  text-xs">
-                <Calendar className="size-3" />{' '}
-                {formatDate({ dateTime: frontmatter.published, withTime: false })}
+              <div className="flex items-center gap-2">
+                <Calendar className="size-3.5" />
+                <span className="font-medium">
+                  {formatDate({ dateTime: frontmatter.published, withTime: false })}
+                </span>
               </div>
             )}
+
+            <div className="flex items-center gap-2 ml-auto">
+              <BookOpen className="size-3.5" />
+              <span className="font-medium">Technical Guide</span>
+            </div>
           </div>
 
-          <div className="mt-8">
-            <Content />
+          <div className="relative">
+            <MDXLayout>
+              <div className="mt-2 relative">
+                <Content />
+              </div>
+            </MDXLayout>
           </div>
-        </MDXLayout>
+
+          <div className="mt-16 pt-10 border-t border-border text-center">
+            <Link
+              className="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-primary transition-colors py-2 rounded-xl group"
+              to={'/documentation'}
+            >
+              <CircleArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-1" />{' '}
+              Back to all documentation
+            </Link>
+          </div>
+        </div>
       </Suspense>
     </Section>
   );

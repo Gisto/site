@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { cn, scrollToSection } from '../lib/utils';
+import { cn, scrollToSection, navigateAndScroll } from '../lib/utils';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +15,17 @@ import { ThemeSwitcher } from './theme/theme-switcher.tsx';
 import { useIsMobile } from '@/hooks/use-mobile.tsx';
 import { useRouter } from 'dirty-react-router';
 
+const NAV_ITEMS: { label: string; section?: string; path?: string }[] = [
+  { label: 'About', section: 'about-section' },
+  { label: 'Use Cases', section: 'use-cases-section' },
+  { label: 'Comparison', section: 'comparison-section' },
+  { label: 'Features', section: 'features-section' },
+  { label: 'Installation', section: 'quick-start-section' },
+  { label: 'FAQ', section: 'faq-section' },
+  { label: 'Downloads', section: 'downloads-section' },
+  { label: 'Docs', path: '/documentation' },
+];
+
 export const Header = () => {
   const { navigate } = useRouter();
   const isMobile = useIsMobile();
@@ -28,25 +39,38 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (item: (typeof NAV_ITEMS)[number]) => {
+    if (item.path) {
+      navigate(item.path);
+    } else if (item.section) {
+      navigateAndScroll(navigate, item.section);
+    }
+  };
+
   return (
     <header
       className={cn(
-        'py-4 px-6  lg:px-8 flex items-center justify-between sticky top-0 z-50 transition-all duration-200',
-        isScrolled ? 'bg-background/80 backdrop-blur-lg shadow-md' : 'bg-transparent'
+        'py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-50 transition-all duration-300 w-full box-border',
+        isScrolled
+          ? 'bg-background/80 border-b border-border/40 backdrop-blur-md shadow-md shadow-black/5'
+          : 'bg-transparent border-b border-transparent'
       )}
     >
       <div>
         <a
-          className="flex items-center gap-2 text-primary cursor-pointer"
+          className="flex items-center gap-2 text-primary cursor-pointer hover:opacity-90 transition-opacity"
           onClick={() => {
             navigate('/');
             scrollToSection('top');
           }}
         >
-          <h1 className="font-semibold text-2xl p-0 m-0">{isMobile ? '{ G }' : '{ Gisto }'}</h1>
+          <span className="font-extrabold text-2xl p-0 m-0 tracking-tight text-foreground font-mono">
+            {'{'} <span className="text-gradient">Gisto</span> {'}'}
+          </span>
         </a>
       </div>
 
+      {/* Mobile menu */}
       <div className="sm:hidden flex gap-2">
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -55,114 +79,34 @@ export const Header = () => {
           <DropdownMenuContent>
             <DropdownMenuLabel>Navigation</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Button
-                variant="ghost"
-                size={isMobile ? 'sm' : 'default'}
-                onClick={() => {
-                  navigate('/');
-                  setTimeout(() => scrollToSection('about-section'), 300);
-                }}
-              >
-                About
-              </Button>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <a>
+            {NAV_ITEMS.map((item) => (
+              <DropdownMenuItem key={item.label}>
                 <Button
-                  size={isMobile ? 'sm' : 'default'}
-                  onClick={() => {
-                    navigate('/');
-                    setTimeout(() => scrollToSection('features-section'), 300);
-                  }}
                   variant="ghost"
-                >
-                  Features
-                </Button>
-              </a>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <a>
-                <Button
                   size={isMobile ? 'sm' : 'default'}
-                  onClick={() => {
-                    navigate('/');
-                    setTimeout(() => scrollToSection('downloads-section'), 300);
-                  }}
-                  variant="ghost"
+                  onClick={() => handleNavClick(item)}
                 >
-                  Downloads
+                  {item.label}
                 </Button>
-              </a>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Button
-                size={isMobile ? 'sm' : 'default'}
-                onClick={() => {
-                  navigate('/documentation');
-                }}
-                variant="ghost"
-              >
-                Docs
-              </Button>
-            </DropdownMenuItem>
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
         <ThemeSwitcher />
       </div>
 
-      <div className="ml-auto flex gap-2 hidden sm:block">
-        <a>
+      {/* Desktop menu */}
+      <div className="ml-auto gap-1 hidden sm:flex items-center flex-wrap justify-end">
+        {NAV_ITEMS.map((item) => (
           <Button
-            variant="ghost"
+            key={item.label}
             size={isMobile ? 'sm' : 'default'}
-            onClick={() => {
-              navigate('/');
-              setTimeout(() => scrollToSection('about-section'), 300);
-            }}
-          >
-            About
-          </Button>
-        </a>
-
-        <a>
-          <Button
-            size={isMobile ? 'sm' : 'default'}
-            onClick={() => {
-              navigate('/');
-              setTimeout(() => scrollToSection('features-section'), 300);
-            }}
             variant="ghost"
+            onClick={() => handleNavClick(item)}
           >
-            Features
+            {item.label}
           </Button>
-        </a>
-
-        <a>
-          <Button
-            size={isMobile ? 'sm' : 'default'}
-            onClick={() => {
-              navigate('/');
-              setTimeout(() => scrollToSection('downloads-section'), 300);
-            }}
-            variant="ghost"
-          >
-            Downloads
-          </Button>
-        </a>
-
-        <a>
-          <Button
-            size={isMobile ? 'sm' : 'default'}
-            onClick={() => {
-              navigate('/documentation');
-            }}
-            variant="ghost"
-          >
-            Docs
-          </Button>
-        </a>
-
+        ))}
         <ThemeSwitcher />
       </div>
     </header>

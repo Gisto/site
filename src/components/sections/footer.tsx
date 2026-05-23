@@ -16,7 +16,7 @@ export const Footer = () => {
         <p className="text-sm text-muted-foreground">Snippets made awesome</p>
       </div>
       <Separator className="my-2.5" />
-      <div className="flex h-5 items-center space-x-4 text-sm">
+      <div className="flex items-center space-x-2 sm:space-x-4 text-sm flex-wrap gap-y-2">
         <a
           onClick={() => {
             navigate('/');

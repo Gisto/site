@@ -68,7 +68,12 @@ const FEATURES = [
       </span>
     ),
     link: (
-      <Button variant="outline" onClick={() => window.open('https://app.gisto.org')}>
+      <Button
+        variant="outline"
+        size="sm"
+        className="rounded-xl font-bold bg-white/20 border-white/40 hover:bg-white/30 text-white transition-all shadow-xl backdrop-blur-md"
+        onClick={() => window.open('https://app.gisto.org')}
+      >
         app.gisto.org
       </Button>
     ),
@@ -89,16 +94,16 @@ const FEATURES = [
   {
     name: 'Rich editor',
     Icon: FilePenLine,
-    text: 'We use Monaco editor with syntax highlighting, auto-completion, Emmet, and more for seamless snippet editing',
+    text: 'We use Monaco editor with syntax highlighting, auto-completion, Emmet, and more for seamless snippet editing. Write Markdown with live preview rendering.',
     image: {
       light: '/features/code-light.png',
       dark: '/features/code-dark.png',
     },
   },
   {
-    name: 'File previews',
+    name: 'Markdown preview',
     Icon: Eye,
-    text: 'Some files like HTML, PDFs, JSON, Markdown and more are available to preview by toggling the editor',
+    text: 'Toggle between editing and live preview for Markdown files. See formatted headings, code blocks, lists, tables, and images rendered in real-time.',
     image: {
       light: '/features/preview-light.png',
       dark: '/features/preview-dark.png',
@@ -129,35 +134,40 @@ const FEATURES = [
 export const Features = ({ className }: { className?: string }) => {
   const { resolvedTheme } = useTheme();
   return (
-    <Section>
-      <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-        <span id="features-section" className="font-extrabold text-primary">
-          Feature
-        </span>{' '}
-        highlights
-      </h1>
-      <div className={cn('grid sm:grid-cols-2 lg:grid-cols-3 gap-16', className)}>
+    <Section id="features-section" className="py-12 relative">
+      <div className="glow-bg top-1/3 left-1/2 -translate-x-1/2 opacity-30" />
+
+      <div className="text-center max-w-2xl mx-auto mb-16">
+        <h2 className="scroll-m-20 text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
+          Feature <span className="text-gradient">highlights</span>
+        </h2>
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          Hover over each feature card to flip it and reveal Gisto’s live interface.
+        </p>
+      </div>
+
+      <div className={cn('grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10', className)}>
         {FEATURES.map((feature) => {
           const Icon = feature.Icon;
 
           return (
-            <div key={feature.name} className="group perspective-1000">
-              <div className="relative w-full h-80 transform-style-3d transition-transform duration-500 group-hover:rotate-y-180">
-                {/* Front */}
-                <div className="absolute inset-0 backface-hidden p-8 rounded shadow-md backdrop-blur-[4px] backdrop-saturate-[100%] bg-[#ffffff] bg-opacity-10 border border-opacity-20 border-[#000] dark:bg-[#fff] dark:bg-opacity-10 dark:border-[#fff] dark:border-opacity-20 text-center">
-                  <div className="flex justify-center items-center mx-auto">
-                    <Icon strokeWidth={1.5} className="flex-shrink-0 size-20 stroke-primary" />
+            <div key={feature.name} className="group perspective-1000 h-80">
+              <div className="relative w-full h-full transform-style-3d transition-transform duration-700 group-hover:rotate-y-180 cursor-pointer">
+                {/* Front (Glassmorphism & Icons) */}
+                <div className="absolute inset-0 backface-hidden p-8 rounded-2xl border border-border hover:border-primary/30 flex flex-col justify-center items-center text-center shadow-md transition-all duration-300 glass-panel">
+                  <div className="p-4 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 group-hover:scale-110 transition-all duration-300">
+                    <Icon strokeWidth={1.5} className="size-12 stroke-primary" />
                   </div>
-                  <div className="mt-8">
-                    <h3 className="text-xl font-semibold text-primary">{feature.name}</h3>
-                    <p className="mt-4 text-muted-foreground text-sm">{feature.text}</p>
-                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{feature.name}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed max-w-[260px]">
+                    {feature.text}
+                  </p>
                 </div>
 
-                {/* Back */}
+                {/* Back (Feature Screenshots) */}
                 {feature.image ? (
                   <div
-                    className="absolute inset-0 backface-hidden bg-cover bg-left rounded shadow-md transform rotate-y-180 border"
+                    className="absolute inset-0 backface-hidden bg-cover bg-left rounded-2xl shadow-md transform rotate-y-180 border border-border overflow-hidden glass-panel"
                     style={{
                       backgroundImage:
                         resolvedTheme === 'light'
@@ -166,18 +176,21 @@ export const Features = ({ className }: { className?: string }) => {
                     }}
                   >
                     {feature?.link && (
-                      <div className="flex items-center h-full content-center justify-center">
+                      <div className="flex items-center h-full content-center justify-center bg-black/60 backdrop-blur-[2px]">
                         {feature?.link}
                       </div>
                     )}
                   </div>
                 ) : (
-                  <div className="absolute inset-0 p-8 backface-hidden rounded shadow-md transform rotate-y-180 border backdrop-blur-[4px] backdrop-saturate-[100%] bg-opacity-10 bg-[#ffffff]">
-                    <div className="flex items-center justify-center">
-                      <Lightbulb className="size-28 stroke-yellow-500 mb-8" />
+                  <div className="absolute inset-0 p-8 backface-hidden rounded-2xl transform rotate-y-180 border border-border flex flex-col justify-center items-center text-center shadow-md glass-panel">
+                    <div className="p-4 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 mb-6">
+                      <Lightbulb className="size-10 stroke-amber-500" />
                     </div>
-                    {feature.text ||
-                      'Stay organized with Gisto by using tags, precise searches, correct file extensions and any other means.'}
+                    <h3 className="text-lg font-bold text-foreground mb-3">{feature.name}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {feature.text ||
+                        'Stay organized with Gisto by using tags, precise searches, correct file extensions and any other means.'}
+                    </p>
                   </div>
                 )}
               </div>

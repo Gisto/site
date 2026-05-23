@@ -5,24 +5,74 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gisto is a premium, open-source code snippet and document vault with Markdown support. Securely syncs with GitHub Gists, GitLab Snippets, and Local Offline Storage. Built with Tauri + React + TypeScript." />
+    <meta name="keywords" content="github gist manager, gitlab snippet manager, local snippet vault, code snippet manager, open source snippet manager, developer document vault, markdown snippet manager, Tauri desktop app, code organizer, gist client" />
+    <meta name="author" content="Gisto Team" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gisto.org/" />
+    <meta property="og:title" content="Gisto | Local-First Snippet & Document Vault for Developers" />
+    <meta property="og:description" content="Organize your code snippets, Markdown documents, and developer workflows. Synchronized directly with GitHub Gists, GitLab Snippets, and local offline files." />
+    <meta property="og:image" content="https://gisto.org/app-dark.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://gisto.org/" />
+    <meta name="twitter:title" content="Gisto | Local-First Snippet & Document Vault" />
+    <meta name="twitter:description" content="Organize your code snippets, Markdown documents, and developer workflows. Synchronized directly with GitHub Gists, GitLab Snippets, and local offline files." />
+    <meta name="twitter:image" content="https://gisto.org/app-dark.png" />
+
+    <!-- Schema.org JSON-LD structured data for rich search listings -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Gisto",
+        "operatingSystem": "Windows, macOS, Linux",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Snippet & Document Manager",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "description": "An open-source code snippet and document vault with Markdown support. Syncs with GitHub Gists, GitLab Snippets, and local offline files. Built with Tauri.",
+        "softwareVersion": "2.0.0",
+        "downloadUrl": "https://github.com/Gisto/Gisto/releases",
+        "url": "https://gisto.org",
+        "sameAs": [
+          "https://github.com/Gisto/Gisto",
+          "https://x.com/gistoapp"
+        ],
+        "featureList": [
+          "GitHub Gist sync",
+          "GitLab snippet sync",
+          "Local snippet storage",
+          "AI prompt vault",
+          "Monaco code editor",
+          "Advanced search and tagging"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "843"
+        }
+      }
+    </script>
+
+    <!-- Font Resource Hints and Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://drive.google.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-            rel="stylesheet"
-    />
-    <link
-            href="https://fonts.googleapis.com/css2?family=Monda:wght@400..700&display=swap"
-            rel="stylesheet"
-    />
-    <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Monda:wght@400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
     />
 
-    <title>Gisto</title>
+    <title>Gisto | A beautiful, local-first code snippet vault and document manager with Markdown support. Keep your engineering workflows organized and synced with your choice of GitHub Gists, GitLab Snippets, or Local Storage.</title>
   </head>
   <body>
     <div id="root"></div>

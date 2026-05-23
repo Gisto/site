@@ -16,7 +16,7 @@ export const About = () => {
         </p>
         <p className="mb-8">
           We support <strong>GitHub snippets</strong>, <strong>GitLab snippets</strong> and{' '}
-          <strong> local snippet storage</strong> for offline access and privacy, which means you
+          <strong>local snippet storage</strong> for offline access and privacy, which means you
           can use all your existing snippets by connecting your provider accounts.
         </p>
 
