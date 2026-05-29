@@ -4,6 +4,7 @@ import { Button } from '../ui/button.tsx';
 import { scrollToSection, cn } from '@/lib/utils.ts';
 import { useRouter } from 'dirty-react-router';
 import { useEffect, useState } from 'react';
+import { ArrowRight, Download, Globe } from 'lucide-react';
 
 export const HeroMobile = () => {
   const { resolvedTheme } = useTheme();
@@ -36,28 +37,61 @@ export const HeroMobile = () => {
 
   return (
     <Section className="relative overflow-hidden mt-20 sm:mt-32">
-      <div className="text-center">
-        <h1 className="mb-8 scroll-m-20 text-4xl text-primary font-extrabold lg:text-5xl">
-          Snippets made awesome
+      <div className="text-center px-4">
+        {/* Headline */}
+        <h1 className="mb-6 scroll-m-20 text-4xl text-foreground font-extrabold tracking-tight">
+          Snippets & documents <br />
+          made <span className="text-gradient">awesome</span>
         </h1>
 
-        <p className="mb-8 text-xl text-muted-foreground">
-          Gisto brings clarity to your snippet collection, making organization second nature
+        {/* Description */}
+        <p className="mb-8 text-base text-muted-foreground leading-relaxed max-w-lg mx-auto">
+          A beautiful, local-first code snippet vault and document manager with Markdown support.
+          Syncs with your choice of GitHub Gists, GitLab Snippets, or Local Storage offline files.
         </p>
-
-        <small></small>
       </div>
 
-      <div className="mt-8 gap-4 flex justify-center">
-        <Button size="lg" onClick={() => scrollToSection('downloads-section')}>
-          Downloads
+      {/* Multi-provider badges for crawler indexing */}
+      <div className="flex flex-wrap justify-center gap-2 mb-8 max-w-sm mx-auto">
+        <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-primary/10 border border-primary/20 text-primary">
+          GitHub Gists Sync
+        </span>
+        <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-secondary border border-border text-foreground">
+          GitLab Snippets Sync
+        </span>
+        <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-secondary border border-border text-foreground">
+          Local Storage
+        </span>
+      </div>
+
+      {/* CTAs */}
+      <div className="mt-8 gap-3 flex flex-col sm:flex-row justify-center items-center px-6">
+        <Button
+          className="w-full sm:w-auto bg-primary text-primary-foreground font-bold tracking-tight rounded-xl flex items-center justify-center gap-2 px-5 py-2.5 h-10 text-sm shadow-lg shadow-primary/10"
+          onClick={() => scrollToSection('downloads-section')}
+        >
+          <Download className="size-4" /> Download App
         </Button>
-        <Button size="lg" variant="outline" onClick={() => navigate('/documentation')}>
-          Learn more
+
+        <Button
+          variant="outline"
+          className="w-full sm:w-auto glass-panel border-border/80 text-foreground font-bold tracking-tight rounded-xl flex items-center justify-center gap-2 px-5 py-2.5 h-10 text-sm"
+          onClick={() => window.open('https://app.gisto.org')}
+        >
+          <Globe className="size-4" /> Launch Web App
+        </Button>
+
+        <Button
+          variant="link"
+          className="text-muted-foreground hover:text-primary transition-colors text-xs font-semibold flex items-center justify-center gap-1 h-10"
+          onClick={() => navigate('/documentation')}
+        >
+          Learn more <ArrowRight className="size-3.5" />
         </Button>
       </div>
 
-      <div className="m-10 relative max-w-5xl mx-auto">
+      {/* Tilted Rotating Screenshot container (RESTORED EXACTLY AS ORIGINAL) */}
+      <div className="mt-10 -mx-4 relative h-[250px] sm:h-[350px] mb-12">
         <img
           src="/app1-light.png"
           className="w-full h-auto opacity-0 invisible"
@@ -66,7 +100,7 @@ export const HeroMobile = () => {
         />
         <div
           className={cn(
-            'absolute inset-0 bg-contain bg-no-repeat bg-center transition-opacity duration-1000 w-full rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
+            'absolute inset-0 bg-cover bg-no-repeat bg-left transition-opacity duration-1000 w-full shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
             imageIndex === 1 ? 'opacity-100' : 'opacity-0'
           )}
           style={{
@@ -76,7 +110,7 @@ export const HeroMobile = () => {
         />
         <div
           className={cn(
-            'absolute inset-0 bg-contain bg-no-repeat bg-center transition-opacity duration-1000 w-full rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
+            'absolute inset-0 bg-cover bg-no-repeat bg-left transition-opacity duration-1000 w-full shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
             imageIndex === 2 ? 'opacity-100' : 'opacity-0'
           )}
           style={{
@@ -86,7 +120,7 @@ export const HeroMobile = () => {
         />
         <div
           className={cn(
-            'absolute inset-0 bg-contain bg-no-repeat bg-center transition-opacity duration-1000 w-full rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
+            'absolute inset-0 bg-cover bg-no-repeat bg-left transition-opacity duration-1000 w-full shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
             imageIndex === 3 ? 'opacity-100' : 'opacity-0'
           )}
           style={{
@@ -96,7 +130,7 @@ export const HeroMobile = () => {
         />
         <div
           className={cn(
-            'absolute inset-0 bg-contain bg-no-repeat bg-center transition-opacity duration-1000 w-full rounded shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
+            'absolute inset-0 bg-cover bg-no-repeat bg-left transition-opacity duration-1000 w-full shadow-[0px_0px_45px_10px_rgba(186,186,186,1)] dark:shadow-[0px_0px_45px_10px_rgba(97,97,97,1)]',
             imageIndex === 4 ? 'opacity-100' : 'opacity-0'
           )}
           style={{

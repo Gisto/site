@@ -18,6 +18,18 @@ export const scrollToSection = (id: string) => {
   }
 };
 
+export const navigateAndScroll = (navigate: (path: string) => void, sectionId: string) => {
+  navigate('/');
+  const tryScroll = () => {
+    if (document.getElementById(sectionId)) {
+      scrollToSection(sectionId);
+    } else {
+      requestAnimationFrame(tryScroll);
+    }
+  };
+  requestAnimationFrame(tryScroll);
+};
+
 export const upperCaseFirst = (text: string) => {
   const str = text.toLowerCase();
   return String(str).charAt(0).toUpperCase() + String(str).slice(1);

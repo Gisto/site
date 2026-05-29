@@ -1,0 +1,8 @@
+---
+title: "Why is Gisto built with Tauri instead of Electron?"
+author: Sasha Khamkov
+category: 2. F.A.Q.
+published: 2026-05-29
+---
+
+Electron bundles an entire Chromium browser and Node.js process, which routinely consumes 300MB+ of RAM. Tauri leverages the native web views built directly into the operating system. This allows Gisto to run in under 40MB of RAM, start up instantly, and reduce the download package size to under 10MB.

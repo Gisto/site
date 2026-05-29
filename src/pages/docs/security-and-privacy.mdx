@@ -1,0 +1,31 @@
+---
+title: "Is Gisto signed? Will I see OS security warnings?"
+author: Sasha Khamkov
+category: 2. F.A.Q.
+published: 2026-05-29
+---
+
+As an open-source, community-driven desktop tool, Gisto binaries are self-signed. Windows (SmartScreen) and macOS (Gatekeeper) will trigger a warning alert on first launch. We represent this honestly: you can safely run Gisto by clicking "Run anyway" or selecting "Open anyway" in System Settings. The entire codebase is open source and auditable on GitHub.
+
+## Overview
+
+Privacy and developer control are Gisto's fundamental pillars. Unlike web-only snippet repositories or cloud SaaS tools that parse your code files on their servers, Gisto is built as a **local-first desktop client**.
+
+## How Gisto secures your data
+
+When you connect cloud sync providers like GitHub or GitLab, Gisto interfaces directly with their official public APIs from your desktop:
+
+* **No intermediary servers:** Gisto has no backend servers that process, inspect, or backup your snippets or access tokens.
+* **Local config storage:** Your developer access tokens are securely written to your system configuration file or OS-level credentials keychain.
+* **Direct sync:** Synchronization requests go directly from your local Gisto client to GitHub or GitLab servers. Your credentials are never shared.
+
+## Why isn't the app signed?
+
+As an open-source, non-profit community project, Gisto binaries are self-signed rather than notarized through paid operating system developer portals (like Apple Developer or Microsoft Partner Center).
+
+As a result, your operating system may trigger a warning dialog during installation:
+
+* **Windows SmartScreen warning:** Alerts that the publisher is "Unknown". You can bypass this by clicking **More Info** and selecting **Run anyway**.
+* **macOS Gatekeeper warning:** Alerts that the package cannot be opened because the developer cannot be verified. You can override this by right-clicking Gisto in your Applications directory and selecting **Open**, or by clicking **Open anyway** in **System Settings → Privacy & Security**.
+
+Because Gisto is 100% open source, the entire codebase is fully auditable. You can inspect the Tauri hooks, sync loops, and build scripts directly in our GitHub repository to verify Gisto's absolute security.

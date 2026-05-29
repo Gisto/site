@@ -2,7 +2,7 @@ import { Section } from '../section.tsx';
 import { cn } from '@/lib/utils.ts';
 import { ReactNode, useEffect, useState } from 'react';
 import { Button } from '../ui/button.tsx';
-import { Info } from 'lucide-react';
+import { Download, Info, AlertTriangle, ExternalLink } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover.tsx';
 
 const FIVE_MINUTES = 5 * 60 * 1000;
@@ -192,152 +192,225 @@ export const Downloads = ({ className }: { className?: string }) => {
   DOWNLOADS.MacOs.links = assets.MacOs;
 
   return (
-    <Section className="mt-16 sm:mt-0">
-      <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-        <span id="downloads-section" className="font-extrabold text-primary">
+    <Section className="py-12 relative">
+      <div className="glow-bg bottom-0 left-1/4 opacity-20" />
+
+      <h2 className="scroll-m-20 text-4xl md:text-5xl font-extrabold tracking-tight text-center mb-4 text-foreground">
+        <span id="downloads-section" className="text-gradient">
           Downloads
         </span>{' '}
         and packages
-      </h1>
-      <p className="mb-8 text-center">
-        Latest release: <strong>{version}</strong>{' '}
-        <em>
-          <small>({publishedAt})</small>
-        </em>
-        <Button
-          variant="outline"
-          size="sm"
-          className="ml-2"
-          onClick={() => window.open('https://github.com/Gisto/Gisto/blob/main/CHANGELOG.md')}
-        >
-          See changelog
-        </Button>
-      </p>
+      </h2>
 
-      <div className={cn('grid grid-cols-1 sm:grid-cols-4 gap-8', className)}>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass-panel border-primary/20 bg-primary/5">
+          <div className="size-2 rounded-full bg-primary animate-pulse" />
+          <span className="text-muted-foreground font-medium">Latest release</span>
+          <span className="text-foreground font-bold">{version}</span>
+          <span className="text-muted-foreground/40 hidden sm:inline">&middot;</span>
+          <span className="text-muted-foreground/60 hidden sm:inline">{publishedAt}</span>
+          <span className="text-muted-foreground/40 hidden sm:inline">&middot;</span>
+          <a
+            href="https://github.com/Gisto/Gisto/blob/main/CHANGELOG.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-primary/60 hover:text-primary font-medium transition-colors flex items-center gap-1"
+          >
+            Changelog <ExternalLink className="size-2.5 opacity-60" />
+          </a>
+        </div>
+      </div>
+
+      <div className={cn('grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6', className)}>
         {Object.keys(DOWNLOADS).map((os) => {
           const Icon = DOWNLOADS[os].Icon;
+          const isReleases = os === 'Releases';
           return (
             <div
+              key={os}
               className={cn(
-                'text-center p-8 rounded shadow-md',
-                'backdrop-blur-[4px] backdrop-saturate-[100%] bg-[#ffffff] bg-opacity-10 border border-opacity-20 border-[#000]',
-                'dark:bg-[#fff] dark:bg-opacity-10 dark:border-[#fff] dark:border-opacity-20'
+                'glass-panel rounded-2xl border-border transition-all duration-500 flex flex-col group relative overflow-hidden',
+                isReleases
+                  ? 'border-dashed opacity-80 hover:opacity-100 hover:border-primary/40'
+                  : 'hover:border-primary/30 hover:shadow-2xl hover:-translate-y-2'
               )}
             >
-              <div className="flex justify-center items-center mx-auto">
-                <Icon strokeWidth={1.5} className="flex-shrink-0 size-16  stroke-primary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-primary flex items-center justify-center gap-2">
-                  {os}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="p-8 flex flex-col items-center text-center flex-1 relative z-10">
+                <div
+                  className={cn(
+                    'p-4 rounded-2xl mb-6 transition-all duration-500 group-hover:scale-110 group-hover:bg-primary/10',
+                    isReleases ? 'bg-muted' : 'bg-primary/5'
+                  )}
+                >
+                  <Icon
+                    strokeWidth={1.5}
+                    className={cn(
+                      'size-10 transition-colors duration-500',
+                      isReleases ? 'text-muted-foreground' : 'text-primary'
+                    )}
+                  />
+                </div>
+
+                <h3
+                  className={cn(
+                    'text-xl font-bold flex items-center justify-center gap-2 mb-6',
+                    isReleases ? 'text-muted-foreground' : 'text-foreground'
+                  )}
+                >
+                  {isReleases ? 'Other Releases' : os}
                   {os === 'Windows' && (
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button variant="ghost" size="icon" className="size-6 p-0">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="size-6 p-0 text-muted-foreground hover:text-primary transition-colors"
+                        >
                           <Info className="size-4" />
                           <span className="sr-only">Windows installation info</span>
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-80 text-xs text-left">
-                        <p className="mb-2 text-sm">
-                          <strong>Heads up:</strong> This app uses a self-signed certificate, so you
-                          might see a warning during installation (for example, "Unknown
-                          publisher").
-                        </p>
-                        <p className="mb-2 text-sm">
-                          If that happens, click <strong>More info</strong> to see additional
-                          details.
-                        </p>
-                        <p className="text-sm">
-                          Then click <strong>Run anyway</strong> to continue.
-                        </p>
+                      <PopoverContent className="w-80 text-xs text-left border-border p-4 rounded-2xl shadow-2xl backdrop-blur-xl bg-white/90 dark:bg-zinc-900/90">
+                        <div className="space-y-3">
+                          <p className="text-sm text-foreground">
+                            <strong className="text-primary font-bold">Note:</strong> This app uses
+                            a self-signed certificate, so you might see a{' '}
+                            <strong>"Unknown publisher"</strong> warning.
+                          </p>
+                          <div className="bg-primary/5 p-3 rounded-xl border border-primary/10">
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              Click <strong>More info</strong> &rarr; <strong>Run anyway</strong> to
+                              proceed.
+                            </p>
+                          </div>
+                        </div>
                       </PopoverContent>
                     </Popover>
                   )}
                 </h3>
-                <p className="mt-4 text-muted-foreground">
-                  {DOWNLOADS[os].links.map((link) => (
-                    <Button variant="ghost" size="sm" onClick={() => window.open(link.link)}>
-                      {link.label}
+
+                <div className="flex flex-col gap-3 w-full">
+                  {DOWNLOADS[os].links.map((link, idx) => (
+                    <Button
+                      key={link.label}
+                      variant={isReleases ? 'ghost' : idx === 0 ? 'default' : 'outline'}
+                      size="sm"
+                      className={cn(
+                        'w-full py-4 rounded-xl font-bold transition-all duration-300 text-[11px]',
+                        isReleases
+                          ? 'text-foreground hover:bg-primary/10 hover:text-primary border border-border hover:border-primary/40'
+                          : idx === 0
+                            ? 'shadow-md shadow-primary/10 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5'
+                            : 'border-border hover:border-primary/50 text-muted-foreground hover:text-foreground hover:bg-primary/5'
+                      )}
+                      onClick={() => window.open(link.link)}
+                    >
+                      {isReleases ? (
+                        <>
+                          <ExternalLink className="size-3.5 mr-2 opacity-70" />
+                          {link.label}
+                        </>
+                      ) : (
+                        <>
+                          <Download className="size-3.5 mr-2 opacity-70" />
+                          <span className="font-mono text-xs mr-1 opacity-50">.</span>
+                          {link.label}
+                        </>
+                      )}
                     </Button>
                   ))}
-                </p>
-                {os === 'MacOs' && (
-                  <p className="text-xs">
-                    <div className="my-2 flex justify-center items-center">
-                      or via Homebrew
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button variant="ghost" size="sm">
-                            <Info className="size-4" />
-                            <span className="sr-only">MacOS installation info</span>
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-80 text-xs text-left">
-                          <p className="mb-2 text-sm">Install via Homebrew using:</p>
-
-                          <code className="bg-accent p-1 rounded shadow-inner whitespace-nowrap">
-                            brew install --cask Gisto/tap/gisto
-                          </code>
-
-                          <p className="mt-3 mb-2 text-sm">
-                            <strong>Heads up:</strong> This app uses a self-signed certificate and
-                            isn’t notarized, so macOS may show a warning on first launch.
-                          </p>
-
-                          <p className="mb-2 text-sm">If the app is blocked, you can open it by:</p>
-
-                          <ul className="list-disc pl-4 mb-2 text-sm">
-                            <li>
-                              Right-clicking the app and selecting <strong>Open</strong>, or
-                            </li>
-                            <li>
-                              Going to <strong>System Settings → Privacy & Security</strong> and
-                              clicking <strong>Open Anyway</strong>
-                            </li>
-                          </ul>
-
-                          <p className="mb-2 text-sm">
-                            You can also remove the quarantine flag manually:
-                          </p>
-
-                          <code className="block bg-accent p-2 rounded shadow-inner mb-2 break-all">
-                            xattr -dr com.apple.quarantine /Applications/Gisto.app
-                          </code>
-                        </PopoverContent>
-                      </Popover>
-                    </div>
-                  </p>
-                )}
+                </div>
               </div>
+
+              {os === 'MacOs' && (
+                <div className="px-8 pb-8 pt-0 relative z-10">
+                  <div className="text-xs text-muted-foreground flex items-center justify-center gap-2 border-t border-border/50 pt-5">
+                    <span className="opacity-70">via Homebrew</span>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="size-6 p-0 text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          <Info className="size-4" />
+                          <span className="sr-only">MacOS installation info</span>
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-85 text-xs text-left border-border p-5 rounded-2xl shadow-2xl backdrop-blur-xl bg-white/90 dark:bg-zinc-900/90">
+                        <div className="space-y-4">
+                          <div>
+                            <p className="mb-2 text-sm text-foreground font-bold">
+                              Install via Homebrew:
+                            </p>
+                            <code className="block bg-muted/50 border border-border p-3 rounded-xl font-mono text-primary text-xs select-all break-all">
+                              brew install --cask Gisto/tap/gisto
+                            </code>
+                          </div>
+
+                          <div className="space-y-2">
+                            <p className="text-sm text-foreground font-semibold">Security Note:</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              As an open-source app, macOS may warn you on first launch. To open:
+                            </p>
+                            <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1.5">
+                              <li>
+                                Right-click in Applications &rarr; <strong>Open</strong>
+                              </li>
+                              <li>
+                                <strong>System Settings</strong> &rarr;{' '}
+                                <strong>Privacy & Security</strong>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div className="pt-2">
+                            <p className="mb-2 text-xs text-muted-foreground uppercase tracking-wider font-bold">
+                              Quick fix (Terminal):
+                            </p>
+                            <code className="block bg-muted/50 border border-border p-3 rounded-xl font-mono text-[10px] text-muted-foreground/80 break-all select-all leading-tight">
+                              xattr -dr com.apple.quarantine /Applications/Gisto.app
+                            </code>
+                          </div>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}
       </div>
 
-      <div className="grid sm:flex sm:items-center gap-2 my-8">
-        <strong>Previous version: v1.13.4</strong> ({new Date('Oct 10, 2020').toDateString()}) is{' '}
-        <span className="text-danger">deprecated</span> and will not receive updates.
+      <div className="flex items-center gap-4 px-6 py-4 my-12 rounded-2xl glass-panel border border-amber-500/20 bg-amber-500/5 relative overflow-hidden group">
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-amber-500/5 to-amber-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+        <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500 shrink-0">
+          <AlertTriangle className="size-5" />
+        </div>
+        <div className="flex-1">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            <span className="text-foreground font-bold">Legacy version:</span> v1.13.4 (
+            {new Date('Oct 10, 2020').toDateString()}) is{' '}
+            <span className="text-amber-600 dark:text-amber-400 font-semibold uppercase text-[10px] tracking-wider bg-amber-500/10 px-1.5 py-0.5 rounded ml-1">
+              Deprecated
+            </span>
+          </p>
+          <p className="text-xs text-muted-foreground/60 mt-0.5">
+            This version will not receive any further security or feature updates.
+          </p>
+        </div>
         <Button
-          variant="outline"
+          variant="ghost"
           size="sm"
+          className="shrink-0 text-[11px] font-bold text-muted-foreground hover:text-foreground border border-border hover:border-amber-500/40 rounded-xl px-4 h-9 transition-all"
           onClick={() => window.open('https://github.com/Gisto/Gisto/releases/tag/v1.13.4')}
         >
-          v1.13.4 Release
+          View release <ExternalLink className="size-3 ml-2 opacity-50" />
         </Button>
       </div>
-
-      {/*<div className="flex items-center gap-2 my-8">*/}
-      {/*  <strong>Latest stable release:</strong>*/}
-      {/*  <Button*/}
-      {/*    variant="outline"*/}
-      {/*    size="sm"*/}
-      {/*    onClick={() => window.open('https://github.com/Gisto/gisto/releases/latest')}*/}
-      {/*  >*/}
-      {/*    Releases*/}
-      {/*  </Button>*/}
-      {/*</div>*/}
     </Section>
   );
 };
