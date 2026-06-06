@@ -17,32 +17,32 @@ export const Comparison = () => {
             <h3 className="text-2xl font-bold text-foreground mb-4">Why Gisto?</h3>
 
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              Gisto sits right at the intersection of local-first security and seamless cloud
-              synchronization. It packages the raw backend power of GitHub Gists & GitLab into a
-              native, high-performance desktop vault. Keep your code snippets, system commands, and
-              markdown documents cached locally on your machine for zero-latency searching, offline
-              editing, and immediate clipboard actions.
+              Gisto is a code snippet manager that runs on GitHub Gists / GitLab Snippets / local
+              in-browser database and adds additional features such as searching, tagging and
+              sharing snippets while including a rich code editor. All your data is stored on
+              GitHub/GitLab and you can access it from GitHub Gists or GitLab Snippets at any time
+              with changes carrying over to Gisto.
             </p>
 
             <ul className="space-y-3 mb-6 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <ShieldCheck className="size-4 text-emerald-500" />
-                <span>Local-first storage works fully offline</span>
+                <span>Advanced search, tagging, and syntax highlighting</span>
               </li>
               <li className="flex items-center gap-2">
                 <RefreshCw className="size-4 text-primary" />
-                <span>Choose your provider: GitHub Gists, GitLab, or local</span>
+                <span>Choose your provider: GitHub Gists, GitLab Snippets, or local</span>
               </li>
               <li className="flex items-center gap-2">
                 <FileText className="size-4 text-primary" />
-                <span>Rich Monaco code editor with Markdown previews</span>
+                <span>Rich code editor with copy to clipboard and quick actions</span>
               </li>
             </ul>
           </div>
 
           <div className="flex items-center gap-3 text-xs font-semibold text-muted-foreground border-t border-border/60 pt-4 mt-2">
             <Layers className="size-4 text-emerald-500" />
-            <span>Secure sandboxed Tauri desktop app architecture.</span>
+            <span>Built with Tauri instead of Electron for a smaller file size.</span>
           </div>
         </div>
 
@@ -55,32 +55,31 @@ export const Comparison = () => {
             <h3 className="text-2xl font-bold text-foreground mb-4">Why not plain GitHub Gists?</h3>
 
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              Plain GitHub Gists are great but extremely limited. There is no native offline
-              support, no tag-based organizations, no interactive dashboard insights, and the
-              standard web interface lacks rapid keyboard hotkeys or multi-file editing. Gisto
-              elevates your existing Gists, providing tag filters, folder structures, GitLab
-              snippets integration, and a beautiful editor overlay right in your workspace.
+              Plain GitHub Gists are great but limited. Gisto elevates your existing Gists,
+              providing tagging, grouping by language, quick snippet actions, copy to clipboard,
+              editor settings, theme color changer, and a web app — all on top of your existing
+              GitHub Gists or GitLab Snippets infrastructure.
             </p>
 
             <ul className="space-y-3 mb-6 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <ShieldCheck className="size-4 text-primary" />
-                <span>Advanced tags, filters, and full-text search</span>
+                <span>Tags, grouping by language, and advanced search</span>
               </li>
               <li className="flex items-center gap-2">
                 <RefreshCw className="size-4 text-primary" />
-                <span>Automatic background sync back to your clouds</span>
+                <span>Use all your existing snippets by connecting your account</span>
               </li>
               <li className="flex items-center gap-2">
                 <FileText className="size-4 text-primary" />
-                <span>Integrate smart AI assistance for quick tags</span>
+                <span>Local storage mode — no account required</span>
               </li>
             </ul>
           </div>
 
           <div className="flex items-center gap-3 text-xs font-semibold text-muted-foreground border-t border-border/60 pt-4 mt-2">
             <ShieldCheck className="size-4 text-primary" />
-            <span>Your code remains 100% yours, synced via official APIs.</span>
+            <span>Gisto only saves the Access token in your local storage and nothing else.</span>
           </div>
         </div>
       </div>

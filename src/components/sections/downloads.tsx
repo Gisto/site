@@ -275,9 +275,10 @@ export const Downloads = ({ className }: { className?: string }) => {
                       <PopoverContent className="w-80 text-xs text-left border-border p-4 rounded-2xl shadow-2xl backdrop-blur-xl bg-white/90 dark:bg-zinc-900/90">
                         <div className="space-y-3">
                           <p className="text-sm text-foreground">
-                            <strong className="text-primary font-bold">Note:</strong> This app uses
-                            a self-signed certificate, so you might see a{' '}
-                            <strong>"Unknown publisher"</strong> warning.
+                            <strong className="text-primary font-bold">Note:</strong> This app is
+                            not code-signed, so you might see{' '}
+                            <strong>"Windows protected your PC"</strong> or{' '}
+                            <strong>"Unrecognized app"</strong> warnings.
                           </p>
                           <div className="bg-primary/5 p-3 rounded-xl border border-primary/10">
                             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -353,17 +354,16 @@ export const Downloads = ({ className }: { className?: string }) => {
                           <div className="space-y-2">
                             <p className="text-sm text-foreground font-semibold">Security Note:</p>
                             <p className="text-sm text-muted-foreground leading-relaxed">
-                              As an open-source app, macOS may warn you on first launch. To open:
+                              This app is not code-signed. On macOS you may see:{' '}
+                              <strong>"This app is from an unidentified developer"</strong>.
                             </p>
-                            <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1.5">
-                              <li>
-                                Right-click in Applications &rarr; <strong>Open</strong>
-                              </li>
-                              <li>
-                                <strong>System Settings</strong> &rarr;{' '}
-                                <strong>Privacy & Security</strong>
-                              </li>
-                            </ul>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              To open, go to{' '}
+                              <strong>
+                                System Preferences &gt; Security &amp; Privacy &gt; General
+                              </strong>{' '}
+                              and click <strong>Open Anyway</strong>.
+                            </p>
                           </div>
 
                           <div className="pt-2">
@@ -392,14 +392,15 @@ export const Downloads = ({ className }: { className?: string }) => {
         </div>
         <div className="flex-1">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            <span className="text-foreground font-bold">Legacy version:</span> v1.13.4 (
-            {new Date('Oct 10, 2020').toDateString()}) is{' '}
+            <span className="text-foreground font-bold">Previous version (up to 1.13.4):</span>{' '}
+            v1.13.4 ({new Date('Oct 10, 2020').toDateString()}) is{' '}
             <span className="text-amber-600 dark:text-amber-400 font-semibold uppercase text-[10px] tracking-wider bg-amber-500/10 px-1.5 py-0.5 rounded ml-1">
-              Deprecated
+              Previous version
             </span>
           </p>
           <p className="text-xs text-muted-foreground/60 mt-0.5">
-            This version will not receive any further security or feature updates.
+            Tracked via the &quot;master&quot; branch. This version will not receive any further
+            updates.
           </p>
         </div>
         <Button

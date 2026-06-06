@@ -55,7 +55,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full mt-16 pb-16 overflow-hidden">
+    <div className="w-full mt-20 pb-16 overflow-hidden">
       {/* Background ambient glowing orbs */}
       <div className="glow-bg top-[-50px] left-[50%] -translate-x-1/2 opacity-50 dark:opacity-60" />
 
@@ -91,19 +91,18 @@ export const Hero = () => {
 
             {/* Headline and Tagline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-foreground font-body">
-              Snippets & documents <br className="hidden sm:inline" />
+              Snippets <br className="hidden sm:inline" />
               made <span className="text-gradient">awesome</span>
             </h1>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              A beautiful, local-first code snippet vault and document manager with Markdown
-              support. Keep your engineering workflows organized and synced with your choice of{' '}
+              Gisto is a code snippet manager that runs on{' '}
               <strong className="text-foreground font-semibold text-primary">GitHub Gists</strong>,{' '}
               <strong className="text-foreground font-semibold text-primary">
                 GitLab Snippets
               </strong>
-              , or{' '}
-              <strong className="text-foreground font-semibold text-primary">Local Storage</strong>.
+              , or local in-browser database and adds additional features such as searching, tagging
+              and sharing snippets while including a rich code editor.
             </p>
 
             {/* Multi-provider badges for bot crawler indexation */}
@@ -115,10 +114,7 @@ export const Hero = () => {
                 GitLab Snippets Sync
               </span>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-2xl bg-secondary border border-border text-foreground">
-                Local Offline Storage
-              </span>
-              <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-2xl bg-secondary border border-border text-foreground">
-                AI-ready templates
+                Local in-browser database
               </span>
             </div>
 

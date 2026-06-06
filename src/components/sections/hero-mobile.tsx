@@ -40,14 +40,15 @@ export const HeroMobile = () => {
       <div className="text-center px-4">
         {/* Headline */}
         <h1 className="mb-6 scroll-m-20 text-4xl text-foreground font-extrabold tracking-tight">
-          Snippets & documents <br />
+          Snippets <br />
           made <span className="text-gradient">awesome</span>
         </h1>
 
         {/* Description */}
         <p className="mb-8 text-base text-muted-foreground leading-relaxed max-w-lg mx-auto">
-          A beautiful, local-first code snippet vault and document manager with Markdown support.
-          Syncs with your choice of GitHub Gists, GitLab Snippets, or Local Storage offline files.
+          Gisto is a code snippet manager that runs on GitHub Gists, GitLab Snippets, or local
+          in-browser database with features such as searching, tagging and sharing snippets while
+          including a rich code editor.
         </p>
       </div>
 
@@ -60,7 +61,7 @@ export const HeroMobile = () => {
           GitLab Snippets Sync
         </span>
         <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-secondary border border-border text-foreground">
-          Local Storage
+          Local in-browser database
         </span>
       </div>
 

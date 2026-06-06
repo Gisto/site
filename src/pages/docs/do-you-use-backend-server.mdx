@@ -5,8 +5,6 @@ category: 3. Knowledge Base
 published: 2025-02-16
 ---
 
-Gisto primarily functions as a client-side application that interacts with GitHub and GitLab snippet APIs or local in-browser database.
+Gisto is a client-side application that interacts with GitHub Gists, GitLab Snippets APIs, or a local in-browser database (IndexedDB). It relies on the providers' back-ends for storing and managing snippets, rather than having its own dedicated server-side infrastructure.
 
-This means it relies on the providers' back-ends for storing and managing snippets, rather than having its own dedicated server-side infrastructure.
-
-Gisto stores nothing except its own configurations.
+Gisto stores nothing except its own configurations and your access token (saved permanently in local storage until you log out or it expires).

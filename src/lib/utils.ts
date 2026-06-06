@@ -13,8 +13,8 @@ export const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
   if (element) {
     const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-
     window.scrollTo({ top: y, behavior: 'smooth' });
+    window.history.replaceState(null, '', `/#${id}`);
   }
 };
 

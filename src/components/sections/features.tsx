@@ -29,7 +29,7 @@ const FEATURES = [
     },
   },
   {
-    name: 'Snippet tagging',
+    name: 'Tags',
     Icon: Tags,
     text: 'Gisto allows you to tag snippets with custom tags to help you find your snippets easily.',
     image: {
@@ -38,33 +38,33 @@ const FEATURES = [
     },
   },
   {
-    name: 'Quick actions',
+    name: 'Syntax highlight',
     Icon: Zap,
-    text: 'Gisto lets you quickly download, copy, and view snippets on web, generate embed links or preview them, and more',
+    text: 'Rich syntax highlighting for all major programming languages makes your code readable at a glance.',
     image: {
       light: '/features/quick-actions-light.png',
       dark: '/features/quick-actions-dark.png',
     },
   },
   {
-    name: 'Dashboard',
+    name: 'Grouping by language',
     Icon: LayoutDashboard,
-    text: 'A feature-rich dashboard displays snippet counts, tags, languages, and starred items with some informative charts',
+    text: 'Snippets are automatically grouped by programming language for easier navigation and discovery.',
     image: {
       light: '/features/dashboard-light.png',
       dark: '/features/dashboard-dark.png',
     },
   },
   {
-    name: 'Web app',
+    name: 'Quick snippet actions',
     Icon: Globe,
     text: (
       <span>
-        Gisto available as a full featured web app. You can check{' '}
+        Quickly download, copy to clipboard, copy file contents, open in external tools like{' '}
         <a className="underline underline-offset-2" href="https://app.gisto.org" target="_blank">
-          app.gisto.org
+          plunkr, carbon.now.sh, jsfiddle
         </a>{' '}
-        to access it.
+        and more.
       </span>
     ),
     link: (
@@ -83,51 +83,59 @@ const FEATURES = [
     },
   },
   {
-    name: 'Light/Dark theme',
+    name: 'Theme color changer',
     Icon: SwatchBook,
-    text: 'Gisto can be set to dark or light theme, or adapt to them preferred by the system',
+    text: 'Gisto can be set to dark or light theme, or adapt to the theme preferred by the system',
     image: {
       light: '/features/theme-light.png',
       dark: '/features/theme-dark.png',
     },
   },
   {
-    name: 'Rich editor',
+    name: 'Rich code editor',
     Icon: FilePenLine,
-    text: 'We use Monaco editor with syntax highlighting, auto-completion, Emmet, and more for seamless snippet editing. Write Markdown with live preview rendering.',
+    text: 'Monaco editor with syntax highlighting, auto-completion, Emmet, and more for seamless snippet editing.',
     image: {
       light: '/features/code-light.png',
       dark: '/features/code-dark.png',
     },
   },
   {
-    name: 'Markdown preview',
+    name: 'Editor settings',
     Icon: Eye,
-    text: 'Toggle between editing and live preview for Markdown files. See formatted headings, code blocks, lists, tables, and images rendered in real-time.',
+    text: 'Customize your editing experience with configurable editor settings, font size, tab size, and more.',
     image: {
       light: '/features/preview-light.png',
       dark: '/features/preview-dark.png',
     },
   },
   {
-    name: 'Stay organized',
+    name: 'Web app',
     Icon: Leaf,
-    text: 'Gisto brings clarity to your code collection, making organization second nature',
+    text: (
+      <span>
+        Gisto is available as a full featured web app at{' '}
+        <a className="underline underline-offset-2" href="https://app.gisto.org" target="_blank">
+          app.gisto.org
+        </a>
+        .
+      </span>
+    ),
   },
   {
-    name: 'GitLab support',
+    name: 'Copy to clipboard',
     Icon: GitBranch,
-    text: 'Beyond GitHub, Gisto now supports GitLab snippets, expanding your code snippet sources and workflows',
+    text: 'Copy snippets or individual file contents to clipboard with a single click.',
   },
   {
-    name: 'Local snippets',
+    name: 'Local storage mode',
     Icon: HardDrive,
-    text: 'Store and manage snippets locally without requiring an external provider connection',
+    text: 'Use IndexedDB to store snippets locally without a GitHub/GitLab account. Perfect for offline access and privacy.',
   },
   {
-    name: 'Analytics & insights',
+    name: 'Open source',
     Icon: BarChart3,
-    text: 'View your most used tags and languages with interactive charts on your dashboard',
+    text: 'Gisto is licensed under the MIT License. The entire codebase is open source and auditable on GitHub.',
   },
 ];
 

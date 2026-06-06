@@ -50,10 +50,8 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        'py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-50 transition-all duration-300 w-full box-border',
-        isScrolled
-          ? 'bg-background/80 border-b border-border/40 backdrop-blur-md shadow-md shadow-black/5'
-          : 'bg-transparent border-b border-transparent'
+        'py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-50 transition-all duration-300 w-full box-border bg-background/40 backdrop-blur-sm border-b border-border/20',
+        isScrolled && 'bg-background/80 backdrop-blur-md shadow-md shadow-black/5 border-border/40'
       )}
     >
       <div>

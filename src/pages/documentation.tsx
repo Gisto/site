@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'dirty-react-router';
 import { Section } from '@/components/section.tsx';
+import { usePageTitle, useCanonical } from '@/lib/seo.tsx';
 import { BookOpen, ArrowRight, Search } from 'lucide-react';
 
 interface DocPage {
@@ -15,6 +16,8 @@ interface DocPage {
 }
 
 export const DocumentationPage = () => {
+  usePageTitle('Documentation | Gisto');
+  useCanonical('https://gisto.org/documentation');
   const [docs, setDocs] = useState<
     {
       Component: React.ComponentType;
@@ -23,9 +26,9 @@ export const DocumentationPage = () => {
     }[]
   >([]);
   const [search, setSearch] = useState('');
-  const markdownFiles = import.meta.glob('./docs/**/*.mdx');
 
   useEffect(() => {
+    const markdownFiles = import.meta.glob('./docs/**/*.mdx');
     const loadDocs = async () => {
       const postComponents = await Promise.all(
         Object.entries(markdownFiles).map(async ([path, loader]) => {

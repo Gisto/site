@@ -7,23 +7,17 @@ published: 2026-05-29
 
 ## Overview
 
-Modern engineering involves managing not just code blocks, but also structured LLM parameters, prompt templates, and system instructions for AI assistants like Claude, ChatGPT, or IDE wrappers like Cursor. 
+Gisto supports multiple languages with machine-generated translations (experimental and not fully implemented yet). You can change the language in the settings.
 
-Gisto makes organizing your prompt directories elegant and highly structured.
+Gisto also provides an AI-assisted tool inside snippet descriptions. If you add your AI provider API key in settings, you can click the **AI** description helper to automatically generate descriptions and tags for your snippets.
 
-## Tagging & prompt categorization
+## Tagging & Prompt Categorization
 
-Organize your prompt directories by using customized tag categories. By tagging your prompts with custom markers, you can filter and query them in milliseconds:
+Organize your snippets by using customized tag categories. By tagging your snippets with custom markers, you can filter and query them efficiently.
 
-* `#system-prompts`: For general guidelines and instructions given to AI agents.
-* `#few-shot`: For high-quality examples containing desired input/output structures.
-* `#cot`: For chain-of-thought system prompts.
+## Prompt Variable Interpolation
 
-## Prompt variable interpolation
-
-Because Gisto includes complete Markdown rendering, you can write prompt templates with clearly defined parameter variables. 
-
-For example, write prompt skeletons using traditional curly braces:
+You can write prompt templates with clearly defined parameter variables using curly braces:
 
 ```markdown
 You are a senior frontend engineer. Refactor the following React component to resolve performance leaks.
@@ -35,8 +29,6 @@ Desired styling framework:
 {{CSSFramework}}
 ```
 
-To use a prompt, copy the template with Gisto's clipboard overlay and inject your specific parameters directly in your target AI workspace.
+## AI Assistant Descriptions
 
-## Integrating AI assistant descriptions
-
-Gisto provides a subtle AI-assisted tool inside snippet descriptions. If you add your AI provider API key in settings, you can click the optional **AI** description helper. Gisto will analyze the contents of your code file or document to automatically suggest clean descriptions and tags, making indexing fully effortless.
+Gisto provides an AI-assisted tool inside snippet descriptions. If you add your AI provider API key in settings, you can click the optional **AI** description helper. Gisto will analyze the contents of your code file or document to automatically suggest clean descriptions and tags.

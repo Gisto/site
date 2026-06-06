@@ -62,8 +62,9 @@ export const UseCases = () => {
           More than a <span className="text-gradient">simple snippet manager</span>
         </h2>
         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Gisto is a local-first sandbox designed to organize your code files, structured Markdown
-          documentation, database commands, and AI prompts under one lightweight roof.
+          Gisto is a code snippet manager that runs on GitHub Gists / GitLab Snippets / local
+          in-browser database with features such as searching, tagging and sharing snippets while
+          including a rich code editor.
         </p>
       </div>
 
@@ -112,8 +113,8 @@ export const UseCases = () => {
             Team Sync-Share
           </h3>
           <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px] mb-4">
-            Choose your provider — GitHub Gists, GitLab Snippets, or local storage. Switch anytime
-            and keep your data in sync.
+            Choose your provider — GitHub Gists, GitLab Snippets, or local in-browser database.
+            Switch anytime and keep your data in sync.
           </p>
           <span className="text-xs text-primary font-semibold group-hover:underline underline-offset-4 cursor-pointer">
             Explore Documentation &rarr;
