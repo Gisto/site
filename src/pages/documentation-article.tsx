@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Calendar, CircleArrowLeft, CircleUser, BookOpen } from 'lucide-react';
 import { formatDate, upperCaseFirst } from '../lib/utils.ts';
+import { useCanonical, usePageTitle } from '@/lib/seo.tsx';
 import { MDXLayout } from '../components/mdx-layout.tsx';
 import { Link, useRouter } from 'dirty-react-router';
 import { Section } from '@/components/section.tsx';
@@ -31,6 +32,8 @@ const getCategoryColor = (category: string) => {
 export const DocumentationArticlePage = () => {
   const { params } = useRouter();
   const [frontmatter, setFrontmatter] = React.useState<Frontmatter | null>(null);
+  useCanonical();
+  usePageTitle(frontmatter?.title ? `${frontmatter.title} | Gisto` : 'Documentation | Gisto');
 
   if (!params?.slug) {
     return null;

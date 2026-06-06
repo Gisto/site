@@ -6,23 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Gisto is a premium, open-source code snippet and document vault with Markdown support. Securely syncs with GitHub Gists, GitLab Snippets, and Local Offline Storage. Built with Tauri + React + TypeScript." />
-    <meta name="keywords" content="github gist manager, gitlab snippet manager, local snippet vault, code snippet manager, open source snippet manager, developer document vault, markdown snippet manager, Tauri desktop app, code organizer, gist client" />
+    <meta
+      name="description"
+      content="Gisto is a cross-platform snippets management application that allows you and/or your team share code snippets fast and easily. Based on GitHub Gists or GitLab snippets Infrastructure."
+    />
+    <meta
+      name="keywords"
+      content="github gist manager, gitlab snippet manager, code snippet manager, open source snippet manager, Tauri desktop app, gist client, snippets manager"
+    />
     <meta name="author" content="Gisto Team" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://gisto.org/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gisto.org/" />
-    <meta property="og:title" content="Gisto | Local-First Snippet & Document Vault for Developers" />
-    <meta property="og:description" content="Organize your code snippets, Markdown documents, and developer workflows. Synchronized directly with GitHub Gists, GitLab Snippets, and local offline files." />
+    <meta property="og:title" content="Gisto | Cross-platform snippets management application" />
+    <meta
+      property="og:description"
+      content="Gisto is a code snippet manager that runs on GitHub Gists / GitLab Snippets / local in-browser database with features such as searching, tagging and sharing snippets."
+    />
     <meta property="og:image" content="https://gisto.org/app-dark.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://gisto.org/" />
-    <meta name="twitter:title" content="Gisto | Local-First Snippet & Document Vault" />
-    <meta name="twitter:description" content="Organize your code snippets, Markdown documents, and developer workflows. Synchronized directly with GitHub Gists, GitLab Snippets, and local offline files." />
+    <meta name="twitter:title" content="Gisto | Snippets made awesome" />
+    <meta
+      name="twitter:description"
+      content="Gisto is a code snippet manager that runs on GitHub Gists / GitLab Snippets / local in-browser database with features such as searching, tagging and sharing snippets."
+    />
     <meta name="twitter:image" content="https://gisto.org/app-dark.png" />
 
     <!-- Schema.org JSON-LD structured data for rich search listings -->
@@ -39,21 +52,22 @@
           "price": "0.00",
           "priceCurrency": "USD"
         },
-        "description": "An open-source code snippet and document vault with Markdown support. Syncs with GitHub Gists, GitLab Snippets, and local offline files. Built with Tauri.",
-        "softwareVersion": "2.0.0",
+        "description": "Gisto is a code snippet manager that runs on GitHub Gists / GitLab Snippets / local in-browser database and adds additional features such as searching, tagging and sharing snippets while including a rich code editor.",
+        "softwareVersion": "2.10.0",
         "downloadUrl": "https://github.com/Gisto/Gisto/releases",
         "url": "https://gisto.org",
-        "sameAs": [
-          "https://github.com/Gisto/Gisto",
-          "https://x.com/gistoapp"
-        ],
+        "sameAs": ["https://github.com/Gisto/Gisto", "https://x.com/gistoapp"],
         "featureList": [
-          "GitHub Gist sync",
-          "GitLab snippet sync",
-          "Local snippet storage",
-          "AI prompt vault",
-          "Monaco code editor",
-          "Advanced search and tagging"
+          "Advanced search",
+          "Tags",
+          "Syntax highlight",
+          "Grouping by language",
+          "Quick snippet actions",
+          "Copy to clipboard",
+          "Theme color changer",
+          "Web app",
+          "Local storage mode",
+          "Open source"
         ],
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -68,14 +82,69 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Monda:wght@400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Monda:wght@400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
     />
 
-    <title>Gisto | A beautiful, local-first code snippet vault and document manager with Markdown support. Keep your engineering workflows organized and synced with your choice of GitHub Gists, GitLab Snippets, or Local Storage.</title>
+    <title>Gisto | Cross-platform snippets management application</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          padding: 0 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          color: #333;
+        "
+      >
+        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem">Gisto</h1>
+        <p style="font-size: 1.125rem; line-height: 1.6; color: #666">
+          Gisto is a cross-platform snippets management application that allows you and/or your team
+          share code snippets fast and easily. Based on GitHub Gists or GitLab snippets
+          infrastructure.
+        </p>
+        <ul style="margin-top: 1.5rem; line-height: 2; color: #555">
+          <li>Advanced search and tagging</li>
+          <li>Syntax highlighting with Monaco editor</li>
+          <li>Quick snippet actions and copy to clipboard</li>
+          <li>Theme color changer (light/dark)</li>
+          <li>Local storage mode (IndexedDB) - no account required</li>
+          <li>Available as a web app at <a href="https://app.gisto.org">app.gisto.org</a></li>
+          <li>MIT open source</li>
+        </ul>
+        <p style="margin-top: 1.5rem; font-size: 0.875rem; color: #999">
+          Download from <a href="https://github.com/Gisto/Gisto/releases">GitHub Releases</a> or
+          install via Homebrew:
+          <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 4px"
+            >brew install --cask Gisto/tap/gisto</code
+          >
+        </p>
+      </div>
+    </div>
+    <noscript>
+      <div
+        style="
+          max-width: 900px;
+          margin: 80px auto;
+          padding: 0 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          color: #333;
+        "
+      >
+        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem">Gisto</h1>
+        <p style="font-size: 1.125rem; line-height: 1.6; color: #666">
+          Gisto is a cross-platform snippets management application that allows you and/or your team
+          share code snippets fast and easily. Based on GitHub Gists or GitLab snippets
+          infrastructure.
+        </p>
+        <p style="margin-top: 1.5rem; font-size: 0.875rem; color: #999">
+          Please enable JavaScript to use the full interactive site. You can also visit
+          <a href="https://github.com/Gisto/Gisto">github.com/Gisto/Gisto</a> for more information.
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

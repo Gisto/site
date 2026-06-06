@@ -91,8 +91,8 @@ export const QuickStart = () => {
               </span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed mb-6">
-              We compile native desktop bundles for all major systems (Windows, Linux, macOS Intel,
-              and Apple Silicon M1/M2/M3 chips).
+              Download Gisto for macOS, Windows, Linux from the releases tab. The desktop app is
+              built with <strong>Tauri</strong> for a smaller file size.
             </p>
 
             <div className="space-y-3">
@@ -116,7 +116,7 @@ export const QuickStart = () => {
           <div className="flex items-center justify-between gap-3 text-[11px] text-muted-foreground pt-4 border-t border-border/60 mt-4">
             <div className="flex items-center gap-2">
               <ShieldAlert className="size-4 text-amber-500 shrink-0" />
-              <span>Self-signed app: installation warnings may apply.</span>
+              <span>App is not code-signed: installation warnings may apply.</span>
             </div>
             <Popover>
               <PopoverTrigger asChild>
@@ -125,18 +125,17 @@ export const QuickStart = () => {
                 </button>
               </PopoverTrigger>
               <PopoverContent className="w-80 text-xs text-left glass-panel border-border/80 bg-white/90 dark:bg-zinc-900/90 p-4 rounded-2xl shadow-xl backdrop-blur-xl">
-                <p className="mb-2 text-sm font-bold text-foreground">Honest Security Note:</p>
+                <p className="mb-2 text-sm font-bold text-foreground">Security Note:</p>
                 <p className="mb-2 text-xs text-muted-foreground leading-relaxed">
-                  As an open-source project, Gisto's desktop binaries are **self-signed and not
-                  notarized**. Operating systems like Windows (SmartScreen) and macOS (Gatekeeper)
-                  will trigger a warning on first launch.
+                  This app is not code-signed. You may see a warning like &quot;Windows protected
+                  your PC&quot; or &quot;This app is from an unidentified developer.&quot;
                 </p>
                 <p className="mb-2 text-xs text-muted-foreground leading-relaxed">
-                  **Windows:** Click "More Info" then "Run Anyway".
+                  <strong>Windows:</strong> Click &quot;More Info&quot; then &quot;Run Anyway&quot;.
                 </p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  **macOS:** Right-click Gisto in Applications and choose "Open", or allow it in
-                  System Settings → Privacy & Security.
+                  <strong>macOS:</strong> Go to System Preferences &rarr; Security &amp; Privacy
+                  &rarr; General and click &quot;Open Anyway&quot;.
                 </p>
               </PopoverContent>
             </Popover>

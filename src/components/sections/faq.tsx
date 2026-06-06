@@ -11,18 +11,23 @@ interface DocPage {
   };
 }
 
+interface FAQItemData {
+  q: string;
+  Component: React.ComponentType;
+}
+
 export const FAQ = () => {
-  const [faqs, setFaqs] = useState<{ q: string; a: string }[]>([]);
-  const markdownFiles = import.meta.glob('../../pages/docs/**/*.mdx');
+  const [faqs, setFaqs] = useState<FAQItemData[]>([]);
 
   useEffect(() => {
+    const markdownFiles = import.meta.glob('../../pages/docs/**/*.mdx');
     const loadFaqs = async () => {
       const allDocs = await Promise.all(
         Object.entries(markdownFiles).map(async ([, loader]) => {
           const module = (await loader()) as DocPage;
           return {
             q: module.frontmatter.title,
-            a: module.default, // The component itself as answer
+            a: module.default,
             category: module.frontmatter.category || '',
           };
         })
@@ -32,11 +37,10 @@ export const FAQ = () => {
         .filter((doc) => doc.category.toLowerCase().includes('f.a.q'))
         .map((doc) => ({
           q: doc.q,
-          a: doc.q, // Just placeholder if we need strings, but we'll render the component
           Component: doc.a,
         }));
 
-      setFaqs(filteredFaqs as any);
+      setFaqs(filteredFaqs);
     };
     loadFaqs();
   }, []);
@@ -53,13 +57,13 @@ export const FAQ = () => {
           Frequently <span className="text-gradient">asked questions</span>
         </h2>
         <p className="text-muted-foreground text-sm leading-relaxed">
-          Everything you need to know about Gisto’s local-first architecture, cloud sync, and
-          security.
+          Everything you need to know about Gisto's snippet management, cloud sync with GitHub Gists
+          and GitLab Snippets, and local storage mode.
         </p>
       </div>
 
       <div className="space-y-4">
-        {faqs.map((faq: any, index) => (
+        {faqs.map((faq, index) => (
           <FAQItem key={index} q={faq.q} a={<faq.Component />} />
         ))}
       </div>

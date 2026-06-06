@@ -15,18 +15,21 @@ export const About = () => {
           share code snippets fast and easily.
         </p>
         <p className="mb-8">
-          We support <strong>GitHub snippets</strong>, <strong>GitLab snippets</strong> and{' '}
-          <strong>local snippet storage</strong> for offline access and privacy, which means you
-          can use all your existing snippets by connecting your provider accounts.
+          Gisto is a code snippet manager that runs on <strong>GitHub Gists</strong>,{' '}
+          <strong>GitLab Snippets</strong> and <strong>local in-browser database</strong> and adds
+          additional features such as searching, tagging and sharing snippets while including a rich
+          code editor. You can also use local storage to save snippets directly in your browser.
         </p>
 
         <p className="mb-8">
-          The project has started in order to fulfill a lack of a syntax highlighted and cloud
-          synchronized code snippet solution in about 2010, since then it had several iterations.
+          The current version (2.x.x) is a complete rewrite of the original Gisto. The project
+          started in order to fulfill a lack of a syntax highlighted and cloud synchronized code
+          snippet solution, since then it had several iterations.
         </p>
         <p className="mb-8">
-          Gisto is built using the open web technologies, current version uses several open source
-          projects such as React, Tauri, Monaco Editor, Tailwind CSS, Vite and many more.
+          Gisto is built using open web technologies. The current version uses{' '}
+          <strong>Tauri</strong> instead of Electron, which significantly reduces the file size,
+          along with React, Monaco Editor, Tailwind CSS, Vite and many more.
         </p>
       </div>
     </Section>
