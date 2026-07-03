@@ -101,6 +101,17 @@ export const Hero = () => {
               <strong className="text-foreground font-semibold text-primary">
                 GitLab Snippets
               </strong>
+              ,{' '}
+              <strong className="text-foreground font-semibold text-primary">
+                <a
+                  href="https://github.com/sanusart/snippet-bin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 decoration-primary/30 hover:decoration-primary"
+                >
+                  Snippet-Bin
+                </a>
+              </strong>
               , or local in-browser database and adds additional features such as searching, tagging
               and sharing snippets while including a rich code editor.
             </p>
@@ -116,6 +127,14 @@ export const Hero = () => {
               <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-2xl bg-secondary border border-border text-foreground">
                 Local in-browser database
               </span>
+              <a
+                href="https://github.com/sanusart/snippet-bin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-2xl bg-secondary border border-border text-foreground hover:bg-primary/10 hover:border-primary/30 transition-colors"
+              >
+                Snippet-Bin Self-Hosted
+              </a>
             </div>
 
             {/* Action CTAs */}

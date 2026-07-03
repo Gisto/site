@@ -31,6 +31,21 @@ Gisto now supports GitLab snippets with full parity to GitHub functionality.
 
 Like GitHub tokens, GitLab access tokens are stored securely in your local storage and not shared with any external service.
 
+### Snippet-Bin
+
+Gisto supports [Snippet-Bin](https://github.com/sanusart/snippet-bin), a self-hosted snippet server inspired by the GitHub Gists API. This gives you full control over your data and infrastructure.
+
+**How to authenticate:**
+
+1. Open Gisto login page
+2. Select "Snippet-Bin" as your provider
+3. Paste the Snippet-Bin instance URL (e.g., `https://snippet-bin.yourdomain.com`)
+4. Enter your Snippet-Bin API token
+
+**Token Storage:**
+
+Your Snippet-Bin instance URL and API token are saved in your local storage and not shared with any external service.
+
 ### Local Mode (No Authentication Required)
 
 You can use Gisto without connecting to any external provider. Store snippets locally using IndexedDB.

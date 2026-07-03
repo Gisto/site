@@ -46,9 +46,17 @@ export const HeroMobile = () => {
 
         {/* Description */}
         <p className="mb-8 text-base text-muted-foreground leading-relaxed max-w-lg mx-auto">
-          Gisto is a code snippet manager that runs on GitHub Gists, GitLab Snippets, or local
-          in-browser database with features such as searching, tagging and sharing snippets while
-          including a rich code editor.
+          Gisto is a code snippet manager that runs on GitHub Gists, GitLab Snippets,{' '}
+          <a
+            href="https://github.com/sanusart/snippet-bin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold underline underline-offset-2 decoration-primary/30 hover:decoration-primary"
+          >
+            Snippet-Bin
+          </a>
+          , or local in-browser database with features such as searching, tagging and sharing
+          snippets while including a rich code editor.
         </p>
       </div>
 
@@ -63,6 +71,14 @@ export const HeroMobile = () => {
         <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-secondary border border-border text-foreground">
           Local in-browser database
         </span>
+        <a
+          href="https://github.com/sanusart/snippet-bin"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-secondary border border-border text-foreground hover:bg-primary/10 hover:border-primary/30 transition-colors"
+        >
+          Snippet-Bin Self-Hosted
+        </a>
       </div>
 
       {/* CTAs */}

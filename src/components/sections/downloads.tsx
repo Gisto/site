@@ -340,24 +340,24 @@ export const Downloads = ({ className }: { className?: string }) => {
                           <span className="sr-only">MacOS installation info</span>
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-85 text-xs text-left border-border p-5 rounded-2xl shadow-2xl backdrop-blur-xl bg-white/90 dark:bg-zinc-900/90">
+                      <PopoverContent className="w-85 text-sm text-left border-border p-5 rounded-2xl shadow-2xl bg-white dark:bg-zinc-900">
                         <div className="space-y-4">
                           <div>
                             <p className="mb-2 text-sm text-foreground font-bold">
                               Install via Homebrew:
                             </p>
-                            <code className="block bg-muted/50 border border-border p-3 rounded-xl font-mono text-primary text-xs select-all break-all">
+                            <code className="block bg-muted border border-border p-3 rounded-xl font-mono text-foreground text-xs font-semibold select-all break-all">
                               brew install --cask Gisto/tap/gisto
                             </code>
                           </div>
 
                           <div className="space-y-2">
                             <p className="text-sm text-foreground font-semibold">Security Note:</p>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
+                            <p className="text-sm text-foreground leading-relaxed">
                               This app is not code-signed. On macOS you may see:{' '}
                               <strong>"This app is from an unidentified developer"</strong>.
                             </p>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
+                            <p className="text-sm text-foreground leading-relaxed">
                               To open, go to{' '}
                               <strong>
                                 System Preferences &gt; Security &amp; Privacy &gt; General
@@ -367,10 +367,10 @@ export const Downloads = ({ className }: { className?: string }) => {
                           </div>
 
                           <div className="pt-2">
-                            <p className="mb-2 text-xs text-muted-foreground uppercase tracking-wider font-bold">
+                            <p className="mb-2 text-xs text-foreground uppercase tracking-wider font-bold">
                               Quick fix (Terminal):
                             </p>
-                            <code className="block bg-muted/50 border border-border p-3 rounded-xl font-mono text-[10px] text-muted-foreground/80 break-all select-all leading-tight">
+                            <code className="block bg-muted border border-border p-3 rounded-xl font-mono text-xs text-foreground break-all select-all leading-tight">
                               xattr -dr com.apple.quarantine /Applications/Gisto.app
                             </code>
                           </div>

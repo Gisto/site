@@ -16,9 +16,20 @@ export const About = () => {
         </p>
         <p className="mb-8">
           Gisto is a code snippet manager that runs on <strong>GitHub Gists</strong>,{' '}
-          <strong>GitLab Snippets</strong> and <strong>local in-browser database</strong> and adds
-          additional features such as searching, tagging and sharing snippets while including a rich
-          code editor. You can also use local storage to save snippets directly in your browser.
+          <strong>GitLab Snippets</strong>,{' '}
+          <strong>
+            <a
+              href="https://github.com/sanusart/snippet-bin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 decoration-primary/30 hover:decoration-primary"
+            >
+              Snippet-Bin
+            </a>
+          </strong>{' '}
+          (self-hosted), and <strong>local in-browser database</strong> and adds additional features
+          such as searching, tagging and sharing snippets while including a rich code editor. You
+          can also use local storage to save snippets directly in your browser.
         </p>
 
         <p className="mb-8">

@@ -46,13 +46,13 @@ export const QuickStart = () => {
                 Brew Cask
               </span>
             </div>
-            <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+            <p className="text-sm text-foreground leading-relaxed mb-4">
               If you use Homebrew, you can install the Gisto desktop package directly via cask:
             </p>
 
             {/* Minimal Terminal */}
-            <div className="glass-panel bg-zinc-950 border border-zinc-800 rounded-2xl p-4 font-mono text-xs text-left relative group select-all mb-4 overflow-hidden">
-              <div className="flex items-center justify-between mb-2 pb-2 border-b border-zinc-900 select-none">
+            <div className="bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-2xl p-4 font-mono text-xs text-left relative group select-all mb-4 overflow-hidden">
+              <div className="flex items-center justify-between mb-2 pb-2 border-b border-zinc-300 dark:border-zinc-900 select-none">
                 <span className="text-[10px] text-zinc-500">bash - terminal</span>
                 <button
                   onClick={handleCopy}
@@ -68,7 +68,7 @@ export const QuickStart = () => {
               </div>
               <div className="flex items-start">
                 <span className="text-primary mr-2 select-none">$</span>
-                <span className="text-zinc-200 select-all font-mono break-all leading-normal">
+                <span className="text-zinc-800 dark:text-zinc-200 select-all font-mono break-all leading-normal">
                   {brewCommand}
                 </span>
               </div>
