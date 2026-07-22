@@ -40,13 +40,15 @@ export const HeroMobile = () => {
       <div className="text-center px-4">
         {/* Headline */}
         <h1 className="mb-6 scroll-m-20 text-4xl text-foreground font-extrabold tracking-tight">
-          Snippets <br />
-          made <span className="text-gradient">awesome</span>
+          Your snippets. <br />
+          <span className="text-gradient">Finally organized.</span>
         </h1>
 
         {/* Description */}
         <p className="mb-8 text-base text-muted-foreground leading-relaxed max-w-lg mx-auto">
-          Gisto is a code snippet manager that runs on GitHub Gists, GitLab Snippets,{' '}
+          Gisto connects to your existing{' '}
+          <strong className="text-foreground font-semibold">GitHub Gists</strong>,{' '}
+          <strong className="text-foreground font-semibold">GitLab Snippets</strong>, or{' '}
           <a
             href="https://github.com/sanusart/snippet-bin"
             target="_blank"
@@ -54,22 +56,22 @@ export const HeroMobile = () => {
             className="font-semibold underline underline-offset-2 decoration-primary/30 hover:decoration-primary"
           >
             Snippet-Bin
-          </a>
-          , or local in-browser database with features such as searching, tagging and sharing
-          snippets while including a rich code editor.
+          </a>{' '}
+          and gives you search, tags, syntax highlighting, and a real code editor. Works{' '}
+          <strong className="text-foreground font-semibold">offline</strong> too.
         </p>
       </div>
 
       {/* Multi-provider badges for crawler indexing */}
       <div className="flex flex-wrap justify-center gap-2 mb-8 max-w-sm mx-auto">
         <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-primary/10 border border-primary/20 text-primary">
-          GitHub Gists Sync
+          GitHub Gists
         </span>
         <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-secondary border border-border text-foreground">
-          GitLab Snippets Sync
+          GitLab Snippets
         </span>
         <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-secondary border border-border text-foreground">
-          Local in-browser database
+          Local-first
         </span>
         <a
           href="https://github.com/sanusart/snippet-bin"
@@ -77,7 +79,7 @@ export const HeroMobile = () => {
           rel="noopener noreferrer"
           className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-2xl bg-secondary border border-border text-foreground hover:bg-primary/10 hover:border-primary/30 transition-colors"
         >
-          Snippet-Bin Self-Hosted
+          Snippet-Bin
         </a>
       </div>
 
@@ -87,7 +89,7 @@ export const HeroMobile = () => {
           className="w-full sm:w-auto bg-primary text-primary-foreground font-bold tracking-tight rounded-xl flex items-center justify-center gap-2 px-5 py-2.5 h-10 text-sm shadow-lg shadow-primary/10"
           onClick={() => scrollToSection('downloads-section')}
         >
-          <Download className="size-4" /> Download App
+          <Download className="size-4" /> Download for Desktop
         </Button>
 
         <Button
@@ -103,7 +105,7 @@ export const HeroMobile = () => {
           className="text-muted-foreground hover:text-primary transition-colors text-xs font-semibold flex items-center justify-center gap-1 h-10"
           onClick={() => navigate('/documentation')}
         >
-          Learn more <ArrowRight className="size-3.5" />
+          Docs <ArrowRight className="size-3.5" />
         </Button>
       </div>
 

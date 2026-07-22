@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Section } from '../section.tsx';
-import { HelpCircle, Sparkles } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 import { FAQItem } from '../ui/faq-item.tsx';
 
 interface DocPage {
@@ -46,37 +46,32 @@ export const FAQ = () => {
   }, []);
 
   return (
-    <Section id="faq-section" className="py-12 relative">
-      <div className="glow-bg bottom-10 right-10 opacity-20 dark:opacity-30" />
-
-      <div className="text-center max-w-2xl mx-auto mb-16">
+    <Section id="faq-section" className="py-20 section-alt">
+      <div className="text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs text-primary font-semibold mb-4 tracking-wider uppercase">
           <HelpCircle className="size-3.5" /> FAQ
         </div>
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-foreground">
-          Frequently <span className="text-gradient">asked questions</span>
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
+          Frequently <span className="text-gradient">asked</span>
         </h2>
-        <p className="text-muted-foreground text-sm leading-relaxed">
-          Everything you need to know about Gisto's snippet management, cloud sync with GitHub Gists
-          and GitLab Snippets, and local storage mode.
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+          The short answers.
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 max-w-3xl mx-auto">
         {faqs.map((faq, index) => (
           <FAQItem key={index} q={faq.q} a={<faq.Component />} />
         ))}
       </div>
 
-      {/* Support Banner */}
-      <div className="mt-12 text-center text-xs text-muted-foreground flex items-center justify-center gap-2">
-        <Sparkles className="size-3.5 text-amber-500 animate-pulse" />
+      <div className="mt-12 text-center text-sm text-muted-foreground flex items-center justify-center gap-2">
         <span>
-          Still have questions? Explore the full{' '}
+          Still curious? Check the{' '}
           <a href="/documentation" className="text-primary hover:underline font-semibold">
-            Gisto Documentation
+            full docs
           </a>{' '}
-          or join Gisto contributors on GitHub.
+          or open an issue on GitHub.
         </span>
       </div>
     </Section>

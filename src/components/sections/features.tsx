@@ -1,207 +1,200 @@
 import {
   Search,
   Tags,
-  Zap,
-  SwatchBook,
-  Globe,
+  Code2,
+  FileText,
+  Link,
+  Sparkles,
   LayoutDashboard,
-  FilePenLine,
-  Eye,
-  Leaf,
-  Lightbulb,
-  GitBranch,
+  SwatchBook,
+  Files,
+  ExternalLink,
+  Zap,
+  WifiOff,
+  Globe,
+  Copy,
   HardDrive,
-  BarChart3,
+  GitBranch,
+  Layers,
 } from 'lucide-react';
 import { Section } from '../section.tsx';
 import { cn } from '../../lib/utils.ts';
-import { useTheme } from '../theme/theme-provider.tsx';
-import { Button } from '@/components/ui/button.tsx';
 
 const FEATURES = [
   {
-    name: 'Advanced search',
+    name: 'Full-text search',
     Icon: Search,
-    text: 'Snippets can be found quickly using our search and can be filtered by snippet description, file names, tags and more',
-    image: {
-      light: '/features/advanced-search-light.png',
-      dark: '/features/advanced-search-dark.png',
-    },
+    text: 'Find snippets by content, filename, tags, or description. Combine operators like tag: and lang: for precise results.',
+    color: 'from-blue-500/20 to-blue-600/10',
+    iconBg: 'bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400',
   },
   {
-    name: 'Tags',
+    name: 'Custom tags',
     Icon: Tags,
-    text: 'Gisto allows you to tag snippets with custom tags to help you find your snippets easily.',
-    image: {
-      light: '/features/tags-light.png',
-      dark: '/features/tags-dark.png',
-    },
+    text: 'Tag snippets with #labels for instant organization. Filter by any tag to find exactly what you need.',
+    color: 'from-emerald-500/20 to-emerald-600/10',
+    iconBg: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400',
   },
   {
-    name: 'Syntax highlight',
-    Icon: Zap,
-    text: 'Rich syntax highlighting for all major programming languages makes your code readable at a glance.',
-    image: {
-      light: '/features/quick-actions-light.png',
-      dark: '/features/quick-actions-dark.png',
-    },
+    name: 'Monaco editor',
+    Icon: Code2,
+    text: 'The same editor powering VS Code — syntax highlighting, autocomplete, Emmet, and configurable settings.',
+    color: 'from-violet-500/20 to-violet-600/10',
+    iconBg: 'bg-violet-500/10 border-violet-500/20 text-violet-600 dark:text-violet-400',
   },
   {
-    name: 'Grouping by language',
+    name: 'Markdown support',
+    Icon: FileText,
+    text: 'Write and preview Markdown, HTML, JSON, CSV, and PDF files. Full GitHub Flavored Markdown with live preview.',
+    color: 'from-orange-500/20 to-orange-600/10',
+    iconBg: 'bg-orange-500/10 border-orange-500/20 text-orange-600 dark:text-orange-400',
+  },
+  {
+    name: 'Multi-provider',
+    Icon: Link,
+    text: 'Connect GitHub Gists, GitLab Snippets, Snippet-Bin, or go local-only. Switch anytime — your data stays put.',
+    color: 'from-teal-500/20 to-teal-600/10',
+    iconBg: 'bg-teal-500/10 border-teal-500/20 text-teal-600 dark:text-teal-400',
+  },
+  {
+    name: 'AI descriptions',
+    Icon: Sparkles,
+    text: 'Connect your AI API key and auto-generate descriptions and tags from your snippet content.',
+    color: 'from-pink-500/20 to-pink-600/10',
+    iconBg: 'bg-pink-500/10 border-pink-500/20 text-pink-600 dark:text-pink-400',
+  },
+  {
+    name: 'Language grouping',
     Icon: LayoutDashboard,
-    text: 'Snippets are automatically grouped by programming language for easier navigation and discovery.',
-    image: {
-      light: '/features/dashboard-light.png',
-      dark: '/features/dashboard-dark.png',
-    },
+    text: 'Snippets auto-grouped by programming language. Browse your Python stuff without scrolling through everything else.',
+    color: 'from-cyan-500/20 to-cyan-600/10',
+    iconBg: 'bg-cyan-500/10 border-cyan-500/20 text-cyan-600 dark:text-cyan-400',
   },
   {
-    name: 'Quick snippet actions',
-    Icon: Globe,
-    text: (
-      <span>
-        Quickly download, copy to clipboard, copy file contents, open in external tools like{' '}
-        <a className="underline underline-offset-2" href="https://app.gisto.org" target="_blank">
-          plunkr, carbon.now.sh, jsfiddle
-        </a>{' '}
-        and more.
-      </span>
-    ),
-    link: (
-      <Button
-        variant="outline"
-        size="sm"
-        className="rounded-xl font-bold bg-white/20 border-white/40 hover:bg-white/30 text-white transition-all shadow-xl backdrop-blur-md"
-        onClick={() => window.open('https://app.gisto.org')}
-      >
-        app.gisto.org
-      </Button>
-    ),
-    image: {
-      light: '/features/web-app-light.png',
-      dark: '/features/web-app-dark.png',
-    },
-  },
-  {
-    name: 'Theme color changer',
+    name: 'Themes',
     Icon: SwatchBook,
-    text: 'Gisto can be set to dark or light theme, or adapt to the theme preferred by the system',
-    image: {
-      light: '/features/theme-light.png',
-      dark: '/features/theme-dark.png',
-    },
+    text: 'Pick a theme or let Gisto follow your system preference. Dark and light modes, both done right.',
+    color: 'from-amber-500/20 to-amber-600/10',
+    iconBg: 'bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400',
   },
   {
-    name: 'Rich code editor',
-    Icon: FilePenLine,
-    text: 'Monaco editor with syntax highlighting, auto-completion, Emmet, and more for seamless snippet editing.',
-    image: {
-      light: '/features/code-light.png',
-      dark: '/features/code-dark.png',
-    },
+    name: 'Multi-file snippets',
+    Icon: Files,
+    text: 'Bundle multiple files under one snippet — code with docs, configs with READMEs, all searchable together.',
+    color: 'from-indigo-500/20 to-indigo-600/10',
+    iconBg: 'bg-indigo-500/10 border-indigo-500/20 text-indigo-600 dark:text-indigo-400',
   },
   {
-    name: 'Editor settings',
-    Icon: Eye,
-    text: 'Customize your editing experience with configurable editor settings, font size, tab size, and more.',
-    image: {
-      light: '/features/preview-light.png',
-      dark: '/features/preview-dark.png',
-    },
+    name: 'Quick actions',
+    Icon: ExternalLink,
+    text: 'Copy to clipboard, download, or open in Plunker, Carbon, JSFiddle and more — one click away.',
+    color: 'from-rose-500/20 to-rose-600/10',
+    iconBg: 'bg-rose-500/10 border-rose-500/20 text-rose-600 dark:text-rose-400',
   },
+  {
+    name: 'Lightweight',
+    Icon: Zap,
+    text: 'Built with Tauri, not Electron. Under 40 MB RAM, under 10 MB download. Starts instantly.',
+    color: 'from-lime-500/20 to-lime-600/10',
+    iconBg: 'bg-lime-500/10 border-lime-500/20 text-lime-600 dark:text-lime-400',
+  },
+  {
+    name: 'Offline ready',
+    Icon: WifiOff,
+    text: 'Local-only mode — no internet, no sync. Create, edit, and query snippets offline. Export and import as JSON anytime.',
+    color: 'from-slate-500/20 to-slate-600/10',
+    iconBg: 'bg-slate-500/10 border-slate-500/20 text-slate-600 dark:text-slate-400',
+  },
+];
+
+const MINI_FEATURES = [
   {
     name: 'Web app',
-    Icon: Leaf,
-    text: (
-      <span>
-        Gisto is available as a full featured web app at{' '}
-        <a className="underline underline-offset-2" href="https://app.gisto.org" target="_blank">
-          app.gisto.org
-        </a>
-        .
-      </span>
-    ),
+    Icon: Globe,
+    text: 'Full-featured version at app.gisto.org. No install required.',
   },
   {
-    name: 'Copy to clipboard',
-    Icon: GitBranch,
-    text: 'Copy snippets or individual file contents to clipboard with a single click.',
+    name: 'One-click copy',
+    Icon: Copy,
+    text: 'Copy any snippet or individual file to your clipboard.',
   },
   {
-    name: 'Local storage mode',
+    name: 'Local storage',
     Icon: HardDrive,
-    text: 'Use IndexedDB to store snippets locally without a GitHub/GitLab account. Perfect for offline access and privacy.',
+    text: 'No account needed. Snippets stored in your browser via IndexedDB. Export/import as JSON.',
   },
   {
     name: 'Open source',
-    Icon: BarChart3,
-    text: 'Gisto is licensed under the MIT License. The entire codebase is open source and auditable on GitHub.',
+    Icon: GitBranch,
+    text: 'Free and MIT licensed. Read the code, file issues, or contribute.',
   },
 ];
 
 export const Features = ({ className }: { className?: string }) => {
-  const { resolvedTheme } = useTheme();
   return (
     <Section id="features-section" className="py-12 relative">
-      <div className="glow-bg top-1/3 left-1/2 -translate-x-1/2 opacity-30" />
+      <div className="glow-bg top-1/3 left-1/2 -translate-x-1/2 opacity-15" />
 
-      <div className="text-center max-w-2xl mx-auto mb-16">
-        <h2 className="scroll-m-20 text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
-          Feature <span className="text-gradient">highlights</span>
+      <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs text-primary font-semibold mb-4 tracking-wider uppercase">
+          <Layers className="size-3.5" /> Features
+        </div>
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
+          What you <span className="text-gradient">get</span>
         </h2>
-        <p className="text-muted-foreground text-sm leading-relaxed">
-          Hover over each feature card to flip it and reveal Gisto’s live interface.
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+          Everything you need to manage snippets, nothing you don't.
         </p>
       </div>
 
-      <div className={cn('grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10', className)}>
+      <div
+        className={cn(
+          'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto',
+          className
+        )}
+      >
         {FEATURES.map((feature) => {
           const Icon = feature.Icon;
-
           return (
-            <div key={feature.name} className="group perspective-1000 h-80">
-              <div className="relative w-full h-full transform-style-3d transition-transform duration-700 group-hover:rotate-y-180 cursor-pointer">
-                {/* Front (Glassmorphism & Icons) */}
-                <div className="absolute inset-0 backface-hidden p-8 rounded-2xl border border-border hover:border-primary/30 flex flex-col justify-center items-center text-center shadow-md transition-all duration-300 glass-panel">
-                  <div className="p-4 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 group-hover:scale-110 transition-all duration-300">
-                    <Icon strokeWidth={1.5} className="size-12 stroke-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{feature.name}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed max-w-[260px]">
-                    {feature.text}
-                  </p>
-                </div>
-
-                {/* Back (Feature Screenshots) */}
-                {feature.image ? (
-                  <div
-                    className="absolute inset-0 backface-hidden bg-cover bg-left rounded-2xl shadow-md transform rotate-y-180 border border-border overflow-hidden glass-panel"
-                    style={{
-                      backgroundImage:
-                        resolvedTheme === 'light'
-                          ? `url(${feature.image.light})`
-                          : `url(${feature.image.dark})`,
-                    }}
-                  >
-                    {feature?.link && (
-                      <div className="flex items-center h-full content-center justify-center bg-black/60 backdrop-blur-[2px]">
-                        {feature?.link}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="absolute inset-0 p-8 backface-hidden rounded-2xl transform rotate-y-180 border border-border flex flex-col justify-center items-center text-center shadow-md glass-panel">
-                    <div className="p-4 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 mb-6">
-                      <Lightbulb className="size-10 stroke-amber-500" />
-                    </div>
-                    <h3 className="text-lg font-bold text-foreground mb-3">{feature.name}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      {feature.text ||
-                        'Stay organized with Gisto by using tags, precise searches, correct file extensions and any other means.'}
-                    </p>
-                  </div>
+            <div
+              key={feature.name}
+              className="glass-panel rounded-2xl p-6 group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
+            >
+              <div
+                className={cn(
+                  'absolute inset-x-0 top-0 h-px bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity',
+                  feature.color
                 )}
+              />
+              <div
+                className={cn(
+                  'p-2.5 rounded-xl border w-fit mb-4 group-hover:scale-110 transition-transform duration-300',
+                  feature.iconBg
+                )}
+              >
+                <Icon strokeWidth={1.5} className="size-5" />
               </div>
+              <h3 className="text-sm font-bold text-foreground mb-1.5">{feature.name}</h3>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">{feature.text}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Mini features strip */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 max-w-6xl mx-auto">
+        {MINI_FEATURES.map((feature) => {
+          const Icon = feature.Icon;
+          return (
+            <div
+              key={feature.name}
+              className="glass-panel rounded-xl p-5 group hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary w-fit mb-3 group-hover:bg-primary/15 transition-colors">
+                <Icon strokeWidth={1.5} className="size-4" />
+              </div>
+              <h4 className="text-sm font-bold text-foreground mb-1">{feature.name}</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">{feature.text}</p>
             </div>
           );
         })}

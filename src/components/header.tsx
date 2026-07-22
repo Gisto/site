@@ -15,19 +15,23 @@ import { ThemeSwitcher } from './theme/theme-switcher.tsx';
 import { useIsMobile } from '@/hooks/use-mobile.tsx';
 import { useRouter } from 'dirty-react-router';
 
-const NAV_ITEMS: { label: string; section?: string; path?: string }[] = [
+type NavItem = {
+  label: string;
+  section?: string;
+  path?: string;
+};
+
+const NAV_ITEMS: NavItem[] = [
   { label: 'About', section: 'about-section' },
-  { label: 'Use Cases', section: 'use-cases-section' },
-  { label: 'Comparison', section: 'comparison-section' },
-  { label: 'Features', section: 'features-section' },
-  { label: 'Installation', section: 'quick-start-section' },
+  { label: 'Use Cases', path: '/use-cases' },
+  { label: 'Features', path: '/features' },
+  { label: 'Install', path: '/installation' },
   { label: 'FAQ', section: 'faq-section' },
-  { label: 'Downloads', section: 'downloads-section' },
   { label: 'Docs', path: '/documentation' },
 ];
 
 export const Header = () => {
-  const { navigate } = useRouter();
+  const { navigate, path } = useRouter();
   const isMobile = useIsMobile();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -39,7 +43,7 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (item: (typeof NAV_ITEMS)[number]) => {
+  const handleNavClick = (item: NavItem) => {
     if (item.path) {
       navigate(item.path);
     } else if (item.section) {
@@ -47,23 +51,30 @@ export const Header = () => {
     }
   };
 
+  const isActive = (item: NavItem) => {
+    if (item.path) return path === item.path;
+    return false;
+  };
+
   return (
     <header
       className={cn(
-        'py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-50 transition-all duration-300 w-full box-border bg-background/40 backdrop-blur-sm border-b border-border/20',
-        isScrolled && 'bg-background/80 backdrop-blur-md shadow-md shadow-black/5 border-border/40'
+        'py-3 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-50 transition-all duration-200 w-full box-border',
+        isScrolled
+          ? 'bg-background/80 backdrop-blur-xl border-b border-border/40 shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
+          : 'bg-transparent border-b border-transparent'
       )}
     >
       <div>
         <a
-          className="flex items-center gap-2 text-primary cursor-pointer hover:opacity-90 transition-opacity"
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
           onClick={() => {
             navigate('/');
             scrollToSection('top');
           }}
         >
-          <span className="font-extrabold text-2xl p-0 m-0 tracking-tight text-foreground font-mono">
-            {'{'} <span className="text-gradient">Gisto</span> {'}'}
+          <span className="font-extrabold text-xl tracking-tight text-foreground">
+            {'{'} Gisto {'}'}
           </span>
         </a>
       </div>
@@ -72,7 +83,7 @@ export const Header = () => {
       <div className="sm:hidden flex gap-2">
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Menu />
+            <Menu className="size-5 text-muted-foreground" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>Navigation</DropdownMenuLabel>
@@ -94,18 +105,27 @@ export const Header = () => {
       </div>
 
       {/* Desktop menu */}
-      <div className="ml-auto gap-1 hidden sm:flex items-center flex-wrap justify-end">
-        {NAV_ITEMS.map((item) => (
-          <Button
-            key={item.label}
-            size={isMobile ? 'sm' : 'default'}
-            variant="ghost"
-            onClick={() => handleNavClick(item)}
-          >
-            {item.label}
-          </Button>
-        ))}
-        <ThemeSwitcher />
+      <div className="ml-auto gap-0.5 hidden sm:flex items-center">
+        {NAV_ITEMS.map((item) => {
+          const active = isActive(item);
+          return (
+            <button
+              key={item.label}
+              onClick={() => handleNavClick(item)}
+              className={cn(
+                'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
+                active
+                  ? 'text-primary bg-primary/8'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+              )}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+        <div className="ml-1">
+          <ThemeSwitcher />
+        </div>
       </div>
     </header>
   );

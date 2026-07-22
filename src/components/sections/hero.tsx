@@ -3,7 +3,7 @@ import { Button } from '../ui/button.tsx';
 import { scrollToSection, cn } from '@/lib/utils.ts';
 import { useRouter } from 'dirty-react-router';
 import { useEffect, useState } from 'react';
-import { Star, GitFork, ArrowRight, Download, Globe, Layers, Laptop } from 'lucide-react';
+import { Star, GitFork, ArrowRight, Download, Globe } from 'lucide-react';
 
 export const Hero = () => {
   const { resolvedTheme } = useTheme();
@@ -56,8 +56,8 @@ export const Hero = () => {
 
   return (
     <div className="w-full mt-20 pb-16 overflow-hidden">
-      {/* Background ambient glowing orbs */}
-      <div className="glow-bg top-[-50px] left-[50%] -translate-x-1/2 opacity-50 dark:opacity-60" />
+      {/* Background ambient glow */}
+      <div className="glow-bg top-[-50px] left-[50%] -translate-x-1/2 opacity-30 dark:opacity-40" />
 
       <div className="flex h-[600px]">
         {/* Left Side copy and actions */}
@@ -78,7 +78,7 @@ export const Hero = () => {
                 />
                 <span className="text-muted-foreground/60">|</span>
                 <div className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                  <Star className="size-3.5 fill-amber-500 stroke-amber-500 animate-pulse" />
+                  <Star className="size-3.5 fill-amber-500 stroke-amber-500" />
                   <span>{githubStats.stars.toLocaleString()} Stars</span>
                 </div>
                 <span className="text-muted-foreground/60">•</span>
@@ -91,41 +91,29 @@ export const Hero = () => {
 
             {/* Headline and Tagline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-foreground font-body">
-              Snippets <br className="hidden sm:inline" />
-              made <span className="text-gradient">awesome</span>
+              Your snippets. <br className="hidden sm:inline" />
+              <span className="text-gradient">Finally organized.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              Gisto is a code snippet manager that runs on{' '}
-              <strong className="text-foreground font-semibold text-primary">GitHub Gists</strong>,{' '}
-              <strong className="text-foreground font-semibold text-primary">
-                GitLab Snippets
-              </strong>
-              ,{' '}
-              <strong className="text-foreground font-semibold text-primary">
-                <a
-                  href="https://github.com/sanusart/snippet-bin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2 decoration-primary/30 hover:decoration-primary"
-                >
-                  Snippet-Bin
-                </a>
-              </strong>
-              , or local in-browser database and adds additional features such as searching, tagging
-              and sharing snippets while including a rich code editor.
+              Gisto connects to your existing{' '}
+              <strong className="text-foreground font-semibold">GitHub Gists</strong>,{' '}
+              <strong className="text-foreground font-semibold">GitLab Snippets</strong>, or{' '}
+              <strong className="text-foreground font-semibold">Snippet-Bin</strong> and gives you
+              search, tags, syntax highlighting, and a real code editor. Works{' '}
+              <strong className="text-foreground font-semibold">offline</strong> too.
             </p>
 
             {/* Multi-provider badges for bot crawler indexation */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-2.5 mb-8">
               <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-2xl bg-primary/10 border border-primary/20 text-primary">
-                GitHub Gists Sync
+                GitHub Gists
               </span>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-2xl bg-secondary border border-border text-foreground">
-                GitLab Snippets Sync
+                GitLab Snippets
               </span>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-2xl bg-secondary border border-border text-foreground">
-                Local in-browser database
+                Local-first
               </span>
               <a
                 href="https://github.com/sanusart/snippet-bin"
@@ -133,7 +121,7 @@ export const Hero = () => {
                 rel="noopener noreferrer"
                 className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-2xl bg-secondary border border-border text-foreground hover:bg-primary/10 hover:border-primary/30 transition-colors"
               >
-                Snippet-Bin Self-Hosted
+                Snippet-Bin
               </a>
             </div>
 
@@ -143,7 +131,7 @@ export const Hero = () => {
                 className="bg-primary hover:bg-primary/95 text-primary-foreground font-bold tracking-tight rounded-xl shadow-lg shadow-primary/10 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group px-5 py-2.5 h-10 text-sm"
                 onClick={() => scrollToSection('downloads-section')}
               >
-                <Download className="size-4" /> Download Desktop App
+                <Download className="size-4" /> Download for Desktop
               </Button>
 
               <Button
@@ -163,37 +151,11 @@ export const Hero = () => {
               </Button>
             </div>
 
-            {/* Technical Architecture & Platform Badges */}
-            <div className="border-t border-border/60 pt-8 mt-4">
-              <div className="flex items-center justify-center lg:justify-start gap-2.5 text-xs text-muted-foreground mb-4 font-semibold tracking-wide uppercase">
-                <Layers className="size-4 text-primary" /> Technical Architecture
-              </div>
-
-              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 opacity-75 hover:opacity-100 transition-opacity">
-                <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
-                  <Laptop className="size-4" />
-                  <span>Local-First & Offline</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
-                  <img
-                    className="size-4"
-                    src="https://cdn.simpleicons.org/tauri/38bdf8"
-                    alt="Tauri logo"
-                  />
-                  <span>Tauri Engine</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
-                  <img
-                    className="size-4"
-                    src="https://cdn.simpleicons.org/react/38bdf8"
-                    alt="React logo"
-                  />
-                  <span>React & TypeScript</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground font-mono">
-                  <span>MIT Open Source</span>
-                </div>
-              </div>
+            {/* Quick tech note */}
+            <div className="border-t border-border/60 pt-6 mt-4">
+              <p className="text-xs text-muted-foreground/80 text-center lg:text-left">
+                Built with Tauri + React. Free and open source, MIT licensed.
+              </p>
             </div>
           </div>
         </div>
