@@ -8,9 +8,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Monda', ...defaultTheme.fontFamily.sans],
-        heading: ['Open Sans', ...defaultTheme.fontFamily.sans],
-        numbers: ['Roboto Condensed', 'Open Sans', ...defaultTheme.fontFamily.sans],
+        body: ['Inter', ...defaultTheme.fontFamily.sans],
+        heading: ['Inter', ...defaultTheme.fontFamily.sans],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       borderRadius: {
         lg: 'var(--radius)',

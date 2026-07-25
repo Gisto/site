@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'dirty-react-router';
 import { Section } from '@/components/section.tsx';
-import { usePageTitle, useCanonical } from '@/lib/seo.tsx';
-import { BookOpen, ArrowRight, Search } from 'lucide-react';
+import { useSEO } from '@/lib/seo.tsx';
+import { ArrowRight, Search } from 'lucide-react';
 
 interface DocPage {
   default: React.ComponentType;
@@ -16,8 +16,12 @@ interface DocPage {
 }
 
 export const DocumentationPage = () => {
-  usePageTitle('Documentation | Gisto');
-  useCanonical('https://gisto.org/documentation');
+  useSEO({
+    title: 'Documentation',
+    description:
+      'Learn how to use Gisto: search snippets, add tags, connect GitHub Gists and GitLab Snippets, use local storage, and more.',
+    canonical: 'https://gisto.org/documentation',
+  });
   const [docs, setDocs] = useState<
     {
       Component: React.ComponentType;
@@ -93,19 +97,13 @@ export const DocumentationPage = () => {
 
   return (
     <Section className="py-12 relative min-h-[700px]">
-      <div className="glow-bg top-[-80px] left-[50%] -translate-x-1/2 opacity-50" />
+      <div className="glow-bg top-[-80px] left-[50%] -translate-x-1/2 opacity-20" />
       <div className="glow-bg bottom-0 right-10 opacity-20" />
 
       <div className="text-center max-w-2xl mx-auto mb-12 relative z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs text-primary font-semibold mb-4 tracking-wider uppercase">
-          <BookOpen className="size-3.5" /> Docs
-        </div>
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
-          Gisto <span className="text-gradient">documentation</span>
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
+          Documentation
         </h1>
-        <p className="text-muted-foreground text-sm leading-relaxed max-w-lg mx-auto">
-          Everything you need to get the most out of Gisto.
-        </p>
       </div>
 
       <div className="relative max-w-md mx-auto mb-14 z-20">

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Calendar, CircleArrowLeft, CircleUser, BookOpen } from 'lucide-react';
-import { formatDate, upperCaseFirst } from '../lib/utils.ts';
-import { useCanonical, usePageTitle } from '@/lib/seo.tsx';
+import { formatDate } from '../lib/utils.ts';
+import { useSEO } from '@/lib/seo.tsx';
 import { MDXLayout } from '../components/mdx-layout.tsx';
 import { Link, useRouter } from 'dirty-react-router';
 import { Section } from '@/components/section.tsx';
@@ -32,8 +32,14 @@ const getCategoryColor = (category: string) => {
 export const DocumentationArticlePage = () => {
   const { params } = useRouter();
   const [frontmatter, setFrontmatter] = React.useState<Frontmatter | null>(null);
-  useCanonical();
-  usePageTitle(frontmatter?.title ? `${frontmatter.title} | Gisto` : 'Documentation | Gisto');
+
+  useSEO({
+    title: frontmatter?.title || 'Documentation',
+    description: frontmatter?.title
+      ? `${frontmatter.title} — Gisto documentation`
+      : 'Documentation for Gisto snippet manager.',
+    canonical: `https://gisto.org/documentation/${params?.slug || ''}`,
+  });
 
   if (!params?.slug) {
     return null;
@@ -53,12 +59,12 @@ export const DocumentationArticlePage = () => {
   );
 
   const categoryName = frontmatter?.category
-    ? upperCaseFirst(frontmatter.category.replace(/^[0-9.]+\s*/, ''))
+    ? frontmatter.category.replace(/^[0-9.]+\s*/, '').replace(/\b\w/g, (c) => c.toUpperCase())
     : '';
 
   return (
     <Section className="py-12 relative min-h-[700px]">
-      <div className="glow-bg top-[-50px] left-[50%] -translate-x-1/2 opacity-30" />
+      <div className="glow-bg top-[-50px] left-[50%] -translate-x-1/2 opacity-15" />
       <div className="glow-bg bottom-0 right-10 opacity-20" />
 
       <div className="mb-8 relative z-10 flex items-center justify-between">
