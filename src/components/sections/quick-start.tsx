@@ -29,7 +29,7 @@ export const QuickStart = () => {
           Install in <span className="text-gradient">one command</span>
         </h2>
         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-          macOS users can install with Homebrew. Everyone else — grab a build below.
+          macOS users can install with Homebrew. Everyone else - grab a build below.
         </p>
       </div>
 

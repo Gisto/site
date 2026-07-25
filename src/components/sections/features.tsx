@@ -38,7 +38,7 @@ const FEATURES = [
   {
     name: 'Monaco editor',
     Icon: Code2,
-    text: 'The same editor powering VS Code — syntax highlighting, autocomplete, Emmet, and configurable settings.',
+    text: 'The same editor powering VS Code - syntax highlighting, autocomplete, Emmet, and configurable settings.',
     color: 'from-violet-500/20 to-violet-600/10',
     iconBg: 'bg-violet-500/10 border-violet-500/20 text-violet-600 dark:text-violet-400',
   },
@@ -52,7 +52,7 @@ const FEATURES = [
   {
     name: 'Multi-provider',
     Icon: Link,
-    text: 'Connect GitHub Gists, GitLab Snippets, Snippet-Bin, or go local-only. Switch anytime — your data stays put.',
+    text: 'Connect GitHub Gists, GitLab Snippets, Snippet-Bin, or go local-only. Switch anytime - your data stays put.',
     color: 'from-teal-500/20 to-teal-600/10',
     iconBg: 'bg-teal-500/10 border-teal-500/20 text-teal-600 dark:text-teal-400',
   },
@@ -80,14 +80,14 @@ const FEATURES = [
   {
     name: 'Multi-file snippets',
     Icon: Files,
-    text: 'Bundle multiple files under one snippet — code with docs, configs with READMEs, all searchable together.',
+    text: 'Bundle multiple files under one snippet - code with docs, configs with READMEs, all searchable together.',
     color: 'from-indigo-500/20 to-indigo-600/10',
     iconBg: 'bg-indigo-500/10 border-indigo-500/20 text-indigo-600 dark:text-indigo-400',
   },
   {
     name: 'Quick actions',
     Icon: ExternalLink,
-    text: 'Copy to clipboard, download, or open in Plunker, Carbon, JSFiddle and more — one click away.',
+    text: 'Copy to clipboard, download, or open in Plunker, Carbon, JSFiddle and more - one click away.',
     color: 'from-rose-500/20 to-rose-600/10',
     iconBg: 'bg-rose-500/10 border-rose-500/20 text-rose-600 dark:text-rose-400',
   },
@@ -101,7 +101,7 @@ const FEATURES = [
   {
     name: 'Offline ready',
     Icon: WifiOff,
-    text: 'Local-only mode — no internet, no sync. Create, edit, and query snippets offline. Export and import as JSON anytime.',
+    text: 'Local-only mode - no internet, no sync. Create, edit, and query snippets offline. Export and import as JSON anytime.',
     color: 'from-slate-500/20 to-slate-600/10',
     iconBg: 'bg-slate-500/10 border-slate-500/20 text-slate-600 dark:text-slate-400',
   },

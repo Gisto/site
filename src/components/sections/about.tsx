@@ -34,11 +34,11 @@ export const About = () => {
               </a>
             </strong>{' '}
             (self-hosted), or stores everything locally in your browser. You get real search, tags,
-            syntax highlighting, and a proper code editor — all backed by tools you already use.
+            syntax highlighting, and a proper code editor - all backed by tools you already use.
           </p>
           <p className="text-lg">
             Version 2.x is a ground-up rewrite. We dropped Electron for{' '}
-            <strong className="text-foreground font-semibold">Tauri</strong> — the app is now a
+            <strong className="text-foreground font-semibold">Tauri</strong> - the app is now a
             fraction of the size and uses way less RAM. Under the hood: React, Monaco Editor,
             Tailwind, Vite.
           </p>

@@ -12,7 +12,7 @@ export const Comparison = () => {
           Why <span className="text-gradient">Gisto</span>?
         </h2>
         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Gisto doesn't replace GitHub Gists — it improves them.
+          Gisto doesn't replace GitHub Gists - it improves them.
         </p>
       </div>
 
@@ -26,7 +26,7 @@ export const Comparison = () => {
             <h3 className="text-2xl font-bold text-foreground mb-4">Why Gisto?</h3>
 
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              Gisto doesn't replace GitHub Gists — it improves them. Connect your account and you
+              Gisto doesn't replace GitHub Gists - it improves them. Connect your account and you
               get search, tags, language grouping, and a code editor on top of what you already
               have.
             </p>
@@ -49,7 +49,7 @@ export const Comparison = () => {
 
           <div className="flex items-center gap-3 text-xs font-semibold text-muted-foreground border-t border-border pt-5">
             <Layers className="size-4 text-emerald-500" />
-            <span>Uses Tauri instead of Electron — under 40 MB RAM.</span>
+            <span>Uses Tauri instead of Electron - under 40 MB RAM.</span>
           </div>
         </div>
 
@@ -73,7 +73,7 @@ export const Comparison = () => {
               </li>
               <li className="flex items-start gap-3">
                 <RefreshCw className="size-4 text-primary mt-0.5 shrink-0" />
-                <span>Works with your existing Gists — nothing to migrate</span>
+                <span>Works with your existing Gists - nothing to migrate</span>
               </li>
               <li className="flex items-start gap-3">
                 <FileText className="size-4 text-primary mt-0.5 shrink-0" />

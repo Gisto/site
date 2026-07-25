@@ -36,7 +36,7 @@ export const DocumentationArticlePage = () => {
   useSEO({
     title: frontmatter?.title || 'Documentation',
     description: frontmatter?.title
-      ? `${frontmatter.title} — Gisto documentation`
+      ? `${frontmatter.title} - Gisto documentation`
       : 'Documentation for Gisto snippet manager.',
     canonical: `https://gisto.org/documentation/${params?.slug || ''}`,
   });

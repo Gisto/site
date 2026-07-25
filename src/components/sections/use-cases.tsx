@@ -23,7 +23,7 @@ const USE_CASES = [
   {
     title: 'Shell Scripts & Configs',
     description:
-      'Deployment scripts, docker-compose files, terminal aliases — keep them all in one place instead of scattered across your home directory.',
+      'Deployment scripts, docker-compose files, terminal aliases - keep them all in one place instead of scattered across your home directory.',
     Icon: Terminal,
     badge: 'DevOps',
     gradient:
@@ -111,7 +111,7 @@ export const UseCases = () => {
             Pick your provider
           </h3>
           <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px] mb-4">
-            GitHub, GitLab, local-only, or your own Snippet-Bin server. Switch whenever — your data
+            GitHub, GitLab, local-only, or your own Snippet-Bin server. Switch whenever - your data
             stays put.
           </p>
           <span className="text-xs text-primary font-semibold group-hover:underline underline-offset-4 cursor-pointer">
