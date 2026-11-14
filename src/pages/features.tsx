@@ -7,7 +7,7 @@ export const FeaturesPage = () => {
   useSEO({
     title: 'Features',
     description:
-      'Full-text search, tags, syntax highlighting, language grouping, a Monaco code editor, dark/light themes, and local storage. Everything you need for snippet management.',
+      'Full-text search, tags, syntax highlighting, snippet types (to-do, kanban, docs, flashcards), a Monaco code editor, dark/light themes, and local storage. Everything you need for snippet management.',
     canonical: 'https://gisto.org/features',
   });
 

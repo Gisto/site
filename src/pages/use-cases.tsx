@@ -7,7 +7,7 @@ export const UseCasesPage = () => {
   useSEO({
     title: 'Use Cases',
     description:
-      'Store code snippets, shell scripts, SQL queries, markdown docs, AI prompts, and more. Anything you copy-paste regularly belongs in Gisto.',
+      'Store code snippets, shell scripts, SQL queries, markdown docs, to-do lists, kanban boards, flashcards, AI prompts, and more. Anything you copy-paste regularly belongs in Gisto.',
     canonical: 'https://gisto.org/use-cases',
   });
 

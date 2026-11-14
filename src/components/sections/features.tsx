@@ -16,6 +16,7 @@ import {
   HardDrive,
   GitBranch,
   Layers,
+  Shapes,
 } from 'lucide-react';
 import { Section } from '../section.tsx';
 import { cn } from '../../lib/utils.ts';
@@ -76,6 +77,13 @@ const FEATURES = [
     text: 'Pick a theme or let Gisto follow your system preference. Dark and light modes, both done right.',
     color: 'from-amber-500/20 to-amber-600/10',
     iconBg: 'bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400',
+  },
+  {
+    name: 'Snippet types',
+    Icon: Shapes,
+    text: 'Go beyond plain snippets with to-do lists, kanban boards, structured docs, and flashcards - each with a dedicated editor and view.',
+    color: 'from-fuchsia-500/20 to-fuchsia-600/10',
+    iconBg: 'bg-fuchsia-500/10 border-fuchsia-500/20 text-fuchsia-600 dark:text-fuchsia-400',
   },
   {
     name: 'Multi-file snippets',

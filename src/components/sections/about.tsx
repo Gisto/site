@@ -34,7 +34,7 @@ export const About = () => {
               </a>
             </strong>{' '}
             (self-hosted), or stores everything locally in your browser. You get real search, tags,
-            syntax highlighting, and a proper code editor - all backed by tools you already use.
+            syntax highlighting, a proper code editor, and structured snippet types (to-do lists, kanban boards, docs, flashcards) - all backed by tools you already use.
           </p>
           <p className="text-lg">
             Version 2.x is a ground-up rewrite. We dropped Electron for{' '}

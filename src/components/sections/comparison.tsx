@@ -34,7 +34,7 @@ export const Comparison = () => {
             <ul className="space-y-4 mb-6 text-sm text-muted-foreground">
               <li className="flex items-start gap-3">
                 <ShieldCheck className="size-4 text-emerald-500 mt-0.5 shrink-0" />
-                <span>Search, tag, and browse snippets by language</span>
+                <span>Search, tag, browse by language, and use structured snippet types (to-do, kanban, docs, flashcards)</span>
               </li>
               <li className="flex items-start gap-3">
                 <RefreshCw className="size-4 text-primary mt-0.5 shrink-0" />

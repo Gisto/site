@@ -57,7 +57,7 @@ export const HeroMobile = () => {
           >
             Snippet-Bin
           </a>{' '}
-          and gives you search, tags, syntax highlighting, and a real code editor. Works{' '}
+          and gives you search, tags, syntax highlighting, a real code editor, and structured snippet types. Works{' '}
           <strong className="text-foreground font-semibold">offline</strong> too.
         </p>
       </div>

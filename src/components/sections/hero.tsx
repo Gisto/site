@@ -100,7 +100,7 @@ export const Hero = () => {
               <strong className="text-foreground font-semibold">GitHub Gists</strong>,{' '}
               <strong className="text-foreground font-semibold">GitLab Snippets</strong>, or{' '}
               <strong className="text-foreground font-semibold">Snippet-Bin</strong> and gives you
-              search, tags, syntax highlighting, and a real code editor. Works{' '}
+              search, tags, syntax highlighting, a real code editor, and structured snippet types. Works{' '}
               <strong className="text-foreground font-semibold">offline</strong> too.
             </p>
 

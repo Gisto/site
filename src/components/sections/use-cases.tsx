@@ -1,6 +1,17 @@
 import { Section } from '../section.tsx';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card.tsx';
-import { BookOpen, Code2, Terminal, Database, Users, Sparkles, Layout } from 'lucide-react';
+import {
+  BookOpen,
+  Code2,
+  Terminal,
+  Database,
+  Users,
+  Sparkles,
+  Layout,
+  ListTodo,
+  SquareKanban,
+  GalleryVerticalEnd,
+} from 'lucide-react';
 
 const USE_CASES = [
   {
@@ -14,11 +25,38 @@ const USE_CASES = [
   {
     title: 'Markdown Notes & Docs',
     description:
-      'Write setup guides, architecture notes, or quick wikis right alongside your code. Preview markdown inline.',
+      'Write setup guides, architecture notes, or quick wikis right alongside your code. Preview markdown inline or use the Doc snippet type for structured procedures.',
     Icon: BookOpen,
     badge: 'Markdown',
     gradient:
       'from-emerald-500/10 to-teal-500/10 border-emerald-500/20 text-emerald-500 dark:text-emerald-400',
+  },
+  {
+    title: 'To-do Lists',
+    description:
+      'Keep checklists for tasks, releases, and personal workflows. Track progress with a dedicated checklist view.',
+    Icon: ListTodo,
+    badge: 'Tasks',
+    gradient:
+      'from-lime-500/10 to-green-500/10 border-lime-500/20 text-lime-600 dark:text-lime-400',
+  },
+  {
+    title: 'Kanban Boards',
+    description:
+      'Organize work in columns with cards, labels, and priorities. Move items across stages without leaving your snippets.',
+    Icon: SquareKanban,
+    badge: 'Boards',
+    gradient:
+      'from-sky-500/10 to-cyan-500/10 border-sky-500/20 text-sky-600 dark:text-sky-400',
+  },
+  {
+    title: 'Flashcards',
+    description:
+      'Turn notes into study cards with optional multiple choice, time limits, and spaced-repetition review.',
+    Icon: GalleryVerticalEnd,
+    badge: 'Study',
+    gradient:
+      'from-fuchsia-500/10 to-pink-500/10 border-fuchsia-500/20 text-fuchsia-600 dark:text-fuchsia-400',
   },
   {
     title: 'Shell Scripts & Configs',
@@ -62,7 +100,7 @@ export const UseCases = () => {
           Not just <span className="text-gradient">code snippets</span>
         </h2>
         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Anything you copy-paste regularly belongs in Gisto. Code, configs, docs, queries, prompts.
+          Anything you copy-paste regularly belongs in Gisto. Code, configs, docs, tasks, boards, flashcards, queries, prompts.
         </p>
       </div>
 

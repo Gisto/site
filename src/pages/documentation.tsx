@@ -19,7 +19,7 @@ export const DocumentationPage = () => {
   useSEO({
     title: 'Documentation',
     description:
-      'Learn how to use Gisto: search snippets, add tags, connect GitHub Gists and GitLab Snippets, use local storage, and more.',
+      'Learn how to use Gisto: search snippets, add tags, use snippet types, connect GitHub Gists and GitLab Snippets, use local storage, and more.',
     canonical: 'https://gisto.org/documentation',
   });
   const [docs, setDocs] = useState<
