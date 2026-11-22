@@ -1,92 +1,74 @@
-import { Separator } from '../ui/separator.tsx';
 import { Section } from '../section.tsx';
 import { scrollToSection } from '@/lib/utils.ts';
-import { Button } from '@/components/ui/button.tsx';
-import { Heart } from 'lucide-react';
+import { Github, Twitter, Heart } from 'lucide-react';
 import { useRouter } from 'dirty-react-router';
 
 export const Footer = () => {
   const { navigate } = useRouter();
+
+  const links = [
+    {
+      label: 'About',
+      onClick: () => {
+        navigate('/');
+        setTimeout(() => scrollToSection('about-section'), 300);
+      },
+    },
+    { label: 'Features', onClick: () => navigate('/features') },
+    { label: 'Use Cases', onClick: () => navigate('/use-cases') },
+    { label: 'Downloads', onClick: () => navigate('/installation') },
+    { label: 'Docs', onClick: () => navigate('/documentation') },
+  ];
+
   return (
-    <Section className="!mb-0 !pb-6 mt-8 sm:mt-0">
-      <div className="max-w-5xl mx-auto">
-        <div className="space-y-1">
-          <h4 className="text-sm leading-none">
-            &copy; <strong>Gisto</strong> 2014 - {new Date().getFullYear()}
-          </h4>
-          <p className="text-sm text-muted-foreground">Your snippets, finally organized.</p>
+    <footer className="border-t border-border overflow-hidden relative">
+      <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px] float"></div>
+      <Section className="!mb-0 !mt-0 py-8">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm text-foreground">&copy; {new Date().getFullYear()} Gisto</p>
+            <p className="mt-1 text-sm text-muted-foreground">Your snippets, finally organized.</p>
+          </div>
+
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+            {links.map((link) => (
+              <button
+                key={link.label}
+                onClick={link.onClick}
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </button>
+            ))}
+            <a
+              href="https://github.com/Gisto/Gisto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+              aria-label="GitHub"
+            >
+              <Github className="size-5" />
+            </a>
+            <a
+              href="https://x.com/gistoapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+              aria-label="X / Twitter"
+            >
+              <Twitter className="size-5" />
+            </a>
+            <a
+              href="https://github.com/sponsors/Gisto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Heart className="size-5 text-danger" /> Sponsor
+            </a>
+          </nav>
         </div>
-        <Separator className="my-4" />
-        <div className="flex items-center space-x-2 sm:space-x-4 text-sm flex-wrap gap-y-2">
-          <a
-            onClick={() => {
-              navigate('/');
-              setTimeout(() => {
-                scrollToSection('about-section');
-              }, 300);
-            }}
-            className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
-          >
-            About
-          </a>
-          <Separator orientation="vertical" />
-          <a
-            onClick={() => navigate('/features')}
-            className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
-          >
-            Features
-          </a>
-          <Separator orientation="vertical" />
-          <a
-            onClick={() => navigate('/installation')}
-            className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
-          >
-            Downloads
-          </a>
-          <Separator orientation="vertical" />
-          <a
-            onClick={() => navigate('/documentation')}
-            className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
-          >
-            Docs
-          </a>
-          <Separator orientation="vertical" />
-          <Button
-            size="icon"
-            title="X/Twitter"
-            variant="link"
-            onClick={() => window.open('https://x.com/gistoapp')}
-          >
-            <img className="size-4" src="https://cdn.simpleicons.org/x/3f83a8" alt="X/Twitter" />
-          </Button>
-          <Separator orientation="vertical" />
-          <Button
-            size="icon"
-            variant="link"
-            onClick={() => window.open('https://github.com/Gisto/Gisto')}
-            title="GitHub"
-          >
-            <img className="size-4" src="https://cdn.simpleicons.org/github/3f83a8" alt="GitHub" />
-          </Button>
-          <Separator orientation="vertical" className="hidden sm:block" />
-          <a
-            target="_blank"
-            className="text-muted-foreground hover:text-foreground hidden sm:flex items-center gap-2 transition-colors"
-            href="https://github.com/sponsors/Gisto"
-          >
-            <Heart className="text-danger size-4" /> Sponsor Gisto
-          </a>
-        </div>
-        <div className="mt-4 visible sm:hidden">
-          <a
-            target="_blank"
-            className="text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors"
-            href="https://github.com/sponsors/Gisto"
-          >
-            <Heart className="text-danger size-4" /> Sponsor Gisto
-          </a>
-        </div>
-      </div>
-    </Section>
+      </Section>
+    </footer>
   );
 };

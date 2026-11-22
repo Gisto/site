@@ -8,9 +8,9 @@ import { ThemeProvider } from './components/theme/theme-provider.tsx';
 // When a 404 occurs, 404.html redirects to index.html?/path
 // This reads that query param and restores the real URL
 (function () {
-  var search = window.location.search;
+  const search = window.location.search;
   if (search && search.startsWith('?/')) {
-    var path = search
+    const path = search
       .slice(1)
       .replace(/~and~/g, '&')
       .replace(/~ques~/g, '?')

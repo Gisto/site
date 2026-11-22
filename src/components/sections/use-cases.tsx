@@ -1,5 +1,6 @@
+import { Link } from 'dirty-react-router';
 import { Section } from '../section.tsx';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card.tsx';
+import { Reveal } from '../reveal.tsx';
 import {
   BookOpen,
   Code2,
@@ -7,10 +8,10 @@ import {
   Database,
   Users,
   Sparkles,
-  Layout,
   ListTodo,
   SquareKanban,
   GalleryVerticalEnd,
+  ArrowRight,
 } from 'lucide-react';
 
 const USE_CASES = [
@@ -20,7 +21,7 @@ const USE_CASES = [
       'Stop retyping that React hook or API wrapper. Store your go-to snippets and find them in seconds.',
     Icon: Code2,
     badge: 'Code',
-    gradient: 'from-blue-500/10 to-sky-500/10 border-blue-500/20 text-blue-500 dark:text-blue-400',
+    color: 'text-primary',
   },
   {
     title: 'Markdown Notes & Docs',
@@ -28,8 +29,7 @@ const USE_CASES = [
       'Write setup guides, architecture notes, or quick wikis right alongside your code. Preview markdown inline or use the Doc snippet type for structured procedures.',
     Icon: BookOpen,
     badge: 'Markdown',
-    gradient:
-      'from-emerald-500/10 to-teal-500/10 border-emerald-500/20 text-emerald-500 dark:text-emerald-400',
+    color: 'text-chart-4',
   },
   {
     title: 'To-do Lists',
@@ -37,8 +37,7 @@ const USE_CASES = [
       'Keep checklists for tasks, releases, and personal workflows. Track progress with a dedicated checklist view.',
     Icon: ListTodo,
     badge: 'Tasks',
-    gradient:
-      'from-lime-500/10 to-green-500/10 border-lime-500/20 text-lime-600 dark:text-lime-400',
+    color: 'text-chart-3',
   },
   {
     title: 'Kanban Boards',
@@ -46,8 +45,7 @@ const USE_CASES = [
       'Organize work in columns with cards, labels, and priorities. Move items across stages without leaving your snippets.',
     Icon: SquareKanban,
     badge: 'Boards',
-    gradient:
-      'from-sky-500/10 to-cyan-500/10 border-sky-500/20 text-sky-600 dark:text-sky-400',
+    color: 'text-chart-2',
   },
   {
     title: 'Flashcards',
@@ -55,17 +53,15 @@ const USE_CASES = [
       'Turn notes into study cards with optional multiple choice, time limits, and spaced-repetition review.',
     Icon: GalleryVerticalEnd,
     badge: 'Study',
-    gradient:
-      'from-fuchsia-500/10 to-pink-500/10 border-fuchsia-500/20 text-fuchsia-600 dark:text-fuchsia-400',
+    color: 'text-chart-5',
   },
   {
     title: 'Shell Scripts & Configs',
     description:
-      'Deployment scripts, docker-compose files, terminal aliases - keep them all in one place instead of scattered across your home directory.',
+      'Deployment scripts, docker-compose files, terminal aliases — keep them all in one place instead of scattered across your home directory.',
     Icon: Terminal,
     badge: 'DevOps',
-    gradient:
-      'from-amber-500/10 to-orange-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400',
+    color: 'text-primary',
   },
   {
     title: 'SQL Queries',
@@ -73,8 +69,7 @@ const USE_CASES = [
       'That one complex join you always have to re-derive. Save it here, copy it next time.',
     Icon: Database,
     badge: 'Queries',
-    gradient:
-      'from-indigo-500/10 to-purple-500/10 border-indigo-500/20 text-indigo-500 dark:text-indigo-400',
+    color: 'text-chart-4',
   },
   {
     title: 'AI Prompts & Templates',
@@ -82,80 +77,84 @@ const USE_CASES = [
       'Your best prompt templates with variable slots, ready to reuse across projects and tools.',
     Icon: Sparkles,
     badge: 'Prompts',
-    gradient:
-      'from-purple-500/10 to-pink-500/10 border-purple-500/20 text-purple-500 dark:text-purple-400',
+    color: 'text-chart-3',
   },
 ];
 
-export const UseCases = () => {
+export const UseCases = ({ showAll }: { showAll?: boolean }) => {
   return (
-    <Section id="use-cases-section" className="py-12 relative overflow-hidden">
-      <div className="glow-bg top-1/4 right-0 translate-x-1/2 opacity-25 dark:opacity-35" />
+    <Section id="use-cases-section" className="py-16 sm:py-24 relative overflow-hidden">
+      <div className="absolute top-0 left-1/3 w-72 h-72 bg-primary/10 rounded-full blur-[100px] float"></div>
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-chart-2/10 rounded-full blur-[100px] float-delayed"></div>
 
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs text-primary font-semibold mb-4 tracking-wider uppercase">
-          <Layout className="size-3.5" /> Use Cases
-        </div>
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
-          Not just <span className="text-gradient">code snippets</span>
-        </h2>
-        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Anything you copy-paste regularly belongs in Gisto. Code, configs, docs, tasks, boards, flashcards, queries, prompts.
-        </p>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <Reveal className="max-w-2xl">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+              Use Cases
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+              Not just code snippets
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              Anything you copy-paste regularly belongs in Gisto. Code, configs, docs, tasks, boards,
+              flashcards, queries, prompts.
+            </p>
+          </div>
+        </Reveal>
+        {showAll && (
+          <Reveal delay={200}>
+            <Link
+              to="/use-cases"
+              className="inline-flex items-center gap-1.5 pb-1 text-sm font-medium text-primary hover:underline underline-offset-4"
+            >
+              View all use cases <ArrowRight className="size-3.5" />
+            </Link>
+          </Reveal>
+        )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {USE_CASES.map((useCase) => {
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {USE_CASES.map((useCase, index) => {
           const Icon = useCase.Icon;
           return (
-            <Card
-              key={useCase.title}
-              className="glass-panel border border-border/80 hover:border-primary/40 bg-card hover:bg-muted/10 transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between group overflow-hidden relative"
-            >
+            <Reveal key={useCase.title} delay={index * 100}>
               <div
-                className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${useCase.gradient} filter blur-[24px] opacity-10 group-hover:opacity-20 transition-opacity duration-300`}
-              />
-
-              <CardHeader className="relative z-10 p-6 pb-4">
+                className="flex flex-col h-full rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/40 hover:-translate-y-1 hover:shadow-lg"
+              >
                 <div className="flex items-center justify-between mb-4">
-                  <div
-                    className={`p-3 rounded-2xl bg-gradient-to-br ${useCase.gradient} border flex items-center justify-center`}
-                  >
-                    <Icon className="size-6" />
-                  </div>
-                  <span className="text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded bg-muted/40 border border-border text-muted-foreground">
+                  <Icon strokeWidth={1.5} className={`size-6 ${useCase.color}`} />
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
                     {useCase.badge}
                   </span>
                 </div>
-                <CardTitle className="text-xl font-bold tracking-tight text-foreground mt-2 group-hover:text-primary transition-colors">
-                  {useCase.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="relative z-10 p-6 pt-0 flex-grow">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {useCase.description}
-                </p>
-              </CardContent>
-            </Card>
+                <div className="flex-1">
+                  <h3 className="mt-4 text-base font-medium text-foreground">{useCase.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {useCase.description}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           );
         })}
 
-        {/* Collaborative & Multi-provider Card */}
-        <Card className="glass-panel border-dashed border-border bg-card/20 flex flex-col items-center justify-center p-8 text-center relative group min-h-[250px] hover:border-primary/40 transition-colors">
-          <div className="p-3 rounded-full border border-border text-muted-foreground mb-4 group-hover:border-primary group-hover:text-primary transition-all">
-            <Users className="size-6" />
+        <Link
+          to="/documentation"
+          className="group flex flex-col h-full justify-between rounded-xl border border-dashed border-border p-6 transition-all hover:border-primary hover:bg-primary/5"
+        >
+          <div>
+            <Users strokeWidth={1.5} className="size-6 text-muted-foreground" />
+            <h3 className="mt-4 text-base font-medium text-foreground">Pick your provider</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              GitHub, GitLab, local-only, or your own Snippet-Bin server. Switch whenever — your
+              data stays put.
+            </p>
           </div>
-          <h3 className="text-lg font-bold text-zinc-700 dark:text-zinc-350 mb-2">
-            Pick your provider
-          </h3>
-          <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px] mb-4">
-            GitHub, GitLab, local-only, or your own Snippet-Bin server. Switch whenever - your data
-            stays put.
-          </p>
-          <span className="text-xs text-primary font-semibold group-hover:underline underline-offset-4 cursor-pointer">
-            Read the docs &rarr;
+          <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+            Read the docs <ArrowRight className="size-3.5" />
           </span>
-        </Card>
+        </Link>
       </div>
     </Section>
   );

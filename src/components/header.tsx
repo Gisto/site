@@ -1,18 +1,14 @@
 import { useState, useEffect } from 'react';
-import { cn, scrollToSection, navigateAndScroll } from '../lib/utils';
+import { cn, navigateAndScroll } from '../lib/utils';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { Menu } from 'lucide-react';
 
-import { Button } from './ui/button.tsx';
 import { ThemeSwitcher } from './theme/theme-switcher.tsx';
-import { useIsMobile } from '@/hooks/use-mobile.tsx';
 import { useRouter } from 'dirty-react-router';
 
 type NavItem = {
@@ -32,7 +28,6 @@ const NAV_ITEMS: NavItem[] = [
 
 export const Header = () => {
   const { navigate, path } = useRouter();
-  const isMobile = useIsMobile();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -59,72 +54,65 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        'py-3 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-50 transition-all duration-200 w-full box-border',
+        'sticky top-0 z-50 w-full border-b transition-all duration-300',
         isScrolled
-          ? 'bg-background/80 backdrop-blur-xl border-b border-border/40 shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
-          : 'bg-transparent border-b border-transparent'
+          ? 'border-border bg-background/90 backdrop-blur-md shadow-sm'
+          : 'border-transparent bg-background/0'
       )}
     >
-      <div>
-        <a
-          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-8">
+        <button
+          className="font-mono text-sm font-semibold tracking-tight text-foreground transition-opacity hover:opacity-70"
           onClick={() => {
             navigate('/');
-            scrollToSection('top');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          <span className="font-extrabold text-xl tracking-tight text-foreground">
-            {'{'} Gisto {'}'}
-          </span>
-        </a>
-      </div>
+          <span className="text-muted-foreground">{'{'}</span> Gisto{' '}
+          <span className="text-muted-foreground">{'}'}</span>
+        </button>
 
-      {/* Mobile menu */}
-      <div className="sm:hidden flex gap-2">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Menu className="size-5 text-muted-foreground" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>Navigation</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {NAV_ITEMS.map((item) => (
-              <DropdownMenuItem key={item.label}>
-                <Button
-                  variant="ghost"
-                  size={isMobile ? 'sm' : 'default'}
+        <nav className="ml-auto hidden items-center gap-0.5 sm:flex">
+          {NAV_ITEMS.map((item) => {
+            const active = isActive(item);
+            return (
+              <button
+                key={item.label}
+                onClick={() => handleNavClick(item)}
+                className={cn(
+                  'rounded-md px-3 py-1.5 text-sm transition-colors',
+                  active
+                    ? 'bg-muted text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+          <div className="ml-2">
+            <ThemeSwitcher />
+          </div>
+        </nav>
+
+        <div className="flex items-center gap-1 sm:hidden">
+          <ThemeSwitcher />
+          <DropdownMenu>
+            <DropdownMenuTrigger className="rounded-md p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+              <Menu className="size-5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {NAV_ITEMS.map((item) => (
+                <DropdownMenuItem
+                  key={item.label}
                   onClick={() => handleNavClick(item)}
+                  className="cursor-pointer"
                 >
                   {item.label}
-                </Button>
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <ThemeSwitcher />
-      </div>
-
-      {/* Desktop menu */}
-      <div className="ml-auto gap-0.5 hidden sm:flex items-center">
-        {NAV_ITEMS.map((item) => {
-          const active = isActive(item);
-          return (
-            <button
-              key={item.label}
-              onClick={() => handleNavClick(item)}
-              className={cn(
-                'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
-                active
-                  ? 'text-primary bg-primary/8'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
-              )}
-            >
-              {item.label}
-            </button>
-          );
-        })}
-        <div className="ml-1">
-          <ThemeSwitcher />
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>

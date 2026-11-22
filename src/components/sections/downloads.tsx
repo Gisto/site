@@ -1,7 +1,8 @@
 import { Section } from '../section.tsx';
+import { Reveal } from '../reveal.tsx';
 import { cn } from '@/lib/utils.ts';
 import { useEffect, useState } from 'react';
-import { Download, AlertTriangle, ExternalLink, Package, Info } from 'lucide-react';
+import { Download, AlertTriangle, ExternalLink, Info } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover.tsx';
 
 const FIVE_MINUTES = 5 * 60 * 1000;
@@ -106,18 +107,28 @@ export const Downloads = ({ className }: { className?: string }) => {
 
   if (release === null || release?.message?.startsWith('API rate limit exceeded')) {
     return (
-      <Section className="mt-16 sm:mt-0">
-        <h1 className="mb-8 scroll-m-20 text-4xl text-muted-foreground font-light lg:text-4xl text-center">
-          Releases cannot be loaded at the moment.
-        </h1>
-        <p>The reason is: Github API rate limit exceeded.</p>
-        <p>Please check again later, Github API rate limit resets every 1 hour.</p>
-        <p>
-          For now, you can check github{' '}
-          <a target="_blank" href="https://github.com/Gisto/gisto/releases">
-            release page
-          </a>
-        </p>
+      <Section className="py-16 sm:py-24">
+        <div className="max-w-2xl">
+          <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+            Downloads
+          </p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+            Releases can't be loaded right now
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            GitHub's API rate limit was exceeded. It resets every hour. Until then, download from
+            the{' '}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/Gisto/gisto/releases"
+              className="font-medium text-primary hover:underline"
+            >
+              GitHub releases page
+            </a>
+            .
+          </p>
+        </div>
       </Section>
     );
   }
@@ -131,150 +142,145 @@ export const Downloads = ({ className }: { className?: string }) => {
   ];
 
   return (
-    <Section className="py-20">
-      <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs text-primary font-semibold mb-4 tracking-wider uppercase">
-          <Package className="size-3.5" /> Downloads
-        </div>
+    <Section className="py-16 sm:py-24 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-[100px] float"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-chart-2/10 rounded-full blur-[100px] float-delayed"></div>
+
+      <div className="max-w-2xl">
+        <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+          Downloads
+        </p>
         <h2
           id="downloads-section"
-          className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6"
+          className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl"
         >
-          Available for <span className="text-gradient">every platform</span>
+          Available for every platform
         </h2>
-        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+        <p className="mt-3 text-muted-foreground">
           Builds for macOS, Windows, and Linux. Free and open source, MIT licensed.
         </p>
       </div>
 
-      {/* Version badge */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/5 border border-primary/20">
-          <div className="size-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-muted-foreground font-medium">Latest</span>
-          <span className="text-foreground font-bold">{version}</span>
-          <span className="text-muted-foreground/40 hidden sm:inline">&middot;</span>
-          <span className="text-muted-foreground/60 hidden sm:inline">{publishedAt}</span>
-          <span className="text-muted-foreground/40 hidden sm:inline">&middot;</span>
-          <a
-            href="https://github.com/Gisto/Gisto/blob/main/CHANGELOG.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-primary/70 hover:text-primary font-medium transition-colors flex items-center gap-1"
-          >
-            Changelog <ExternalLink className="size-2.5 opacity-60" />
-          </a>
-        </div>
+      <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground">
+        <span className="text-foreground">{version}</span>
+        <span>·</span>
+        <span>{publishedAt}</span>
+        <span>·</span>
+        <a
+          href="https://github.com/Gisto/Gisto/blob/main/CHANGELOG.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-primary hover:underline"
+        >
+          Changelog <ExternalLink className="size-3" />
+        </a>
       </div>
 
-      {/* Download cards */}
-      <div className={cn('grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto', className)}>
-        {Object.keys(DOWNLOADS).map((os) => {
+      <div className={cn('mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4', className)}>
+        {Object.keys(DOWNLOADS).map((os, index) => {
           const Icon = DOWNLOADS[os].Icon;
           const isAllReleases = os === 'All Releases';
 
           return (
-            <div
-              key={os}
-              className={cn(
-                'card-raised p-5 flex flex-col items-center text-center',
-                isAllReleases && 'border-dashed opacity-80 hover:opacity-100'
-              )}
-            >
-              <Icon className="size-8 text-primary mb-3" />
-
-              <h3 className="text-sm font-bold text-foreground mb-1 flex items-center gap-1.5">
-                {os === 'All Releases' ? 'GitHub' : os}
-                {os === 'Windows' && (
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <button className="text-muted-foreground hover:text-primary transition-colors">
-                        <Info className="size-3.5" />
-                      </button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-72 text-xs text-left border-border p-4 rounded-xl shadow-xl bg-white dark:bg-zinc-900">
-                      <p className="mb-2 text-sm font-bold text-foreground">Security Note</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-2">
-                        Not code-signed. You may see <strong>"Windows protected your PC"</strong> or{' '}
-                        <strong>"Unrecognized app"</strong> warnings.
-                      </p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Click <strong>More info</strong> &rarr; <strong>Run anyway</strong> to
-                        proceed.
-                      </p>
-                    </PopoverContent>
-                  </Popover>
+            <Reveal key={os} delay={index * 100}>
+              <div
+                className={cn(
+                  'flex flex-col h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 hover:shadow-xl',
+                  isAllReleases && 'border-dashed'
                 )}
-                {os === 'MacOs' && (
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <button className="text-muted-foreground hover:text-primary transition-colors">
-                        <Info className="size-3.5" />
-                      </button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-80 text-xs text-left border-border p-4 rounded-xl shadow-xl bg-white dark:bg-zinc-900">
-                      <p className="mb-2 text-sm font-bold text-foreground">Security Note</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-2">
-                        Not code-signed. You may see{' '}
-                        <strong>"This app is from an unidentified developer"</strong>.
-                      </p>
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                        Go to{' '}
-                        <strong>System Preferences &gt; Security &amp; Privacy &gt; General</strong>{' '}
-                        and click <strong>Open Anyway</strong>.
-                      </p>
-                      <p className="text-xs font-bold text-foreground uppercase tracking-wider mb-1">
-                        Quick fix (Terminal):
-                      </p>
-                      <code className="block bg-muted border border-border p-2 rounded-lg font-mono text-xs text-foreground break-all select-all">
-                        xattr -dr com.apple.quarantine /Applications/Gisto.app
-                      </code>
-                    </PopoverContent>
-                  </Popover>
-                )}
-              </h3>
-
-              <div className="flex flex-col gap-1.5 w-full mt-2">
-                {DOWNLOADS[os].links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cn(
-                      'inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all',
-                      isAllReleases
-                        ? 'border border-border hover:border-primary/40 text-foreground hover:bg-primary/5'
-                        : 'bg-primary/10 text-primary hover:bg-primary/20 border border-primary/15'
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <Icon className="size-6 text-primary" />
+                  <h3 className="flex items-center gap-1.5 text-sm font-medium text-foreground">
+                    {os === 'All Releases' ? 'GitHub' : os}
+                    {os === 'Windows' && (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button className="text-muted-foreground transition-colors hover:text-foreground">
+                            <Info className="size-4" />
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-72 rounded-xl border-border p-4 text-left text-xs shadow-lg">
+                          <p className="mb-2 text-sm font-medium text-foreground">Security note</p>
+                          <p className="mb-2 text-xs leading-relaxed text-muted-foreground">
+                            Not code-signed. You may see <strong>"Windows protected your PC"</strong>{' '}
+                            or <strong>"Unrecognized app"</strong> warnings.
+                          </p>
+                          <p className="text-xs leading-relaxed text-muted-foreground">
+                            Click <strong>More info</strong> &rarr; <strong>Run anyway</strong> to
+                            proceed.
+                          </p>
+                        </PopoverContent>
+                      </Popover>
                     )}
-                  >
-                    <Download className="size-3" />
-                    {link.label}
-                  </a>
-                ))}
+                    {os === 'MacOs' && (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button className="text-muted-foreground transition-colors hover:text-foreground">
+                            <Info className="size-4" />
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-80 rounded-xl border-border p-4 text-left text-xs shadow-lg">
+                          <p className="mb-2 text-sm font-medium text-foreground">Security note</p>
+                          <p className="mb-2 text-xs leading-relaxed text-muted-foreground">
+                            Not code-signed. You may see{' '}
+                            <strong>"This app is from an unidentified developer"</strong>.
+                          </p>
+                          <p className="mb-3 text-xs leading-relaxed text-muted-foreground">
+                            Go to <strong>System Settings &gt; Privacy &amp; Security</strong> and
+                            click <strong>Open Anyway</strong>.
+                          </p>
+                          <p className="mb-1 text-xs font-medium text-foreground">
+                            Quick fix (Terminal):
+                          </p>
+                          <code className="block select-all break-all rounded-md border border-border bg-muted p-2 font-mono text-xs text-foreground">
+                            xattr -dr com.apple.quarantine /Applications/Gisto.app
+                          </code>
+                        </PopoverContent>
+                      </Popover>
+                    )}
+                  </h3>
+                </div>
+
+                <div className="mt-4 flex flex-col gap-1.5">
+                  {DOWNLOADS[os].links.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        'inline-flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-medium transition-colors',
+                        isAllReleases
+                          ? 'border-border text-foreground hover:bg-muted'
+                          : 'border-primary/20 bg-primary/5 text-primary hover:bg-primary/10'
+                      )}
+                    >
+                      <Download className="size-3" />
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
           );
         })}
       </div>
 
-      {/* Warning */}
-      <div className="flex items-start gap-3 px-5 py-4 my-10 rounded-xl border border-amber-500/20 bg-amber-500/5 max-w-5xl mx-auto">
-        <AlertTriangle className="size-4 text-amber-500 shrink-0 mt-0.5" />
-        <div>
-          <p className="text-sm text-muted-foreground">
-            <span className="text-foreground font-semibold">Previous version (v1.13.4):</span> will
-            not receive updates.{' '}
-            <a
-              href="https://github.com/Gisto/Gisto/releases/tag/v1.13.4"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline font-semibold"
-            >
-              View release <ExternalLink className="size-2.5 inline opacity-60" />
-            </a>
-          </p>
-        </div>
+      <div className="mt-8 flex max-w-3xl items-start gap-3 rounded-2xl border border-amber-500/20 bg-amber-500/5 px-4 py-3">
+        <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-500" />
+        <p className="text-sm text-muted-foreground">
+          <span className="font-medium text-foreground">Previous version (v1.13.4)</span> will not
+          receive updates.{' '}
+          <a
+            href="https://github.com/Gisto/Gisto/releases/tag/v1.13.4"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary hover:underline"
+          >
+            View release
+          </a>
+        </p>
       </div>
     </Section>
   );

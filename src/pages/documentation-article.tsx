@@ -14,21 +14,6 @@ interface Frontmatter {
   author?: string;
 }
 
-const CATEGORY_COLORS: Record<string, string> = {
-  intro: 'bg-primary/10 border-primary/20 text-primary',
-  faq: 'bg-amber-500/10 border-amber-500/20 text-amber-500',
-  features: 'bg-purple-500/10 border-purple-500/20 text-purple-500',
-  'knowledge base': 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500',
-};
-
-const getCategoryColor = (category: string) => {
-  const lower = category.toLowerCase();
-  for (const [key, color] of Object.entries(CATEGORY_COLORS)) {
-    if (lower.includes(key)) return color;
-  }
-  return 'bg-primary/10 border-primary/20 text-primary';
-};
-
 export const DocumentationArticlePage = () => {
   const { params } = useRouter();
   const [frontmatter, setFrontmatter] = React.useState<Frontmatter | null>(null);
@@ -63,32 +48,27 @@ export const DocumentationArticlePage = () => {
     : '';
 
   return (
-    <Section className="py-12 relative min-h-[700px]">
-      <div className="glow-bg top-[-50px] left-[50%] -translate-x-1/2 opacity-15" />
-      <div className="glow-bg bottom-0 right-10 opacity-20" />
-
-      <div className="mb-8 relative z-10 flex items-center justify-between">
+    <Section className="py-16 sm:py-24 min-h-[700px]">
+      <div className="mb-8 flex items-center justify-between">
         <Link
-          className="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-primary transition-colors py-2 rounded-xl group"
+          className="group inline-flex items-center gap-2 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
           to={'/documentation'}
         >
-          <CircleArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-1" />{' '}
+          <CircleArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />{' '}
           Back to Docs
         </Link>
 
         {frontmatter?.category && (
-          <span
-            className={`text-[11px] font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-lg border ${getCategoryColor(frontmatter.category)}`}
-          >
+          <span className="rounded-md border border-border px-2 py-1 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
             {categoryName}
           </span>
         )}
       </div>
 
       <Suspense fallback={<Loading className="h-[300px]" />}>
-        <div className="max-w-4xl mx-auto relative z-10">
+        <div className="mx-auto max-w-4xl">
           {frontmatter?.title && (
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.15] mb-6 text-foreground">
+            <h1 className="mb-6 text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
               {frontmatter.title}
             </h1>
           )}
@@ -128,7 +108,7 @@ export const DocumentationArticlePage = () => {
 
           <div className="mt-16 pt-10 border-t border-border text-center">
             <Link
-              className="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-primary transition-colors py-2 rounded-xl group"
+              className="group inline-flex items-center gap-2 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
               to={'/documentation'}
             >
               <CircleArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-1" />{' '}

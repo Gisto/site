@@ -96,38 +96,37 @@ export const DocumentationPage = () => {
     .filter(([, pages]) => (pages as typeof docs).length > 0) as [string, typeof docs][];
 
   return (
-    <Section className="py-12 relative min-h-[700px]">
-      <div className="glow-bg top-[-80px] left-[50%] -translate-x-1/2 opacity-20" />
-      <div className="glow-bg bottom-0 right-10 opacity-20" />
-
-      <div className="text-center max-w-2xl mx-auto mb-12 relative z-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
-          Documentation
-        </h1>
+    <Section className="py-16 sm:py-24 min-h-[700px]">
+      <div className="max-w-2xl">
+        <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Docs</p>
+        <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Documentation</h1>
+        <p className="mt-3 text-muted-foreground">
+          Guides, answers, and reference material for Gisto.
+        </p>
       </div>
 
-      <div className="relative max-w-md mx-auto mb-14 z-20">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground z-30" />
+      <div className="relative mt-8 max-w-md">
+        <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
         <input
           type="text"
           placeholder="Search documentation..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-11 pr-4 py-3 rounded-2xl glass-panel border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+          className="w-full rounded-md border border-border bg-background py-2.5 pl-10 pr-3 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none"
         />
       </div>
 
-      <div className="space-y-10 relative z-10">
+      <div className="mt-12 space-y-10">
         {filtered.map(([category, pages]) => (
           <div key={category}>
-            <div className="flex items-center gap-3 mb-5">
-              <h2 className="text-xl font-bold text-foreground">{category}</h2>
-              <span className="text-xs text-muted-foreground bg-muted px-2.5 py-0.5 rounded-full border border-border">
+            <div className="mb-4 flex items-center gap-3">
+              <h2 className="text-base font-medium text-foreground">{category}</h2>
+              <span className="font-mono text-xs text-muted-foreground">
                 {pages.length} {pages.length === 1 ? 'article' : 'articles'}
               </span>
             </div>
 
-            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {pages.map((page) => {
                 const path = page.path.replace('./docs', '/documentation').replace('.mdx', '');
 
@@ -135,18 +134,18 @@ export const DocumentationPage = () => {
                   <Link
                     key={page.frontmatter.title}
                     to={path}
-                    className="group glass-panel p-5 rounded-2xl border-border hover:border-primary/40 transition-all duration-200 flex items-center gap-4 hover:shadow-md hover:-translate-y-0.5"
+                    className="group flex items-center gap-4 rounded-lg border border-border bg-card p-4 transition-colors hover:border-foreground/20"
                   >
                     <div className="min-w-0">
-                      <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                      <h3 className="text-sm font-medium text-foreground transition-colors group-hover:text-primary">
                         {page.frontmatter.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="mt-1 text-xs text-muted-foreground">
                         {page.frontmatter.published &&
                           `Updated ${new Date(page.frontmatter.published).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`}
                       </p>
                     </div>
-                    <ArrowRight className="size-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0 ml-auto" />
+                    <ArrowRight className="ml-auto size-4 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
                   </Link>
                 );
               })}
@@ -155,9 +154,9 @@ export const DocumentationPage = () => {
         ))}
 
         {filtered.length === 0 && (
-          <div className="text-center py-20">
-            <Search className="size-10 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground text-sm">No articles found matching "{search}"</p>
+          <div className="py-20 text-center">
+            <Search className="mx-auto mb-4 size-10 text-muted-foreground" />
+            <p className="text-sm text-muted-foreground">No articles found matching "{search}"</p>
           </div>
         )}
       </div>

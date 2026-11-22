@@ -8,9 +8,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', ...defaultTheme.fontFamily.sans],
-        heading: ['Inter', ...defaultTheme.fontFamily.sans],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+        body: [...defaultTheme.fontFamily.sans],
+        heading: [...defaultTheme.fontFamily.sans],
+        mono: [...defaultTheme.fontFamily.mono],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -83,9 +83,19 @@ export default {
           // '50%': { transform: 'perspective(800px) rotateY(-8deg)' },
           '100%': { transform: 'perspective(800px) rotateY(0deg)' },
         },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
       },
       animation: {
         tilt: 'tilt 1s ease-in-out',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },

@@ -14,8 +14,6 @@ export const InstallationPage = () => {
 
   return (
     <>
-      <div className="pt-20" />
-
       <QuickStart />
 
       <Section className="py-4">
@@ -30,13 +28,13 @@ export const InstallationPage = () => {
           <div className="flex items-center justify-center gap-3">
             <Link
               to="/features"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground font-bold rounded-xl text-sm hover:bg-muted/50 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground font-medium rounded-md text-sm hover:bg-muted/50 transition-colors"
             >
               See all features
             </Link>
             <Link
               to="/documentation"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground font-bold rounded-xl text-sm hover:bg-muted/50 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground font-medium rounded-md text-sm hover:bg-muted/50 transition-colors"
             >
               Read the docs
             </Link>
