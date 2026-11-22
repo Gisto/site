@@ -1,48 +1,49 @@
 import { Section } from '../section.tsx';
-import { Info } from 'lucide-react';
+import { Reveal } from '../reveal.tsx';
 
 export const About = () => {
   return (
-    <Section className="py-20">
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs text-primary font-semibold mb-4 tracking-wider uppercase">
-            <Info className="size-3.5" /> About
+    <Section className="py-16 sm:py-24 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] float"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-chart-4/10 rounded-full blur-[100px] float-delayed"></div>
+      <div className="grid gap-8 md:grid-cols-[200px_1fr] md:gap-16">
+        <Reveal className="mb-8">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">About</p>
+            <h2 id="about-section" className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+              About Gisto
+            </h2>
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight" id="about-section">
-            About <span className="text-gradient">Gisto</span>
-          </h2>
-        </div>
-        <div className="space-y-6 text-muted-foreground leading-relaxed">
-          <p className="text-lg">
+        </Reveal>
+
+        <Reveal className="mt-8 max-w-2xl space-y-4 text-muted-foreground" delay={150}>
+          <p className="leading-relaxed">
             We built Gisto because we were tired of losing snippets across a dozen browser tabs,
-            random text files, and Slack messages. Your code snippets deserve better than a "notes"
+            random text files, and Slack messages. Your code snippets deserve better than a notes
             app.
           </p>
-          <p className="text-lg">
-            Gisto connects to{' '}
-            <strong className="text-foreground font-semibold">GitHub Gists</strong>,{' '}
-            <strong className="text-foreground font-semibold">GitLab Snippets</strong>,{' '}
-            <strong>
-              <a
-                href="https://github.com/sanusart/snippet-bin"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 decoration-primary/30 hover:decoration-primary text-foreground font-semibold"
-              >
-                Snippet-Bin
-              </a>
-            </strong>{' '}
+          <p className="leading-relaxed">
+            Gisto connects to <strong className="font-medium text-foreground">GitHub Gists</strong>,{' '}
+            <strong className="font-medium text-foreground">GitLab Snippets</strong>,{' '}
+            <a
+              href="https://github.com/sanusart/snippet-bin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+            >
+              Snippet-Bin
+            </a>{' '}
             (self-hosted), or stores everything locally in your browser. You get real search, tags,
-            syntax highlighting, a proper code editor, and structured snippet types (to-do lists, kanban boards, docs, flashcards) - all backed by tools you already use.
+            syntax highlighting, a proper code editor, and structured snippet types (to-do lists,
+            kanban boards, docs, flashcards) — all backed by tools you already use.
           </p>
-          <p className="text-lg">
+          <p className="leading-relaxed">
             Version 2.x is a ground-up rewrite. We dropped Electron for{' '}
-            <strong className="text-foreground font-semibold">Tauri</strong> - the app is now a
+            <strong className="font-medium text-foreground">Tauri</strong> — the app is now a
             fraction of the size and uses way less RAM. Under the hood: React, Monaco Editor,
             Tailwind, Vite.
           </p>
-        </div>
+        </Reveal>
       </div>
     </Section>
   );

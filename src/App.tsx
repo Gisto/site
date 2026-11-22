@@ -25,10 +25,7 @@ function App() {
   return (
     <RouterProvider routes={routes}>
       <Header />
-      <div
-        id="top"
-        className="bg-light-pattern dark:bg-dark-pattern overflow-x-hidden min-h-screen"
-      >
+      <div id="top" className="overflow-x-hidden min-h-screen">
         <Outlet />
         <Footer />
       </div>

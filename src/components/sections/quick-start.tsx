@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Section } from '../section.tsx';
-import { Terminal, Copy, Check, Info, Download, ShieldAlert } from 'lucide-react';
+import { Reveal } from '../reveal.tsx';
+import { Copy, Check, Info, Download, ShieldAlert } from 'lucide-react';
 import { Button } from '../ui/button.tsx';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover.tsx';
 import { scrollToSection } from '@/lib/utils.ts';
@@ -20,118 +21,119 @@ export const QuickStart = () => {
   };
 
   return (
-    <Section id="quick-start-section" className="py-20 section-gradient">
-      <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs text-primary font-semibold mb-4 tracking-wider uppercase">
-          <Terminal className="size-3.5" /> Quick Start
+    <Section id="quick-start-section" className="py-16 sm:py-24 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-[100px] float"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-chart-2/10 rounded-full blur-[100px] float-delayed"></div>
+
+      <Reveal className="max-w-2xl">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+            Quick Start
+          </p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+            Install in one command
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            macOS users can install with Homebrew. Everyone else — grab a build below.
+          </p>
         </div>
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
-          Install in <span className="text-gradient">one command</span>
-        </h2>
-        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-          macOS users can install with Homebrew. Everyone else - grab a build below.
-        </p>
-      </div>
+      </Reveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto items-stretch">
-        {/* Homebrew */}
-        <div className="card-raised p-6 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-border/60">
-              <span className="text-sm font-bold text-foreground">macOS (Homebrew)</span>
-              <span className="pill-primary text-[10px] py-0.5 px-2">Brew Cask</span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-              One-liner install via Homebrew Cask:
-            </p>
-
-            <div className="bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 font-mono text-xs select-all mb-4">
-              <div className="flex items-center justify-between mb-3 pb-2 border-b border-zinc-200 dark:border-zinc-800 select-none">
-                <span className="text-[10px] text-zinc-400 font-medium">terminal</span>
-                <button
-                  onClick={handleCopy}
-                  className="text-zinc-400 hover:text-primary transition-colors"
-                  title="Copy command"
-                >
-                  {copied ? (
-                    <Check className="size-4 text-emerald-500" />
-                  ) : (
-                    <Copy className="size-4" />
-                  )}
-                </button>
+      <div className="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
+        <Reveal delay={150}>
+          <div className="flex flex-col h-full justify-between rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 hover:shadow-xl">
+            <div>
+              <div className="mb-6 flex items-center justify-between border-b border-border pb-4">
+                <span className="text-sm font-medium text-foreground">macOS (Homebrew)</span>
+                <span className="pill-primary">Brew Cask</span>
               </div>
-              <div className="flex items-start">
-                <span className="text-primary mr-2 select-none font-bold">$</span>
-                <span className="text-zinc-800 dark:text-zinc-200 select-all font-mono break-all leading-normal">
-                  {brewCommand}
+              <p className="mb-6 text-sm text-muted-foreground">
+                One-liner install via Homebrew Cask:
+              </p>
+
+              <div className="mb-6 rounded-xl border border-border bg-muted p-5 font-mono text-xs">
+                <div className="mb-4 flex select-none items-center justify-between border-b border-border pb-3">
+                  <span className="text-[11px] text-muted-foreground">terminal</span>
+                  <button
+                    onClick={handleCopy}
+                    className="text-muted-foreground transition-colors hover:text-foreground"
+                    title="Copy command"
+                  >
+                    {copied ? <Check className="size-5 text-success" /> : <Copy className="size-5" />}
+                  </button>
+                </div>
+                <div className="flex items-start">
+                  <span className="mr-2 select-none font-bold text-primary">$</span>
+                  <span className="break-all font-mono leading-normal text-foreground select-all">
+                    {brewCommand}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 border-t border-border pt-6 text-xs text-muted-foreground">
+              <Info className="size-4 text-primary" />
+              <span>Updates are automatic through the Homebrew tap.</span>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={250}>
+          <div className="flex flex-col h-full justify-between rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 hover:shadow-xl">
+            <div>
+              <div className="mb-6 flex items-center justify-between border-b border-border pb-4">
+                <span className="text-sm font-medium text-foreground">Manual Packages</span>
+                <span className="pill border border-border text-muted-foreground">
+                  Direct Download
                 </span>
               </div>
+              <p className="mb-8 text-sm text-muted-foreground">
+                Builds for macOS (.dmg), Windows (.exe/.msi), and Linux (.deb/.rpm/.AppImage). All
+                built with Tauri.
+              </p>
+
+              <Button
+                variant="outline"
+                className="w-full justify-between btn-sweep"
+                onClick={() => scrollToSection('downloads-section')}
+              >
+                <span className="flex items-center gap-2">
+                  <Download className="size-5" />
+                  <span>Choose platform package</span>
+                </span>
+                <span className="text-[11px] text-muted-foreground">&rarr;</span>
+              </Button>
             </div>
-          </div>
 
-          <div className="flex items-center gap-2 text-[11px] text-muted-foreground pt-4 border-t border-border/60">
-            <Info className="size-3.5 text-primary" />
-            <span>Updates are automatic through the Homebrew tap.</span>
-          </div>
-        </div>
-
-        {/* Manual */}
-        <div className="card-raised p-6 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-border/60">
-              <span className="text-sm font-bold text-foreground">Manual Packages</span>
-              <span className="pill text-[10px] bg-muted border border-border text-muted-foreground">
-                Direct Download
-              </span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              Builds for macOS (.dmg), Windows (.exe/.msi), and Linux (.deb/.rpm/.AppImage). All
-              built with Tauri.
-            </p>
-
-            <Button
-              variant="outline"
-              className="w-full justify-between border-border hover:border-primary/40 hover:bg-primary/5 text-foreground text-sm py-6 rounded-xl font-semibold transition-colors"
-              onClick={() => scrollToSection('downloads-section')}
-            >
+            <div className="mt-6 flex items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground">
               <div className="flex items-center gap-2">
-                <Download className="size-4 text-primary" />
-                <span>Choose Platform Package</span>
+                <ShieldAlert className="size-5 shrink-0 text-amber-500" />
+                <span>Not code-signed: install warnings may apply.</span>
               </div>
-              <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
-                Exe, Dmg, Deb, Rpm &rarr;
-              </span>
-            </Button>
-          </div>
-
-          <div className="flex items-center justify-between gap-3 text-[11px] text-muted-foreground pt-4 border-t border-border/60 mt-4">
-            <div className="flex items-center gap-2">
-              <ShieldAlert className="size-4 text-amber-500 shrink-0" />
-              <span>App is not code-signed: installation warnings may apply.</span>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button className="shrink-0 text-xs font-medium text-primary hover:underline">
+                    Read info
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-80 rounded-xl border-border p-4 text-left text-xs shadow-lg">
+                  <p className="mb-2 text-sm font-medium text-foreground">Security note</p>
+                  <p className="mb-2 text-xs leading-relaxed text-muted-foreground">
+                    This app is not code-signed. You may see a warning like &quot;Windows protected
+                    your PC&quot; or &quot;This app is from an unidentified developer.&quot;
+                  </p>
+                  <p className="mb-2 text-xs leading-relaxed text-muted-foreground">
+                    <strong>Windows:</strong> Click &quot;More Info&quot; then &quot;Run Anyway&quot;.
+                  </p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    <strong>macOS:</strong> Go to System Settings &rarr; Privacy &amp; Security and
+                    click &quot;Open Anyway&quot;.
+                  </p>
+                </PopoverContent>
+              </Popover>
             </div>
-            <Popover>
-              <PopoverTrigger asChild>
-                <button className="text-xs font-bold text-primary hover:underline shrink-0">
-                  Read Info
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-80 text-xs text-left border-border bg-white dark:bg-zinc-900 p-4 rounded-xl shadow-xl">
-                <p className="mb-2 text-sm font-bold text-foreground">Security Note:</p>
-                <p className="mb-2 text-xs text-muted-foreground leading-relaxed">
-                  This app is not code-signed. You may see a warning like &quot;Windows protected
-                  your PC&quot; or &quot;This app is from an unidentified developer.&quot;
-                </p>
-                <p className="mb-2 text-xs text-muted-foreground leading-relaxed">
-                  <strong>Windows:</strong> Click &quot;More Info&quot; then &quot;Run Anyway&quot;.
-                </p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  <strong>macOS:</strong> Go to System Preferences &rarr; Security &amp; Privacy
-                  &rarr; General and click &quot;Open Anyway&quot;.
-                </p>
-              </PopoverContent>
-            </Popover>
           </div>
-        </div>
+        </Reveal>
       </div>
     </Section>
   );
